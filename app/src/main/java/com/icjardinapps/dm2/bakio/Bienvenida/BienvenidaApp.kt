@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
 
 
+
 class BienvenidaApp : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
@@ -48,13 +49,13 @@ class BienvenidaApp : AppCompatActivity() {
             mediaPlayer?.start()   // Reproducir el audio después de reiniciar
         }
 
-        /*
+
         ir_mapa.setOnClickListener {
             mediaPlayer?.pause() // Pausar el audio antes de cambiar de actividad
             // Navegar a la actividad del mapa
-            val intent = Intent(this, mapa::class.java)
+            val intent = Intent(this, Mapa::class.java)
             startActivity(intent)
-        }*/
+        }
 
         // Obtener la duración total del audio
         val totalDuration = mediaPlayer?.duration ?: 0
