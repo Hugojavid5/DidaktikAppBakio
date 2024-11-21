@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Hola amigos! ¡Bienvenidos a Bakio!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"/>
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/sonrisa"
+        android:contentDescription="Imagen de bienvenida con una sonrisa"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Explicación -->
+    <TextView
+        android:id="@+id/explanationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Soy Lanper, el personaje de las fiestas de Bakio, y hoy os guiaré por sus lugares y costumbres más importantes. Durante el recorrido, jugaremos en cada parada para hacer la visita más divertida y educativa. ¡Será una experiencia increíble!"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp"
+        android:lineSpacingExtra="4dp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Barra de Progreso del Audio -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <SeekBar
+            android:id="@+id/audioSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <!-- Tiempo actual y duración -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/currentTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/totalTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_weight="1"
+                android:gravity="end"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Botones de control de audio -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pause"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reiniciar"
+            android:backgroundTint="@android:color/holo_red_light"/>
+    </LinearLayout>
+
+    <!-- Botón para ir al mapa de Bakio -->
+    <Button
+        android:id="@+id/ir_mapa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ir al Mapa de Bakio"
+        android:textStyle="bold"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
