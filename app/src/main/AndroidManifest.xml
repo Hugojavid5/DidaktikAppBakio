@@ -46,6 +46,14 @@
         <activity android:name=".Mapa.Mapa"
             android:exported="true" />
 
+        <!-- Actividad Arrastrar y soltar -->
+        <activity
+            android:name=".Arrastrar.ActividadBienvenidaArrastrarYSoltar"
+            android:exported="true" />
+        <activity
+            android:name=".Arrastrar.ActividadArrastrarYSoltar"
+            android:exported="true" />
+
     </application>
 
 </manifest>
