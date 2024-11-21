@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".Arrastrar.ActividadArrastrarYSoltar">
+
+    <!-- Contenedor de las imágenes fijas en la parte superior -->
+    <LinearLayout
+        android:id="@+id/linearLayoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/silueta_hojas"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/silueta_hojas" />
+
+        <ImageView
+            android:id="@+id/silueta_paja"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/silueta_paja" />
+
+        <ImageView
+            android:id="@+id/silueta_poncho"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/silueta_poncho" />
+
+        <ImageView
+            android:id="@+id/silueta_saco"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/silueta_saco"/>
+    </LinearLayout>
+
+    <!-- Imagen de Sonrisa entre los bloques -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="202dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/sonrisa" />
+
+    <!-- Contenedor de las imágenes en la parte inferior -->
+    <LinearLayout
+        android:id="@+id/linearLayoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/saco"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/saco"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/hojas"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/hojas"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/poncho"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/poncho"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/paja"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:src="@drawable/paja"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <!-- Botón para salir -->
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="salir"
+        android:visibility="gone" />
+
+</RelativeLayout>

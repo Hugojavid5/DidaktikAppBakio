@@ -1,4 +1,4 @@
-package com.example.bakio.arrastrar
+package com.icjardinapps.dm2.bakio.Arrastrar
 
 import android.content.Intent
 import android.media.MediaPlayer
@@ -7,7 +7,8 @@ import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bakio.R
+import com.icjardinapps.dm2.bakio.R
+
 
 class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
@@ -73,7 +74,7 @@ class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity() {
         }
     }
 
-    // Método para actualizar la barra de progreso
+    // Metodo para actualizar la barra de progreso
     private fun updateSeekBar() {
         val audioSeekBar: SeekBar = findViewById(R.id.audioSeekBar)
         val currentTimeText: TextView = findViewById(R.id.currentTimeText)
