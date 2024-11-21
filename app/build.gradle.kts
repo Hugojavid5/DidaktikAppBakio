@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.icjardinapps.dm2.bakio"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.icjardinapps.dm2.bakio"

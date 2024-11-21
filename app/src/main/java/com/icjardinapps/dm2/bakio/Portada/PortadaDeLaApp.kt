@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import com.icjardinapps.dm2.bakio.Bienvenida.BienvenidaApp
 import com.icjardinapps.dm2.bakio.R
 
 class PortadaDeLaApp : AppCompatActivity() {
