@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LANPER"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+
+    <!-- Descripción -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="En Bakio, las fiestas de San Joan Doloza, del 28 al 31 de agosto, tienen como protagonista a 'Lanper', una lámpara simbólica que participa en desfiles y eventos. El resto del año descansa en el ayuntamiento."
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp" />
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/sopa"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Controles de audio -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/txtCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:layout_gravity="start"
+            android:layout_marginEnd="8dp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:layout_gravity="end" />
+    </LinearLayout>
+
+    <!-- Botones de control de audio -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+
+        <Button
+            android:id="@+id/btnPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pause"
+            android:layout_marginStart="8dp" />
+
+        <Button
+            android:id="@+id/btnRestart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restart"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Botón Jugar -->
+    <Button
+        android:id="@+id/btnJugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugar" />
+</LinearLayout>
