@@ -54,6 +54,13 @@
             android:name=".Arrastrar.ActividadArrastrarYSoltar"
             android:exported="true" />
 
+        <!-- Actividad Sopa de letras -->
+        <activity
+            android:name=".Sopa.ActividadBienvenidaSopa"
+            android:exported="true" />
+        <activity
+            android:name=".Sopa.ActividadSopaDeLetras"
+            android:exported="true" />
     </application>
 
 </manifest>
