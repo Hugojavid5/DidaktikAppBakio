@@ -70,6 +70,14 @@
             android:name=".Txakolina.ActividadTxakoli"
             android:exported="true" />
 
+        <!-- Actividad gaztelugatxe -->
+        <activity
+            android:name=".Gaztelugatze.ActividadBienvenidaGaztelugatxeko"
+            android:exported="true" />
+        <activity
+            android:name=".Gaztelugatze.ActividadGaztelugatxeko"
+            android:exported="true" />
+
     </application>
 
 </manifest>
