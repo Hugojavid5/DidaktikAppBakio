@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TextView de bienvenida -->
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="San Juan de Gaztelugatxe"
+        android:textSize="24sp" />
+
+    <!-- TextView de explicación -->
+    <TextView
+        android:id="@+id/tv_explicacion"
+        android:layout_width="365dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="La capilla de Gaztelugatxe, construida probablemente en el siglo XII, ha sido escenario de asedios, saqueos y ataques. Saqueadores y corsarios destruyeron bienes y lanzaron objetos al acantilado."
+        android:textSize="20sp" />
+
+    <!-- Imagen de bienvenida -->
+    <ImageView
+        android:id="@+id/iv_bienvenida"
+        android:layout_width="308dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="Imagen de bienvenida"
+        android:src="@drawable/ermita" />
+
+    <!-- Barra de progreso de audio -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- SeekBar de audio -->
+        <SeekBar
+            android:id="@+id/audioSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:layout_marginTop="8dp" />
+
+        <!-- Contenedor para los tiempos (inicio y final) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp">
+
+            <!-- Tiempo actual (inicio) -->
+            <TextView
+                android:id="@+id/currentTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_alignParentStart="true"
+                android:paddingStart="16dp" />
+
+            <!-- Tiempo total (final) -->
+            <TextView
+                android:id="@+id/totalTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="16dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Controles de audio -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Pause" />
+
+        <!-- Botón Reiniciar audio -->
+        <Button
+            android:id="@+id/btn_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Reiniciar" />
+    </LinearLayout>
+
+    <!-- Botón de jugar -->
+    <Button
+        android:id="@+id/btn_play_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Jugar" />
+
+</LinearLayout>
