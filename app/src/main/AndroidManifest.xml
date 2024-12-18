@@ -61,6 +61,15 @@
         <activity
             android:name=".Sopa.ActividadSopaDeLetras"
             android:exported="true" />
+
+        <!-- Actividad Txakolina -->
+        <activity
+            android:name=".Txakolina.ActividadBienvenidaTxakolina"
+            android:exported="true" />
+        <activity
+            android:name=".Txakolina.ActividadTxakoli"
+            android:exported="true" />
+
     </application>
 
 </manifest>
