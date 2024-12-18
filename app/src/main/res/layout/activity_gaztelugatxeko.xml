@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título del juego -->
+    <TextView
+        android:id="@+id/tituloJuego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adivina la respuesta correcta"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- VideoView -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Pregunta -->
+    <TextView
+        android:id="@+id/pregunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cuántas escaleras tiene Donienen de Gaztelugatxe?"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"/>
+
+    <!-- Respuestas -->
+    <RadioGroup
+        android:id="@+id/respuestas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/respuesta1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"/>
+
+        <RadioButton
+            android:id="@+id/respuesta2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="241"/>
+
+        <RadioButton
+            android:id="@+id/respuesta3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="368"/>
+    </RadioGroup>
+
+    <!-- Contenedor LinearLayout para los botones "Corregir" y "Volver" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Botón Corregir -->
+        <Button
+            android:id="@+id/corregirBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Corregir"
+            android:enabled="false"
+            android:layout_marginEnd="16dp"/>
+
+        <!-- Botón Volver -->
+        <Button
+            android:id="@+id/btn_volver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver a la Bienvenida" />
+
+    </LinearLayout>
+
+    <!-- Resultado -->
+    <TextView
+        android:id="@+id/resultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="20sp"
+        android:visibility="gone" />
+    <!-- Contenedor con la imagen de sonrisa y el texto -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <!-- Imagen de Sonrisa -->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="202dp"
+            android:visibility="gone"/>
+
+        <!-- Texto del tipo de respuesta -->
+        <TextView
+            android:id="@+id/tipoRespuesta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Respuesta correcta"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+</LinearLayout>
