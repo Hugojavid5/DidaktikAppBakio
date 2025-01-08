@@ -82,6 +82,10 @@
         <activity
             android:name=".Kahoot.ActividadBienvenidaKahoot"
             android:exported="true" />
+        <activity
+            android:name=".Kahoot.ActividadKahoot"
+            android:exported="true" />
+
 
     </application>
 
