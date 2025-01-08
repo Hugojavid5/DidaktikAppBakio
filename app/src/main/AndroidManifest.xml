@@ -78,6 +78,11 @@
             android:name=".Gaztelugatze.ActividadGaztelugatxeko"
             android:exported="true" />
 
+        <!--Actividad Kahoot -->
+        <activity
+            android:name=".Kahoot.ActividadBienvenidaKahoot"
+            android:exported="true" />
+
     </application>
 
 </manifest>
