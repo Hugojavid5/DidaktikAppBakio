@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Título de la pregunta -->
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pregunta"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RadioGroup para las respuestas -->
+    <RadioGroup
+        android:id="@+id/radioGroupAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <!-- Ejemplo de respuestas -->
+        <RadioButton
+            android:text="Respuesta 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Respuesta 2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Respuesta 3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Respuesta 4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+    <!-- Contenedor para los botones de navegación (anterior/siguiente) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:weightSum="2">
+
+        <!-- Botón de pregunta anterior -->
+        <Button
+            android:id="@+id/buttonPreviousQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pregunta anterior" />
+
+        <!-- Botón de siguiente pregunta -->
+        <Button
+            android:id="@+id/buttonNextQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Siguiente pregunta" />
+    </LinearLayout>
+
+    <!-- Botón para comprobar respuestas -->
+    <Button
+        android:id="@+id/buttonCheckAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comprobar respuestas"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botón de volver -->
+    <Button
+        android:id="@+id/buttonBackToWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver" />
+</LinearLayout>
