@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Kahoot.ActividadBienvenidaKahoot">
+
+    <!-- Titulo -->
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kahoot"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewExplicacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Explicación -->
+    <TextView
+        android:id="@+id/textViewExplicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bueno, bueno… eso es todo, y ahora para terminar con todo, ¡vamos a hacer una serie de preguntas con todo lo que hemos aprendido!"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imagen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="314dp"
+        android:layout_height="173dp"
+        android:src="@drawable/kahoot"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutBotones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExplicacion" />
+
+    <!-- Barra de audio -->
+    <LinearLayout
+        android:id="@+id/linearLayoutAudio"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutBotones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
+        android:padding="16dp">
+
+        <!-- Barra SeekBar -->
+        <SeekBar
+        android:id="@+id/seekBarAudio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="fill_horizontal">
+
+            <TextView
+                android:id="@+id/textViewTiempoIzquierda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00" />
+
+            <TextView
+                android:id="@+id/textViewTiempoDerecha"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0:06"
+                android:layout_weight="1"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Botones (Play, Pause, Reiniciar) -->
+    <LinearLayout
+        android:id="@+id/linearLayoutBotones"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/botonJugar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen">
+
+        <Button
+            android:id="@+id/botonPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+
+        <Button
+            android:id="@+id/botonPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pause" />
+
+        <Button
+            android:id="@+id/botonReiniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reiniciar" />
+    </LinearLayout>
+
+    <!-- Botón Jugar -->
+    <Button
+        android:id="@+id/botonJugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutBotones" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
