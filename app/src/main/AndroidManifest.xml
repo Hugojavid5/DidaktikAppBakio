@@ -89,6 +89,13 @@
             android:name=".Kahoot.FinKahoot"
             android:exported="true" />
 
+        <!-- Actividad bela -->
+        <activity
+            android:name=".Bela.ActividadBienvenidaBela"
+            android:exported="true" />
+        <activity
+            android:name=".Bela.ActividadBela"
+            android:exported="true" />
     </application>
 
 </manifest>
