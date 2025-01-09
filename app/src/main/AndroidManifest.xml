@@ -86,7 +86,7 @@
             android:name=".Kahoot.ActividadKahoot"
             android:exported="true" />
         <activity
-            android:name=".kahoot.FinKahoot"
+            android:name=".Kahoot.FinKahoot"
             android:exported="true" />
 
     </application>
