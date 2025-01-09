@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingBottom="16dp"
+        android:text="Respuestas seleccionadas"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <!-- Contenedor para las respuestas -->
+    <LinearLayout
+        android:id="@+id/linearLayoutAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!-- Las respuestas serán agregadas dinámicamente aquí -->
+    </LinearLayout>
+
+    <!-- Botón para corregir -->
+    <Button
+        android:id="@+id/buttonCorrectAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Corregir"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
