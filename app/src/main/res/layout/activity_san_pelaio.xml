@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".SanPelaio.ActividadSanPelaio">
+
+    <!-- Fondo semi-transparente -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <!-- Contenedor principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_marginBottom="10dp"
+            android:text="\nSan pelaio"
+            android:textAlignment="center"
+            android:textColor="#161718"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <!-- Contenedor de las imágenes del puzzle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Primera fila -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_7"
+                    android:contentDescription="pieza 7" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen2"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_4"
+                    android:contentDescription="pieza 4" />
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:onClick="imagen3"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_1"
+                    android:contentDescription="pieza 1" />
+            </LinearLayout>
+
+            <!-- Segunda fila -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_3"
+                    android:contentDescription="pieza 3" />
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen5"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_5"
+                    android:contentDescription="pieza 5" />
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:onClick="imagen6"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_9"
+                    android:contentDescription="pieza 9" />
+            </LinearLayout>
+
+            <!-- Tercera fila -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img7"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen7"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_8"
+                    android:contentDescription="pieza 8" />
+
+                <ImageView
+                    android:id="@+id/img8"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="imagen8"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/puzzle_img_2"
+                    android:contentDescription="pieza 2" />
+
+                <ImageView
+                    android:id="@+id/img9"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:scaleType="centerCrop"
+                    android:onClick="imagen9"
+                    android:src="@drawable/puzzle_img_6"
+                    android:contentDescription="pieza 6" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Botón de siguiente -->
+        <Button
+            android:id="@+id/btnMapa"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#03A9F4"
+            android:onClick="siguiente"
+            android:text="Segi"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/sonrisa"
+            android:contentDescription="sonrisa" />
+    </LinearLayout>
+</RelativeLayout>
