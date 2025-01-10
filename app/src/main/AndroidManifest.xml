@@ -96,6 +96,15 @@
         <activity
             android:name=".Bela.ActividadBela"
             android:exported="true" />
+
+        <!-- Actividad San pelaio -->
+        <activity
+            android:name=".SanPelaio.ActividadBienvenidaSanPelaio"
+            android:exported="true" />
+        <activity
+            android:name=".SanPelaio.ActividadSanPelaio"
+            android:exported="true" />
+
     </application>
 
 </manifest>
