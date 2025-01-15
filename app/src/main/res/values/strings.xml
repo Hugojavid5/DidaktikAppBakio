@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">DidaktikAppBakio</string>
-    <string name="title_activity_mapa">Mapa</string>
+    <string name="app_name">bakio</string>
+    <string name="title_activity_mapa">mapa</string>
+    <string name="image_button_description">Boton de una torre como imagen </string>
 </resources>
