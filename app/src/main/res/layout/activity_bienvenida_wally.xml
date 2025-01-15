@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MATXITXAKO ITSASARGIA"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Explicación -->
+    <TextView
+        android:id="@+id/explicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="162dp"
+        android:layout_marginBottom="20dp"
+        android:text="El faro de Matxitxak, de 20 metros de altura y situado a 122 metros sobre el nivel del mar, emite señales luminosas para guiar a los barcos, siendo visible a 30 millas náuticas. Originalmente, los faros eran operados por fareros, pero ahora la mayoría son automáticos gracias a la tecnología moderna. Actualmente, existen menos de 1500 faros en funcionamiento en el mundo."
+        android:textSize="16sp" />
+
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="match_parent"
+        android:layout_height="289dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/wally" />
+
+    <!-- Barra de progreso para audio -->
+    <SeekBar
+        android:id="@+id/audioSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Botones de control de audio -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"/>
+
+        <Button
+            android:id="@+id/pauseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pause"
+            android:layout_marginLeft="16dp"/>
+
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reiniciar"
+            android:layout_marginLeft="16dp"/>
+    </LinearLayout>
+
+    <!-- Botón para jugar -->
+    <Button
+        android:id="@+id/jugarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jugar"
+        android:textSize="18sp"/>
+</LinearLayout>
