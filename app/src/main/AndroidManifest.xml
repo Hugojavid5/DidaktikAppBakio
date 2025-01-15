@@ -105,6 +105,11 @@
             android:name=".SanPelaio.ActividadSanPelaio"
             android:exported="true" />
 
+        <!-- Fin del juego -->
+        <activity
+            android:name=".Final.FinDelJuego"
+            android:exported="true" />
+
     </application>
 
 </manifest>
