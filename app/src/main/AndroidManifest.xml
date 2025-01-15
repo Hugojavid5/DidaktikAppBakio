@@ -105,6 +105,14 @@
             android:name=".SanPelaio.ActividadSanPelaio"
             android:exported="true" />
 
+        <!-- Actividad Wally -->
+        <activity
+            android:name=".Wally.ActividadBienvenidaWally"
+            android:exported="true" />
+
+        <activity
+            android:name=".Wally.ActividadWally"
+            android:exported="true" />
         <!-- Fin del juego -->
         <activity
             android:name=".Final.FinDelJuego"
