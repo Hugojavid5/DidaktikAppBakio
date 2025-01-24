@@ -19,6 +19,7 @@ import com.icjardinapps.dm2.bakio.Gaztelugatze.ActividadBienvenidaGaztelugatxeko
 import com.icjardinapps.dm2.bakio.Kahoot.ActividadBienvenidaKahoot
 import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.SanPelaio.ActividadBienvenidaSanPelaio
+import com.icjardinapps.dm2.bakio.Sopa.ActividadBienvenidaSopa
 import com.icjardinapps.dm2.bakio.Txakolina.ActividadBienvenidaTxakolina
 import com.icjardinapps.dm2.bakio.Wally.ActividadBienvenidaWally
 import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
@@ -104,7 +105,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
-            0 -> Intent(this, ActividadBienvenidaWally::class.java)
+            0 -> Intent(this, ActividadBienvenidaSopa::class.java)
             1 -> Intent(this, ActividadBienvenidaTxakolina::class.java)
             2 -> Intent(this, ActividadArrastrarYSoltar::class.java)
             3 -> Intent(this, ActividadBienvenidaBela::class.java)
