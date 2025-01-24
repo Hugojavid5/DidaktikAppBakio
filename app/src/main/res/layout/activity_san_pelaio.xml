@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SanPelaio.ActividadSanPelaio"
-    android:background="@drawable/fondo_verde">
+    android:background="@drawable/puzzle_img_9">
 
     <!-- Fondo semi-transparente -->
     <View
