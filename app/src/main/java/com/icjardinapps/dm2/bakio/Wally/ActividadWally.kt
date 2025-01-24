@@ -30,7 +30,7 @@ class ActividadWally : AppCompatActivity() {
         imageButton1 = findViewById(R.id.imageButton1)
         imageButton2 = findViewById(R.id.imageButton2)
         imageButton3 = findViewById(R.id.imageButton3)
-        segButton = findViewById(R.id.button)
+        segButton = findViewById(R.id.segibutton)
         imageView1 = findViewById(R.id.imageView5)
         imageView2 = findViewById(R.id.imageView8)
         imageView3 = findViewById(R.id.imageView9)

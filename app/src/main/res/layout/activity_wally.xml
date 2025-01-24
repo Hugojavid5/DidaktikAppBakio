@@ -118,7 +118,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/segibutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#03A9F4"
