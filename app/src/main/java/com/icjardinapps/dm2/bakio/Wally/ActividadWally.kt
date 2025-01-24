@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Wally
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -7,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
 
@@ -42,6 +44,11 @@ class ActividadWally : AppCompatActivity() {
         imageButton1.setOnClickListener { onTowerImageClicked(1) }
         imageButton2.setOnClickListener { onTowerImageClicked(2) }
         imageButton3.setOnClickListener { onTowerImageClicked(3) }
+
+        segButton.setOnClickListener {
+            val intent = Intent(this, Mapa::class.java)  // Cambia JuegoActivity por tu actividad de juego
+            startActivity(intent)
+        }
     }
 
     private fun onTowerImageClicked(towerNumber: Int) {
