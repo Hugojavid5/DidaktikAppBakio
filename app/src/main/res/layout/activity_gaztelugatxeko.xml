@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/fondo_verde">
 
     <!-- Título del juego -->
     <TextView
@@ -13,7 +14,8 @@
         android:text="Adivina la respuesta correcta"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/black"/>
 
     <!-- VideoView -->
     <VideoView
