@@ -1,4 +1,4 @@
-package com.example.bakio.mapa
+package com.icjardinapps.dm2.bakio.Mapa
 
 data class Punto(
     val id: Int,

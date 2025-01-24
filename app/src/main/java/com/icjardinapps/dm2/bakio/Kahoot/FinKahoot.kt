@@ -6,8 +6,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bakio.Final.FinDelJuego
-import com.example.bakio.R
+import com.icjardinapps.dm2.bakio.Final.FinDelJuego
+import com.icjardinapps.dm2.bakio.R
 
 class FinKahoot : AppCompatActivity() {
 

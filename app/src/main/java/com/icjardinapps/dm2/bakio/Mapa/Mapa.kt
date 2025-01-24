@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.bakio.mapa.Punto
+
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -14,7 +14,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.icjardinapps.dm2.bakio.Arrastrar.ActividadArrastrarYSoltar
+import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
+import com.icjardinapps.dm2.bakio.Gaztelugatze.ActividadBienvenidaGaztelugatxeko
+import com.icjardinapps.dm2.bakio.Kahoot.ActividadBienvenidaKahoot
 import com.icjardinapps.dm2.bakio.R
+import com.icjardinapps.dm2.bakio.SanPelaio.ActividadBienvenidaSanPelaio
+import com.icjardinapps.dm2.bakio.Txakolina.ActividadBienvenidaTxakolina
+import com.icjardinapps.dm2.bakio.Wally.ActividadBienvenidaWally
 import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
 class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
@@ -93,7 +100,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun abrirActividadPorId(id: Int) {
-        /*val intent = when (id) {
+        val intent = when (id) {
             0 -> Intent(this, ActividadBienvenidaWally::class.java)
             1 -> Intent(this, ActividadBienvenidaTxakolina::class.java)
             2 -> Intent(this, ActividadArrastrarYSoltar::class.java)
@@ -105,7 +112,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         }
         intent?.let {
             actividadLauncher.launch(it) // Llamamos a la actividad y esperamos un resultado
-        }*/
+        }
     }
 
     private fun avanzarAlSiguientePunto() {

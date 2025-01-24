@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
 import com.icjardinapps.dm2.bakio.R
 
 
