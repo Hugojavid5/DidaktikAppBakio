@@ -1,28 +1,27 @@
 package com.icjardinapps.dm2.bakio.Mapa
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLngBounds
+import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
+import com.icjardinapps.dm2.bakio.*
 import com.icjardinapps.dm2.bakio.Arrastrar.ActividadArrastrarYSoltar
 import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
 import com.icjardinapps.dm2.bakio.Gaztelugatze.ActividadBienvenidaGaztelugatxeko
 import com.icjardinapps.dm2.bakio.Kahoot.ActividadBienvenidaKahoot
-import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.SanPelaio.ActividadBienvenidaSanPelaio
 import com.icjardinapps.dm2.bakio.Sopa.ActividadBienvenidaSopa
 import com.icjardinapps.dm2.bakio.Txakolina.ActividadBienvenidaTxakolina
 import com.icjardinapps.dm2.bakio.Wally.ActividadBienvenidaWally
-import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
 
 class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
@@ -30,7 +29,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapaBinding
 
     // Lista de puntos a mostrar en el mapa
-    private val ciudades: List<Punto> = listOf(
+    private val ciudades: MutableList<Punto> = mutableListOf(
         Punto(0, "Jaiak-Lanper Pertsonaia (Bakioko udaletxea)", "Descripción corta de Jaiak-Lanper Pertsonaia", 43.42306, -2.81417, "Descripción completa de Jaiak-Lanper Pertsonaia (Bakioko udaletxea)"),
         Punto(1, "Txakolina (Txakolingunea)", "Descripción corta de Txakolina", 43.41667, -2.81250, "Descripción completa de Txakolina (Txakolingunea)"),
         Punto(2, "Anarru eguna", "Descripción corta de Anarru eguna", 43.42944, -2.81194, "Descripción completa de Anarru eguna"),
@@ -40,9 +39,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         Punto(6, "Matxitxako itsasargia", "Descripción corta de Matxitxako itsasargia", 43.45472, -2.75250, "Descripción completa de Matxitxako itsasargia")
     )
 
-    private var currentPointIndex = 0 // Índice del punto actual
-
-    private lateinit var actividadLauncher: ActivityResultLauncher<Intent> // Launcher para actividades
+    private var puntoActual = 0 // Controla el punto que debe estar en verde
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,58 +47,85 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicializar el launcher
-        actividadLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                // Si la actividad fue completada correctamente, avanzamos al siguiente punto
-                avanzarAlSiguientePunto()
-            } else {
-                // Si no fue completado correctamente, mostramos un mensaje
-                Toast.makeText(this, "Actividad no completada correctamente.", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mostrarPuntos()
 
-        // Mostrar todos los puntos en el mapa
-        mostrarTodosLosPuntos()
-
-        // Agregar un listener para abrir la actividad al pulsar un marcador
         mMap.setOnMarkerClickListener { marker ->
-            // Buscar el punto asociado al marcador pulsado
             val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
             puntoSeleccionado?.let { abrirActividadPorId(it.id) }
-            true // Indica que el evento ha sido gestionado
+            true
+        }
+    }
+    private fun completarPunto() {
+        // Marca el punto actual como completado y pasa al siguiente
+        if (puntoActual < ciudades.size - 1) {
+            // Avanza al siguiente punto
+            puntoActual++
+
+            // Regresar al mapa y actualizar los puntos
+            mostrarPuntos()
+
+            // Asegura que el mapa se actualice después de un pequeño retraso
+            Handler().postDelayed({
+                // Después de 2 segundos, el mapa se actualizará y el siguiente punto se marcará en verde
+            }, 2000) // 2 segundos de retraso
+        } else {
+            // Cuando se completan todos los puntos, finaliza la ruta
+            finalizarRuta()
         }
     }
 
-    private fun mostrarTodosLosPuntos() {
-        mMap.clear() // Limpiar los marcadores anteriores
+    private fun mostrarPuntos() {
+        mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
 
-        // Crear un objeto LatLngBounds para ajustar la cámara y mostrar todos los puntos
-        val boundsBuilder = LatLngBounds.Builder()
+        // Mostrar los puntos en el mapa
+        for ((index, punto) in ciudades.withIndex()) {
+            val color = when {
+                index == puntoActual -> BitmapDescriptorFactory.HUE_GREEN // El siguiente punto en verde
+                else -> BitmapDescriptorFactory.HUE_RED // Los demás puntos en rojo
+            }
 
-        // Agregar marcadores para todos los puntos
-        for (punto in ciudades) {
-            val posicion = LatLng(punto.latitud, punto.longitud)
             mMap.addMarker(
                 MarkerOptions()
-                    .position(posicion)
+                    .position(LatLng(punto.latitud, punto.longitud))
                     .title(punto.nombre)
+                    .icon(BitmapDescriptorFactory.defaultMarker(color))
             )
-            boundsBuilder.include(posicion) // Agregar posición al bounds
         }
 
-        // Ajustar la cámara para mostrar todos los puntos
+        // Ajusta la cámara para que todos los puntos sean visibles
+        val boundsBuilder = LatLngBounds.Builder()
+        for (punto in ciudades) {
+            val latLng = LatLng(punto.latitud, punto.longitud)
+            boundsBuilder.include(latLng)
+        }
         val bounds = boundsBuilder.build()
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+        val padding = 100 // Espaciado de los bordes (opcional)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            // Regresar al mapa y actualizar el punto
+            completarPunto()
+        } else {
+            // Si la actividad no se completó correctamente, no hacemos nada
+        }
+    }
+
+
+
+
+
+
+
 
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
@@ -115,22 +139,10 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             else -> null
         }
         intent?.let {
-            actividadLauncher.launch(it) // Llamamos a la actividad y esperamos un resultado
+            startActivityForResult(it, id)
         }
     }
 
-    private fun avanzarAlSiguientePunto() {
-        // Asegurarse de que el índice no se desborde
-        if (currentPointIndex < ciudades.size - 1) {
-            currentPointIndex++ // Avanzar al siguiente punto
-            mostrarTodosLosPuntos() // Mostrar el siguiente punto
-        } else {
-            // Si ya se completaron todos los puntos, finalizar la ruta
-            finalizarRuta()
-        }
-    }
-
-    //Cuando se acaban todos los puntos abre una actividad extra
     private fun finalizarRuta() {
         startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         finish()
