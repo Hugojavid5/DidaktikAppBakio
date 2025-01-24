@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.icjardinapps.dm2.bakio.Arrastrar.ActividadArrastrarYSoltar
 import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
@@ -23,6 +22,7 @@ import com.icjardinapps.dm2.bakio.SanPelaio.ActividadBienvenidaSanPelaio
 import com.icjardinapps.dm2.bakio.Txakolina.ActividadBienvenidaTxakolina
 import com.icjardinapps.dm2.bakio.Wally.ActividadBienvenidaWally
 import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
+
 class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -68,35 +68,38 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Mostrar el primer punto
-        mostrarPuntoActual()
+        // Mostrar todos los puntos en el mapa
+        mostrarTodosLosPuntos()
+
+        // Agregar un listener para abrir la actividad al pulsar un marcador
+        mMap.setOnMarkerClickListener { marker ->
+            // Buscar el punto asociado al marcador pulsado
+            val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
+            puntoSeleccionado?.let { abrirActividadPorId(it.id) }
+            true // Indica que el evento ha sido gestionado
+        }
     }
 
-    private fun mostrarPuntoActual() {
+    private fun mostrarTodosLosPuntos() {
         mMap.clear() // Limpiar los marcadores anteriores
 
-        // Mostrar solo el punto actual
-        val puntoActual = ciudades[currentPointIndex]
-        val posicion = LatLng(puntoActual.latitud, puntoActual.longitud)
-        mMap.addMarker(
-            MarkerOptions()
-                .position(posicion)
-                .title(puntoActual.nombre)
-                .snippet(puntoActual.descripcionCorta)
-        )
+        // Crear un objeto LatLngBounds para ajustar la cámara y mostrar todos los puntos
+        val boundsBuilder = LatLngBounds.Builder()
 
-        // Centrar el mapa en el punto actual
-        val posicionPuntoActual = LatLng(puntoActual.latitud, puntoActual.longitud)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicionPuntoActual, 12f))
-
-        // Configurar el clic en el marcador para abrir la actividad relacionada
-        mMap.setOnMarkerClickListener { marker ->
-            val punto = ciudades.find { it.nombre == marker.title }
-            punto?.let {
-                abrirActividadPorId(it.id) // Abrir la actividad relacionada con el punto
-            }
-            true
+        // Agregar marcadores para todos los puntos
+        for (punto in ciudades) {
+            val posicion = LatLng(punto.latitud, punto.longitud)
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(posicion)
+                    .title(punto.nombre)
+            )
+            boundsBuilder.include(posicion) // Agregar posición al bounds
         }
+
+        // Ajustar la cámara para mostrar todos los puntos
+        val bounds = boundsBuilder.build()
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
     }
 
     private fun abrirActividadPorId(id: Int) {
@@ -119,7 +122,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         // Asegurarse de que el índice no se desborde
         if (currentPointIndex < ciudades.size - 1) {
             currentPointIndex++ // Avanzar al siguiente punto
-            mostrarPuntoActual() // Mostrar el siguiente punto
+            mostrarTodosLosPuntos() // Mostrar el siguiente punto
         } else {
             // Si ya se completaron todos los puntos, finalizar la ruta
             finalizarRuta()
