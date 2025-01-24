@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
+
 class ActividadSanPelaio : AppCompatActivity() {
 
     private lateinit var dra: Array<Drawable>
