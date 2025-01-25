@@ -4,7 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
@@ -60,7 +60,7 @@ class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
         }
 
         // Acción del botón Play
-        val playButton: Button = findViewById(R.id.btn_play)
+        val playButton: ImageButton = findViewById(R.id.btn_play)
         playButton.setOnClickListener {
             if (mediaPlayer?.isPlaying == false) {
                 mediaPlayer?.start()
@@ -68,7 +68,7 @@ class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
         }
 
         // Acción del botón Pause
-        val pauseButton: Button = findViewById(R.id.btn_pause)
+        val pauseButton: ImageButton = findViewById(R.id.btn_pause)
         pauseButton.setOnClickListener {
             if (mediaPlayer?.isPlaying == true) {
                 mediaPlayer?.pause()
@@ -76,21 +76,35 @@ class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
         }
 
         // Acción del botón Reiniciar
-        val restartButton: Button = findViewById(R.id.btn_restart)
+        val restartButton: ImageButton = findViewById(R.id.btn_reiniciar)
         restartButton.setOnClickListener {
             try {
+                // Detener y liberar el MediaPlayer si está en uso
                 if (mediaPlayer?.isPlaying == true) {
                     mediaPlayer?.stop()
+                    mediaPlayer?.release()
                 }
-                mediaPlayer?.prepare()  // Necesario para reiniciar el MediaPlayer
-                mediaPlayer?.start()    // Comienza a reproducir el audio desde el inicio
+
+                // Crear un nuevo MediaPlayer y configurar el audio
+                mediaPlayer = MediaPlayer.create(this, R.raw.gaztelugatxeaudioa)
+
+                // Volver a configurar la duración total del audio y el SeekBar
+                val totalDuration = mediaPlayer?.duration ?: 0
+                totalTimeText.text = formatTime(totalDuration)
+                audioSeekBar.max = totalDuration
+                audioSeekBar.progress = 0
+
+                // Iniciar el audio desde el inicio
+                mediaPlayer?.start()
+
             } catch (e: Exception) {
                 e.printStackTrace()  // Imprimir error si algo sale mal
             }
         }
 
+
         // Acción del botón Jugar
-        val playGameButton: Button = findViewById(R.id.btn_play_game)
+        val playGameButton: ImageButton = findViewById(R.id.btnJugar)
         playGameButton.setOnClickListener {
             // Detener el audio si está reproduciéndose
             if (mediaPlayer?.isPlaying == true) {

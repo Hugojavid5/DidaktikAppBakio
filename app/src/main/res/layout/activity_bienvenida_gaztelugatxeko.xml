@@ -1,121 +1,135 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:gravity="center"
     android:background="@drawable/fondo">
 
-    <!-- TextView de bienvenida -->
+    <!-- Título -->
     <TextView
         android:id="@+id/tv_welcome"
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp"
         android:text="San Juan de Gaztelugatxe"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 
-    <!-- TextView de explicación -->
+    <!-- Descripción -->
     <TextView
         android:id="@+id/tv_explicacion"
-        android:layout_width="365dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp"
-        android:text="La capilla de Gaztelugatxe, construida probablemente en el siglo XII, ha sido escenario de asedios, saqueos y ataques. Saqueadores y corsarios destruyeron bienes y lanzaron objetos al acantilado."
-        android:textSize="20sp" />
-
-    <!-- Imagen de bienvenida -->
-    <ImageView
-        android:id="@+id/iv_bienvenida"
-        android:layout_width="308dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="Imagen de bienvenida"
-        android:src="@drawable/ermita" />
-
-    <!-- Barra de progreso de audio -->
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:text="La capilla de Gaztelugatxe, construida probablemente en el siglo XII, ha sido escenario de asedios, saqueos y ataques. Saqueadores y corsarios destruyeron bienes y lanzaron objetos al acantilado."
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
         android:gravity="center"
-        android:padding="16dp">
+        android:lineSpacingExtra="4dp" />
 
-        <!-- SeekBar de audio -->
-        <SeekBar
-            android:id="@+id/audioSeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_marginTop="8dp" />
-
-        <!-- Contenedor para los tiempos (inicio y final) -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp">
-
-            <!-- Tiempo actual (inicio) -->
-            <TextView
-                android:id="@+id/currentTimeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:layout_alignParentStart="true"
-                android:paddingStart="16dp" />
-
-            <!-- Tiempo total (final) -->
-            <TextView
-                android:id="@+id/totalTimeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:layout_alignParentEnd="true"
-                android:paddingEnd="16dp" />
-        </RelativeLayout>
-    </LinearLayout>
+    <!-- Imagen -->
+    <ImageView
+        android:id="@+id/iv_bienvenida"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ermita"
+        android:contentDescription="Imagen de bienvenida" />
 
     <!-- Controles de audio -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_marginBottom="16dp">
 
-        <Button
-            android:id="@+id/btn_play"
-            android:layout_width="wrap_content"
+        <!-- SeekBar -->
+        <SeekBar
+            android:id="@+id/audioSeekBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Play" />
+            android:max="100"
+            android:layout_marginVertical="8dp" />
 
-        <Button
-            android:id="@+id/btn_pause"
-            android:layout_width="wrap_content"
+        <!-- Tiempos (Inicial y Final) -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Pause" />
+            android:orientation="horizontal">
 
-        <!-- Botón Reiniciar audio -->
-        <Button
-            android:id="@+id/btn_restart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Reiniciar" />
+            <TextView
+                android:id="@+id/currentTimeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_weight="1"
+                android:gravity="start" />
+
+            <TextView
+                android:id="@+id/totalTimeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_weight="1"
+                android:gravity="end" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Botón de jugar -->
-    <Button
-        android:id="@+id/btn_play_game"
+    <!-- Botones de control de audio -->
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Jugar" />
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play"
+            android:src="@drawable/play"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pause"
+            android:contentDescription="Pause"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/reiniciar"
+            android:contentDescription="Reiniciar"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <!-- Botón Jugar -->
+    <ImageButton
+        android:id="@+id/btnJugar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/jugar"
+        android:background="@android:color/transparent"
+        android:contentDescription="Jugar"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true" />
 
 </LinearLayout>
