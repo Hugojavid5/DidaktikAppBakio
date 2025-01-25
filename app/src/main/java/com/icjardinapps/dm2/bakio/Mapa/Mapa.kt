@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import com.icjardinapps.dm2.bakio.databinding.ActivityMapaBinding
 import com.icjardinapps.dm2.bakio.*
-import com.icjardinapps.dm2.bakio.Arrastrar.ActividadArrastrarYSoltar
+import com.icjardinapps.dm2.bakio.Arrastrar.ActividadBienvenidaArrastrarYSoltar
 import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
 import com.icjardinapps.dm2.bakio.Gaztelugatze.ActividadBienvenidaGaztelugatxeko
 import com.icjardinapps.dm2.bakio.Kahoot.ActividadBienvenidaKahoot
@@ -131,7 +131,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         val intent = when (id) {
             0 -> Intent(this, ActividadBienvenidaSopa::class.java)
             1 -> Intent(this, ActividadBienvenidaTxakolina::class.java)
-            2 -> Intent(this, ActividadArrastrarYSoltar::class.java)
+            2 -> Intent(this, ActividadBienvenidaArrastrarYSoltar::class.java)
             3 -> Intent(this, ActividadBienvenidaBela::class.java)
             4 -> Intent(this, ActividadBienvenidaSanPelaio::class.java)
             5 -> Intent(this, ActividadBienvenidaGaztelugatxeko::class.java)

@@ -2,4 +2,9 @@
     <string name="app_name">bakio</string>
     <string name="title_activity_mapa">mapa</string>
     <string name="image_button_description">Boton de una torre como imagen </string>
+    <string-array name="idiomas_array">
+        <item>Español</item>
+        <item>Inglés</item>
+        <item>Euskera</item>
+    </string-array>
 </resources>

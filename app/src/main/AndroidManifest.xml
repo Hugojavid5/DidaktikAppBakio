@@ -29,14 +29,18 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".Portada.PortadaDeLaApp"
+            android:name=".Login.Registro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Otras actividades -->
+        </activity>
+        <!-- Portada de la app -->
+        <activity
+            android:name=".Portada.PortadaDeLaApp"
+            android:exported="true" />
         <!-- Bienvenida a la app -->
         <activity
             android:name=".Bienvenida.BienvenidaApp"
