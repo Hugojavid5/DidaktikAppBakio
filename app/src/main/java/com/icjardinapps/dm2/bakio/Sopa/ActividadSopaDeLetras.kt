@@ -19,6 +19,7 @@ class ActividadSopaDeLetras : AppCompatActivity() {
     private var lastSelectedRow: Int? = null
     private var lastSelectedCol: Int? = null
     private val foundWords = mutableSetOf<String>()
+    private val cellWordsMap = mutableMapOf<Pair<Int, Int>, MutableList<String>>()
     private val gridSize = 10
 
     private val words =
@@ -121,31 +122,44 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         val linearIndex = row * gridSize + col
         val textView = gridLayout.getChildAt(linearIndex) as TextView
 
-        if (!textView.isSelected) {
-            textView.isSelected = true
-            textView.setBackgroundColor(Color.YELLOW)
+        // Permitir seleccionar celdas ya validadas (en verde)
+        if (!selectedCells.contains(Pair(row, col))) {
+            selectedCells.add(Pair(row, col))
             selectedWord.append(textView.text)
-            selectedCells.add(Pair(row, col)) // Añadimos la celda seleccionada
-            lastSelectedRow = row
-            lastSelectedCol = col
+
+            // Cambiar el color solo si la celda no está en verde
+            if (!cellWordsMap.containsKey(Pair(row, col))) {
+                textView.setBackgroundColor(Color.YELLOW)
+            }
         }
     }
 
+
+
+
     private fun resetSelection() {
-        // Solo deseleccionamos las celdas que estaban seleccionadas en la palabra incorrecta
-        if (selectedWord.isNotEmpty() && !isCorrectWord()) {
-            for ((row, col) in selectedCells) {
-                val linearIndex = row * gridSize + col
-                val textView = gridLayout.getChildAt(linearIndex) as TextView
+        for ((row, col) in selectedCells) {
+            val linearIndex = row * gridSize + col
+            val textView = gridLayout.getChildAt(linearIndex) as TextView
+
+            // Si la celda forma parte de palabras correctas, mantener en verde
+            if (cellWordsMap.containsKey(Pair(row, col))) {
+                textView.setBackgroundColor(Color.GREEN)
+            } else {
+                // Restablecer solo celdas temporalmente seleccionadas
                 textView.setBackgroundColor(Color.TRANSPARENT)
-                textView.isSelected = false
             }
         }
         selectedWord.clear()
-        selectedCells.clear() // Limpiar las celdas seleccionadas
+        selectedCells.clear()
         lastSelectedRow = null
         lastSelectedCol = null
     }
+
+
+
+
+
 
     private fun isCorrectWord(): Boolean {
         return selectedWord.toString() in words
@@ -157,21 +171,33 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         if (isCorrectWord() && currentWord !in foundWords) {
             foundWords.add(currentWord)
             updateCluesDisplay()
-            changeSelectedCellsColor(Color.GREEN) // Cambiar a verde las celdas de la palabra encontrada
 
-            // No restablecer la selección de la palabra encontrada
+            // Marcar celdas como correctas (verde) y añadir al mapa de palabras
+            for ((row, col) in selectedCells) {
+                val linearIndex = row * gridSize + col
+                val textView = gridLayout.getChildAt(linearIndex) as TextView
+
+                // Añadir palabra al mapa de celdas
+                cellWordsMap.computeIfAbsent(Pair(row, col)) { mutableListOf() }
+                cellWordsMap[Pair(row, col)]!!.add(currentWord)
+
+                // Marcar como verde
+                textView.setBackgroundColor(Color.GREEN)
+            }
+
             if (foundWords.size == words.size) {
                 buttonNext.isEnabled = true
-                buttonNext.visibility = Button.VISIBLE // Mostrar el botón cuando todas las palabras sean encontradas
+                buttonNext.visibility = Button.VISIBLE
             }
         } else {
-            // Si la palabra no es válida, se deseleccionan solo las celdas correspondientes
-            if (currentWord.isNotEmpty()) {
-                resetSelection() // Resetear solo si la palabra no es correcta
-            }
+            resetSelection()
         }
-        selectedWord.clear() // Vaciar la palabra seleccionada
     }
+
+
+
+
+
 
     private fun updateCluesDisplay() {
         val cluesText = words.joinToString("\n") { word ->
