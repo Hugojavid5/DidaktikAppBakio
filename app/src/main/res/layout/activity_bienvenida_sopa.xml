@@ -48,61 +48,83 @@
         android:gravity="center"
         android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/txtCurrentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00"
-            android:layout_gravity="start"
-            android:layout_marginEnd="8dp" />
-
+        <!-- SeekBar -->
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp" />
 
-        <TextView
-            android:id="@+id/txtTotalTime"
-            android:layout_width="wrap_content"
+        <!-- Tiempos (Inicial y Final) -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="00:00"
-            android:layout_gravity="end" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtCurrentTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_weight="1"
+                android:gravity="start" />
+
+            <TextView
+                android:id="@+id/txtTotalTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_weight="1"
+                android:gravity="end" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Botones de control de audio -->
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="20dp">
 
-        <Button
-            android:id="@+id/btnPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play" />
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play"
+            android:src="@drawable/play"
+            android:scaleType="centerInside" />
 
-        <Button
-            android:id="@+id/btnPause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pause"
-            android:layout_marginStart="8dp" />
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pause"
+            android:contentDescription="Pause"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerInside" />
 
-        <Button
-            android:id="@+id/btnRestart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Restart"
-            android:layout_marginStart="8dp" />
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/reiniciar"
+            android:contentDescription="Reiniciar"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
-    <!-- Botón Jugar -->
+    <!-- Botón Jugar (Button normal) -->
     <Button
         android:id="@+id/btnJugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugar" />
+        android:text="Jugar"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/selectableItemBackground" />
+
 </LinearLayout>

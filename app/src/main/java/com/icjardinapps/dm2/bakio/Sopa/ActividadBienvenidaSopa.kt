@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -29,9 +30,9 @@ class ActividadBienvenidaSopa : AppCompatActivity() {
         seekBar = findViewById(R.id.seekBar)
         txtCurrentTime = findViewById(R.id.txtCurrentTime)
         txtTotalTime = findViewById(R.id.txtTotalTime)
-        val btnPlay: Button = findViewById(R.id.btnPlay)
-        val btnPause: Button = findViewById(R.id.btnPause)
-        val btnRestart: Button = findViewById(R.id.btnRestart)
+        val btnPlay: ImageButton = findViewById(R.id.btn_play)
+        val btnPause: ImageButton = findViewById(R.id.btn_pause)
+        val btnRestart: ImageButton = findViewById(R.id.btn_reiniciar)
         val btnJugar: Button = findViewById(R.id.btnJugar)
 
         // Configurar la barra de progreso y el tiempo total
