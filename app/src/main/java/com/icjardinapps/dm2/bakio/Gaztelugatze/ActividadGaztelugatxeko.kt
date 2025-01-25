@@ -39,6 +39,9 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         val mediaController = MediaController(this)
         videoView.setMediaController(mediaController)
 
+        // Hacer el VideoView pantalla completa
+        hacerPantallaCompleta()
+
         // Mostrar pregunta y respuestas cuando el video comience
         videoView.setOnPreparedListener {
             pregunta.visibility = View.VISIBLE
@@ -77,6 +80,14 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         videoView.start()
     }
 
+    private fun hacerPantallaCompleta() {
+        // Configurar VideoView para que ocupe toda la pantalla
+        val layoutParams = videoView.layoutParams
+        layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT
+        layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
+        videoView.layoutParams = layoutParams
+    }
+
     private fun mostrarCaraTriste() {
         val animationDrawable = resources.getDrawable(R.drawable.triste) as AnimationDrawable
         imageView.setImageDrawable(animationDrawable)
@@ -89,4 +100,3 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         animationDrawable.start()
     }
 }
-

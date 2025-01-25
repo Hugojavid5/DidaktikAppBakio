@@ -17,12 +17,16 @@
         android:layout_marginBottom="16dp"
         android:textColor="@color/black"/>
 
-    <!-- VideoView -->
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="10dp"/>
+
+
 
     <!-- Pregunta -->
     <TextView
@@ -32,6 +36,7 @@
         android:text="¿Cuántas escaleras tiene Donienen de Gaztelugatxe?"
         android:textSize="20sp"
         android:layout_marginBottom="16dp"
+        android:textColor="@color/black"
         android:visibility="gone"/>
 
     <!-- Respuestas -->
@@ -46,19 +51,25 @@
             android:id="@+id/respuesta1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123"/>
+            android:text="123"
+            android:textColor="@color/black"
+        android:buttonTint="@color/black"/>
 
         <RadioButton
             android:id="@+id/respuesta2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="241"/>
+            android:text="241"
+            android:textColor="@color/black"
+        android:buttonTint="@color/black"/>
 
         <RadioButton
             android:id="@+id/respuesta3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="368"/>
+            android:text="368"
+            android:textColor="@color/black"
+        android:buttonTint="@color/black"/>
     </RadioGroup>
 
     <!-- Contenedor LinearLayout para los botones "Corregir" y "Volver" -->
@@ -96,6 +107,7 @@
         android:text=""
         android:textSize="20sp"
         android:visibility="gone" />
+
     <!-- Contenedor con la imagen de sonrisa y el texto -->
     <LinearLayout
         android:layout_width="match_parent"
