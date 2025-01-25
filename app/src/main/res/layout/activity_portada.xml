@@ -28,4 +28,54 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/sonrisa" />
+
+    <!-- LinearLayout horizontal para las 4 imágenes -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:weightSum="4">
+
+        <!-- Imagen 1 -->
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ajustes"
+            android:contentDescription="ajustes" />
+
+        <!-- Imagen 2 -->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ranking"
+            android:contentDescription="ranking" />
+
+        <!-- Imagen 3 -->
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/play"
+            android:contentDescription="play" />
+
+        <!-- Imagen 4 -->
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="desarrolladores"
+            android:src="@drawable/info" />
+    </LinearLayout>
+
 </LinearLayout>
