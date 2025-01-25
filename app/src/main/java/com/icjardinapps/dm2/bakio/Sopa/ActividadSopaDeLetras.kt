@@ -4,18 +4,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.GridLayout
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MotionEvent
-import android.widget.Button
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 import kotlin.random.Random
 
 class ActividadSopaDeLetras : AppCompatActivity() {
 
-    private lateinit var buttonNext: Button
+    private lateinit var buttonNext: ImageButton
     private var lastSelectedRow: Int? = null
     private var lastSelectedCol: Int? = null
     private val foundWords = mutableSetOf<String>()
@@ -35,16 +35,24 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         setContentView(R.layout.activity_sopa)
 
         gridLayout = findViewById(R.id.grid_sopa_de_letras)
-        buttonNext = findViewById(R.id.button_next)
+        buttonNext = findViewById(R.id.imageButtonNextActivity)
         textViewClues = findViewById(R.id.textViewClues)
 
         // Inicialmente ocultamos el botón
-        buttonNext.visibility = Button.INVISIBLE
+        buttonNext.visibility = ImageButton.INVISIBLE
 
         wordSearchLetters = generateRandomWordSearch()
         setupWordSearchGrid()
         updateCluesDisplay()
+        // Encuentra el ImageButton de "Volver"
+        val buttonBack = findViewById<ImageButton>(R.id.imageButtonBackToWelcome)
 
+        buttonBack.setOnClickListener {
+            // Crear un Intent para iniciar la actividad de bienvenida
+            val intent = Intent(this, ActividadBienvenidaSopa::class.java)
+            startActivity(intent)
+            finish() // Opcional, si quieres cerrar la actividad actual
+        }
         buttonNext.setOnClickListener {
             // Aquí pasas las coordenadas del nuevo punto a la actividad de mapa
             val latitude = 43.4116  // Ejemplo de latitud
@@ -134,9 +142,6 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun resetSelection() {
         for ((row, col) in selectedCells) {
             val linearIndex = row * gridSize + col
@@ -155,11 +160,6 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         lastSelectedRow = null
         lastSelectedCol = null
     }
-
-
-
-
-
 
     private fun isCorrectWord(): Boolean {
         return selectedWord.toString() in words
@@ -189,17 +189,12 @@ class ActividadSopaDeLetras : AppCompatActivity() {
 
             if (foundWords.size == words.size) {
                 buttonNext.isEnabled = true
-                buttonNext.visibility = Button.VISIBLE
+                buttonNext.visibility = ImageButton.VISIBLE
             }
         } else {
             resetSelection()
         }
     }
-
-
-
-
-
 
     private fun updateCluesDisplay() {
         val cluesText = words.joinToString("\n") { word ->

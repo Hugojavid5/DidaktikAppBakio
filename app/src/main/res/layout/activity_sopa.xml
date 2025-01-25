@@ -42,15 +42,36 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Botón para pasar a la siguiente pista -->
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="108dp"
-        android:layout_height="58dp"
+    <!-- LinearLayout para los ImageButtons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/txtAyuda"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#03A9F4"
-        android:enabled="false"
-        android:text="Siguiente Actividad" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:weightSum="2">
+        <!-- ImageButton para volver a la bienvenida -->
+        <ImageButton
+            android:id="@+id/imageButtonBackToWelcome"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:contentDescription="Volver a la Bienvenida"
+            android:src="@drawable/volver"
+            android:scaleType="centerInside" />
+
+        <!-- ImageButton para ir a la siguiente actividad -->
+        <ImageButton
+            android:id="@+id/imageButtonNextActivity"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:contentDescription="Siguiente Actividad"
+            android:src="@drawable/siguiente"
+            android:scaleType="centerInside" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
