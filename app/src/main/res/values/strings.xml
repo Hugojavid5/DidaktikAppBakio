@@ -9,4 +9,5 @@
     </string-array>
     <string name="reproducir">Reproducir</string>
     <string name="pausar">Pausar</string>
+    <string name="exit_button_description">Botón para salir</string>
 </resources>

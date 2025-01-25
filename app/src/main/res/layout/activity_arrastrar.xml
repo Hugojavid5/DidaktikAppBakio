@@ -49,62 +49,72 @@
     <!-- Imagen de Sonrisa entre los bloques -->
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="202dp"
+        android:layout_width="229dp"
+        android:layout_height="164dp"
         android:layout_centerInParent="true"
         app:srcCompat="@drawable/sonrisa" />
+
+    <!-- LinearLayout para el ImageButton -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:weightSum="1">
+
+        <!-- ImageButton para ir a la siguiente actividad -->
+        <ImageButton
+            android:id="@+id/imageButtonNextActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:contentDescription="Siguiente Actividad"
+            android:src="@drawable/siguiente"
+            android:scaleType="centerInside" />
+    </LinearLayout>
 
     <!-- Contenedor de las imágenes en la parte inferior -->
     <LinearLayout
         android:id="@+id/linearLayoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/saco"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/saco"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:src="@drawable/saco" />
 
         <ImageView
             android:id="@+id/hojas"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/hojas"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:src="@drawable/hojas" />
 
         <ImageView
             android:id="@+id/poncho"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/poncho"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:src="@drawable/poncho" />
 
         <ImageView
             android:id="@+id/paja"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:src="@drawable/paja"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:src="@drawable/paja" />
     </LinearLayout>
-
-    <!-- Botón para salir -->
-    <Button
-        android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="salir"
-        android:visibility="gone" />
 
 </RelativeLayout>

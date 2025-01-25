@@ -9,16 +9,16 @@ import android.os.Bundle
 import android.view.DragEvent
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
+import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
-
 class ActividadArrastrarYSoltar : AppCompatActivity() {
-
 
     private lateinit var siluetaHojas: ImageView
     private lateinit var siluetaPaja: ImageView
@@ -28,7 +28,7 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
     private lateinit var paja: ImageView
     private lateinit var saco: ImageView
     private lateinit var poncho: ImageView
-    private lateinit var btnSalir: Button
+    private lateinit var btnSalir: ImageButton
     private lateinit var imageView: ImageView // Para la imagen de la cara sonriente o triste
 
     private var correctMatches = 0 // Contador de emparejamientos correctos
@@ -39,7 +39,7 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_arrastrar)
 
-        // Instanciar los elementos
+        // Instanciar los elementos del layout
         siluetaHojas = findViewById(R.id.silueta_hojas)
         siluetaPaja = findViewById(R.id.silueta_paja)
         siluetaSaco = findViewById(R.id.silueta_saco)
@@ -50,7 +50,7 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         saco = findViewById(R.id.saco)
         poncho = findViewById(R.id.poncho)
 
-        btnSalir = findViewById(R.id.btnExit)
+        btnSalir = findViewById(R.id.imageButtonNextActivity)
         btnSalir.visibility = View.INVISIBLE // Esconder botón al inicio
 
         // Instanciar la imagen para la sonrisa/tristeza
@@ -71,7 +71,7 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         // Configurar el botón salir
         btnSalir.setOnClickListener {
             // Regresar al mapa o cerrar la actividad
-            val intent = Intent(this, ActividadBienvenidaBela::class.java)
+            val intent = Intent(this, Mapa::class.java)
             startActivity(intent)
             finish()
         }
