@@ -129,8 +129,4 @@
         android:padding="0dp"
         android:scaleType="centerInside"
         android:adjustViewBounds="true" />
-
-
-
-
 </LinearLayout>

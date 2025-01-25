@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:textColor="@android:color/black"
     android:background="@drawable/fondo">
 
     <!-- Título -->
@@ -42,72 +41,88 @@
         android:layout_marginBottom="16dp" />
 
     <!-- SeekBar para progreso de audio -->
+    <SeekBar
+        android:id="@+id/audioSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Texto de tiempo (arriba) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="8dp">
 
-        <!-- Tiempo actual del audio -->
+        <!-- Tiempo actual del audio (a la izquierda) -->
         <TextView
             android:id="@+id/currentTimeText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="00:00"
             android:textSize="14sp"
-            android:layout_marginEnd="8dp" />
-
-        <SeekBar
-            android:id="@+id/audioSeekBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:max="100" />
+            android:gravity="start" />
 
-        <!-- Tiempo total del audio -->
+        <!-- Tiempo total del audio (a la derecha) -->
         <TextView
             android:id="@+id/totalTimeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"
             android:textSize="14sp"
-            android:layout_marginStart="8dp" />
+            android:gravity="end" />
     </LinearLayout>
 
-    <!-- Botones para audio -->
+    <!-- Botones de control de audio -->
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="20dp">
 
-        <Button
-            android:id="@+id/btnPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play" />
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play"
+            android:src="@drawable/play"
+            android:scaleType="centerInside" />
 
-        <Button
-            android:id="@+id/btnPause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pause"
-            android:layout_marginStart="8dp" />
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pause"
+            android:contentDescription="Pause"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerInside" />
 
-        <Button
-            android:id="@+id/btnRestart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Restart"
-            android:layout_marginStart="8dp" />
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/reiniciar"
+            android:contentDescription="Reiniciar"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside" />
     </LinearLayout>
 
-    <!-- Botón Jugar -->
-    <Button
+    <!-- Botón Jugar (Button normal) -->
+    <ImageButton
         android:id="@+id/btnJugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugar" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/jugar"
+        android:background="@android:color/transparent"
+        android:contentDescription="Jugar"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true" />
 </LinearLayout>

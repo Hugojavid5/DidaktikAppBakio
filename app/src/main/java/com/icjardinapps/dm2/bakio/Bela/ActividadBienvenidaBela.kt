@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.SeekBar
 import android.os.Handler
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
@@ -28,10 +29,11 @@ class ActividadBienvenidaBela : AppCompatActivity() {
         currentTimeText = findViewById(R.id.currentTimeText)
         totalTimeText = findViewById(R.id.totalTimeText)
 
-        val btnPlay: Button = findViewById(R.id.btnPlay)
-        val btnPause: Button = findViewById(R.id.btnPause)
-        val btnRestart: Button = findViewById(R.id.btnRestart)
-        val btnJugar: Button = findViewById(R.id.btnJugar)
+        val btnPlay: ImageButton = findViewById(R.id.btn_play)
+        val btnPause: ImageButton = findViewById(R.id.btn_pause)
+        val btnRestart: ImageButton = findViewById(R.id.btn_reiniciar)
+        val btnJugar: ImageButton = findViewById(R.id.btnJugar)
+
 
         // Configurar SeekBar
         seekBar.max = mediaPlayer.duration // Establece el máximo del SeekBar al tiempo total del audio
