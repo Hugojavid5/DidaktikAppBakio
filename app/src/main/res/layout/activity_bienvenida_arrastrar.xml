@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/fondo_verde"
+    android:background="@drawable/fondo"
     android:gravity="center">
 
     <!-- Título -->
@@ -82,11 +82,54 @@
                 android:layout_marginStart="8dp" />
         </LinearLayout>
     </LinearLayout>
-
-    <!-- Botón para ir al juego -->
-    <Button
-        android:id="@+id/btnJugar"
+    <!-- Botones de control de audio -->
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugar" />
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play"
+            android:src="@drawable/play"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pause"
+            android:contentDescription="Pause"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/reiniciar"
+            android:contentDescription="Reiniciar"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <!-- Botón Jugar (Button normal) -->
+    <ImageButton
+        android:id="@+id/btnJugar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/jugar"
+        android:background="@android:color/transparent"
+        android:contentDescription="Jugar"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true" />
 </LinearLayout>
