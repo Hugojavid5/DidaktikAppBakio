@@ -118,13 +118,19 @@
     </LinearLayout>
 
     <!-- Botón Jugar (Button normal) -->
-    <Button
+    <ImageButton
         android:id="@+id/btnJugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugar"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
-        android:background="?android:attr/selectableItemBackground" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/jugar"
+        android:background="@android:color/transparent"
+        android:contentDescription="Jugar"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true" />
+
+
+
 
 </LinearLayout>
