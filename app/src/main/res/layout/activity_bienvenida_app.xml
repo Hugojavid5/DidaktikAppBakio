@@ -90,37 +90,48 @@
         android:gravity="center"
         android:layout_marginBottom="20dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:layout_marginEnd="8dp"/>
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play"
+            android:src="@drawable/play"
+            android:scaleType="centerInside" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pause"
-            android:backgroundTint="@android:color/holo_orange_light"
-            android:layout_marginEnd="8dp"/>
+            android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/pause"
+        android:contentDescription="Pause"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerInside" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_reiniciar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reiniciar"
-            android:backgroundTint="@android:color/holo_red_light"/>
+            android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/reiniciar"
+        android:contentDescription="Reiniciar"
+        android:background="?android:attr/selectableItemBackground"
+        android:scaleType="centerInside" />
     </LinearLayout>
 
+
+
+
     <!-- Botón para ir al mapa de Bakio -->
-    <Button
+    <ImageButton
         android:id="@+id/ir_mapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ir al Mapa de Bakio"
-        android:textStyle="bold"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:layout_marginTop="20dp"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/mapa"
+        android:contentDescription="Mapa"
+        android:layout_marginTop="20dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:scaleType="centerInside" />
+
 </LinearLayout>

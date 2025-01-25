@@ -3,14 +3,12 @@ package com.icjardinapps.dm2.bakio.Bienvenida
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
-
 
 class BienvenidaApp : AppCompatActivity() {
 
@@ -23,12 +21,11 @@ class BienvenidaApp : AppCompatActivity() {
         // Inicializar el reproductor de audio
         mediaPlayer = MediaPlayer.create(this, R.raw.hasierakopantailaaudio)
 
-        // Vincular los botones desde el XML
-        val btn_play: Button = findViewById(R.id.btn_play)
-        val btn_pause: Button = findViewById(R.id.btn_pause)
-        val btn_reiniciar: Button = findViewById(R.id.btn_reiniciar)
-        val ir_mapa: Button = findViewById(R.id.ir_mapa)
-
+        // Vincular los ImageButton desde el XML
+        val btn_play: ImageButton = findViewById(R.id.btn_play)
+        val btn_pause: ImageButton = findViewById(R.id.btn_pause)
+        val btn_reiniciar: ImageButton = findViewById(R.id.btn_reiniciar)
+        val ir_mapa: ImageButton = findViewById(R.id.ir_mapa) // Aquí cambiamos a ImageButton
         // Vincular los TextViews de tiempo
         val currentTimeText: TextView = findViewById(R.id.currentTimeText)
         val totalTimeText: TextView = findViewById(R.id.totalTimeText)
@@ -36,7 +33,7 @@ class BienvenidaApp : AppCompatActivity() {
         // Vincular la barra de progreso (SeekBar)
         val audioSeekBar: SeekBar = findViewById(R.id.audioSeekBar)
 
-        // Configurar el comportamiento de los botones
+        // Configurar el comportamiento de los ImageButtons
         btn_play.setOnClickListener {
             mediaPlayer?.start() // Reproducir el audio
         }
@@ -49,7 +46,6 @@ class BienvenidaApp : AppCompatActivity() {
             mediaPlayer?.seekTo(0) // Reiniciar el audio desde el inicio
             mediaPlayer?.start()   // Reproducir el audio después de reiniciar
         }
-
 
         ir_mapa.setOnClickListener {
             mediaPlayer?.pause() // Pausar el audio antes de cambiar de actividad
