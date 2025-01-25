@@ -178,7 +178,9 @@ class ActividadSopaDeLetras : AppCompatActivity() {
                 val textView = gridLayout.getChildAt(linearIndex) as TextView
 
                 // Añadir palabra al mapa de celdas
-                cellWordsMap.computeIfAbsent(Pair(row, col)) { mutableListOf() }
+                if (!cellWordsMap.containsKey(Pair(row, col))) {
+                    cellWordsMap[Pair(row, col)] = mutableListOf()
+                }
                 cellWordsMap[Pair(row, col)]!!.add(currentWord)
 
                 // Marcar como verde
