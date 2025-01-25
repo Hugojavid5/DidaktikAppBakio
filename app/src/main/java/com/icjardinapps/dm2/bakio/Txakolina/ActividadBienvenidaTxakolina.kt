@@ -3,12 +3,11 @@ package com.icjardinapps.dm2.bakio.Txakolina
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
 class ActividadBienvenidaTxakolina : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
@@ -31,35 +30,29 @@ class ActividadBienvenidaTxakolina : AppCompatActivity() {
         // Configurar SeekBar
         audioSeekBar.max = mediaPlayer.duration
 
-        // Asegurarse de que el MediaPlayer esté preparado antes de interactuar con él
-        mediaPlayer.setOnPreparedListener {
-            // Iniciar reproducción
-            mediaPlayer.start()
-
-            // Actualizar la barra de progreso y tiempo transcurrido
-            val updateRunnable = object : Runnable {
-                override fun run() {
-                    val currentPosition = mediaPlayer.currentPosition
-                    audioSeekBar.progress = currentPosition
-                    currentTimeText.text = formatTime(currentPosition)
-                    if (mediaPlayer.isPlaying) {
-                        audioSeekBar.postDelayed(this, 1000)
-                    }
-                }
-            }
-            audioSeekBar.postDelayed(updateRunnable, 1000)
-        }
-
-        // Configurar botones
-        val playButton: Button = findViewById(R.id.playButton)
-        val pauseButton: Button = findViewById(R.id.pauseButton)
-        val restartButton: Button = findViewById(R.id.restartButton)
-        val playGameButton: Button = findViewById(R.id.playGameButton)
+        // Configurar botones de control
+        val playButton: ImageButton = findViewById(R.id.btn_play)
+        val pauseButton: ImageButton = findViewById(R.id.btn_pause)
+        val restartButton: ImageButton = findViewById(R.id.btn_reiniciar)
+        val playGameButton: ImageButton = findViewById(R.id.btnJugar)
 
         // Acción del botón Play
         playButton.setOnClickListener {
             if (!mediaPlayer.isPlaying) {
                 mediaPlayer.start()
+
+                // Actualizar la barra de progreso y tiempo transcurrido
+                val updateRunnable = object : Runnable {
+                    override fun run() {
+                        val currentPosition = mediaPlayer.currentPosition
+                        audioSeekBar.progress = currentPosition
+                        currentTimeText.text = formatTime(currentPosition)
+                        if (mediaPlayer.isPlaying) {
+                            audioSeekBar.postDelayed(this, 1000)
+                        }
+                    }
+                }
+                audioSeekBar.postDelayed(updateRunnable, 1000)
             }
         }
 
