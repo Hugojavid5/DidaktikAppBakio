@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 
 import androidx.core.view.isVisible
@@ -18,7 +19,7 @@ import com.icjardinapps.dm2.bakio.R
 class ActividadSanPelaio : AppCompatActivity() {
 
     private lateinit var dra: Array<Drawable>
-    private lateinit var btnMapa: Button
+    private lateinit var btnMapa: ImageButton
     private lateinit var img1: ImageView
     private lateinit var img2: ImageView
     private lateinit var img3: ImageView
