@@ -1,16 +1,19 @@
 package com.icjardinapps.dm2.bakio.Txakolina
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
 class ActividadTxakoli : AppCompatActivity() {
@@ -22,7 +25,7 @@ class ActividadTxakoli : AppCompatActivity() {
     private lateinit var ivBarril: ImageView
     private lateinit var ivReloj: ImageView
     private lateinit var ivBotella: ImageView
-    private lateinit var btnVolverMapa: Button
+    private lateinit var imageButtonNextActivity: ImageButton
 
     private var toques = 0
     private val maxToques = 10 // Número de toques para cambiar a la siguiente fase
@@ -41,8 +44,8 @@ class ActividadTxakoli : AppCompatActivity() {
         ivBarril = findViewById(R.id.iv_barril)
         ivReloj = findViewById(R.id.iv_reloj)
         ivBotella = findViewById(R.id.iv_botella)
-        btnVolverMapa = findViewById(R.id.btn_volver_mapa)
-        btnVolverMapa.visibility = View.GONE // Ocultar el botón al inicio
+        imageButtonNextActivity = findViewById(R.id.imageButtonNextActivity)
+        imageButtonNextActivity.visibility = View.GONE // Ocultar el botón al inicio
 
         // Hacer que la uva sea arrastrable
         ivUva.setOnTouchListener { view, event ->
@@ -63,7 +66,7 @@ class ActividadTxakoli : AppCompatActivity() {
                     ivVid.visibility = View.GONE // Eliminar la vid
                     ivCaja.visibility = View.VISIBLE // Mostrar la caja
                     ivUva.visibility = View.GONE // La uva desaparece de la vid
-                    ivPies.visibility=View.GONE
+                    ivPies.visibility = View.GONE
                     Toast.makeText(this, "¡Uvas recogidas y llevadas a la caja!", Toast.LENGTH_SHORT).show()
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
@@ -93,26 +96,33 @@ class ActividadTxakoli : AppCompatActivity() {
             }
         }
 
-        // Manejar clic en el reloj para simular el paso de un año
         ivReloj.setOnClickListener {
             if (ivBarril.visibility == View.VISIBLE) {
-                ivReloj.setImageResource(R.drawable.reloj) // Cambiar la imagen si es necesario
+                // Si el barril es visible, pasa a la siguiente etapa
                 ivReloj.isClickable = false
                 ivBotella.visibility = View.VISIBLE // Mostrar la botella después de 1 año
+
+                // Log para verificar que el flujo llegó aquí
+                Log.d("ActividadTxakoli", "El barril es visible, mostrando la botella y el botón siguiente.")
+
                 Toast.makeText(this, "Ha pasado 1 año. El txakoli está listo para embotellar.", Toast.LENGTH_LONG).show()
-                btnVolverMapa.visibility = View.VISIBLE // Mostrar el botón para volver al mapa
+
+                // Asegurarse de que el botón se hace visible
+                imageButtonNextActivity.visibility = View.VISIBLE
+
+                // Verificar la visibilidad del botón
+                Log.d("ActividadTxakoli", "Botón siguiente visibilidad: ${imageButtonNextActivity.visibility}")
             } else {
+                // Si no se cumplen las condiciones, mostrar un mensaje de advertencia
                 Toast.makeText(this, "¡Primero pisa las uvas y guárdalas en el barril!", Toast.LENGTH_SHORT).show()
             }
         }
-    /*
+
         // Manejar clic en el botón para volver al mapa
-        btnVolverMapa.setOnClickListener {
+        imageButtonNextActivity.setOnClickListener {
             val intent = Intent(this, Mapa::class.java)
             startActivity(intent)
             finish()
         }
-
- */
     }
 }
