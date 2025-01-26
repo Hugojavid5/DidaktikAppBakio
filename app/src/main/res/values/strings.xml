@@ -32,7 +32,7 @@
         <string name="btn_restart">Reiniciar</string>
         <string name="btn_map">Ir al mapa</string>
         <string name="title_anarru_eguna">ANARRU EGUNA</string>
-        <string name="description_anarru_eguna">El Carnaval de Bakio destaca por sus personajes únicos, como Anarrua, símbolo del festejo, y los gnomos que infunden misterio. Entre bailes tradicionales como el \'Anarruen octocoa' y rituales como el juicio y quema de Joseostu, se combinan tradición, magia y diversión para ahuyentar los males y celebrar la comunidad.</string>
+        <string name="description_anarru_eguna">El Carnaval de Bakio destaca por sus personajes únicos, como Anarrua, símbolo del festejo, y los gnomos que infunden misterio. Entre bailes tradicionales como el "Anarruen octocoa" y rituales como el juicio y quema de Joseostu, se combinan tradición, magia y diversión para ahuyentar los males y celebrar la comunidad.</string>
         <string name="btn_play_game">Jugar</string>
 
         <string name="title">BELA GURUTZATUAK HAIZEAREN KONTRA</string>
@@ -159,10 +159,4 @@
         <string name="corregir_button">Corregir respuesta</string>
         <string name="volver_button">Volver</string>
         <string name="siguiente_button">Siguiente</string>
-
-
-
-
-
-
 </resources>
