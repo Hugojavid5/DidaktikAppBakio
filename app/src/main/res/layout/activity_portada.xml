@@ -15,7 +15,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bienvenido_juego"
+        android:text="¡Bienvenido al Juego!"
         android:textSize="24sp"
         android:textAlignment="center"
         android:layout_marginBottom="30dp"
@@ -27,8 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/sonrisa"
-        android:contentDescription="@string/descripcion_sonrisa" />
+        android:src="@drawable/sonrisa" />
 
     <!-- LinearLayout horizontal para las 4 imágenes -->
     <LinearLayout
@@ -47,7 +46,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ajustes"
-            android:contentDescription="@string/descripcion_ajustes" />
+            android:contentDescription="ajustes" />
 
         <!-- Imagen 2 -->
         <ImageView
@@ -57,7 +56,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ranking"
-            android:contentDescription="@string/descripcion_ranking" />
+            android:contentDescription="ranking" />
 
         <!-- Imagen 3 -->
         <ImageView
@@ -67,7 +66,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:src="@drawable/play"
-            android:contentDescription="@string/descripcion_play" />
+            android:contentDescription="play" />
 
         <!-- Imagen 4 -->
         <ImageView
@@ -75,8 +74,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/info"
-            android:contentDescription="@string/descripcion_desarrolladores" />
+            android:contentDescription="desarrolladores"
+            android:src="@drawable/info" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,8 +1,6 @@
 package com.icjardinapps.dm2.bakio.Portada
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -53,11 +51,6 @@ class PortadaDeLaApp : AppCompatActivity() {
         imageViewRanking.setOnClickListener {
             // Acción para la imagen de ranking
         }
-
-        // Verificar si ya se ha guardado el idioma en SharedPreferences
-        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
-        val savedLanguage = sharedPreferences.getString("language", "es") // Idioma por defecto: Español
-        savedLanguage?.let { setLocale(it) }  // Si hay un idioma guardado, se aplica
     }
 
     // Metodo para mostrar el diálogo de selección de idioma
@@ -75,7 +68,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         builder.show()
     }
 
-    // Metodo para cambiar el idioma de la aplicación
+    // Método para cambiar el idioma de la aplicación
     private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
@@ -83,8 +76,8 @@ class PortadaDeLaApp : AppCompatActivity() {
         config.setLocale(locale)
         createConfigurationContext(config)
 
-        // Guardar la preferencia de idioma en SharedPreferences
-        val sharedPreferences: SharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+        // Guardar la preferencia de idioma en SharedPreferences (opcional)
+        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
         sharedPreferences.edit().putString("language", languageCode).apply()
 
         // Recargar la actividad para aplicar el cambio de idioma

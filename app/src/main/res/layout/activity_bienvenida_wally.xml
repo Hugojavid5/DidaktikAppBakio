@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="@string/title_matxitxako"
+        android:text="MATXITXAKO ITSASARGIA"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="162dp"
         android:layout_marginBottom="20dp"
-        android:text="@string/explicacion_matxitxako"
+        android:text="El faro de Matxitxak, de 20 metros de altura y situado a 122 metros sobre el nivel del mar, emite señales luminosas para guiar a los barcos, siendo visible a 30 millas náuticas. Originalmente, los faros eran operados por fareros, pero ahora la mayoría son automáticos gracias a la tecnología moderna. Actualmente, existen menos de 1500 faros en funcionamiento en el mundo."
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -89,7 +89,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/play"
+            android:contentDescription="Play"
             android:src="@drawable/play"
             android:scaleType="centerInside" />
 
@@ -98,7 +98,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/pause"
-            android:contentDescription="@string/pause"
+            android:contentDescription="Pause"
             android:background="?android:attr/selectableItemBackground"
             android:layout_marginEnd="8dp"
             android:scaleType="centerInside" />
@@ -108,7 +108,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/reiniciar"
-            android:contentDescription="@string/reiniciar"
+            android:contentDescription="Reiniciar"
             android:background="?android:attr/selectableItemBackground"
             android:scaleType="centerInside" />
     </LinearLayout>
@@ -125,7 +125,7 @@
             android:layout_height="50dp"
             android:src="@drawable/jugar"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/jugar"
+            android:contentDescription="Jugar"
             android:padding="0dp"
             android:scaleType="centerInside"
             android:adjustViewBounds="true" />

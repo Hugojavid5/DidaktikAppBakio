@@ -12,7 +12,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txakolina_title"
+        android:text="TXAKOLINA"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -23,7 +23,7 @@
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txakolina_description"
+        android:text="El txakolín es un vino típico del País Vasco, elaborado con uvas de viñedos montañosos y almacenado en barricas de madera llamadas &quot;kupelas&quot;. En Bakio, destacan varias bodegas y el Museo del Txakolí, que narra su historia y curiosidades. Solo puede disfrutarse a partir de los 18 años."
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginBottom="16dp"/>
@@ -34,7 +34,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/uva"
-        android:contentDescription="@string/welcome_image"
+        android:contentDescription="Imagen de bienvenida"
         android:layout_marginBottom="16dp"/>
 
     <!-- Barra de progreso de audio -->
@@ -99,7 +99,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/play"
+            android:contentDescription="Play"
             android:src="@drawable/play"
             android:scaleType="centerInside" />
 
@@ -108,7 +108,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/pause"
-            android:contentDescription="@string/pause"
+            android:contentDescription="Pause"
             android:background="?android:attr/selectableItemBackground"
             android:layout_marginEnd="8dp"
             android:scaleType="centerInside" />
@@ -118,7 +118,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/reiniciar"
-            android:contentDescription="@string/restart"
+            android:contentDescription="Reiniciar"
             android:background="?android:attr/selectableItemBackground"
             android:scaleType="centerInside" />
     </LinearLayout>
@@ -131,7 +131,7 @@
         android:layout_marginTop="12dp"
         android:src="@drawable/jugar"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/play_button"
+        android:contentDescription="Jugar"
         android:padding="0dp"
         android:scaleType="centerInside"
         android:adjustViewBounds="true" />

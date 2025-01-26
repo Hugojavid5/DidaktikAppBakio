@@ -11,7 +11,7 @@
         android:id="@+id/tituloRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/introduce_usuario_contrasena"
+        android:text="Introduce usuario y contraseña"
         android:textSize="30sp"
         android:textColor="#000000"
         android:textAlignment="center"
@@ -24,7 +24,7 @@
         android:id="@+id/editTextNombre"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:hint="@string/hint_nombre"
+        android:hint="Nombre"
         android:inputType="textPersonName"
         android:padding="8dp"
         android:textColor="#000000"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:layout_marginTop="8dp"
-        android:hint="@string/hint_contrasena"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         android:padding="8dp"
         android:textColor="#000000"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:enabled="false"
-        android:text="@string/text_registrarse" />
+        android:text="Registrarse" />
 
     <!-- Animación de Carga (solo la animación) -->
     <ImageView

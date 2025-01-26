@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="@string/kahoot"
+        android:text="Kahoot"
         android:textColor="@android:color/black"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewExplicacion"
@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:text="@string/explicacion"
+        android:text="Bueno, bueno… eso es todo, y ahora para terminar con todo, ¡vamos a hacer una serie de preguntas con todo lo que hemos aprendido!"
         android:textColor="@android:color/black"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/imagen"
@@ -107,7 +107,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/play"
+            android:contentDescription="Play"
             android:scaleType="centerInside"
             android:src="@drawable/play" />
 
@@ -117,7 +117,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/pause"
+            android:contentDescription="Pause"
             android:scaleType="centerInside"
             android:src="@drawable/pause" />
 
@@ -126,7 +126,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/reiniciar"
+            android:contentDescription="Reiniciar"
             android:scaleType="centerInside"
             android:src="@drawable/reiniciar" />
     </LinearLayout>
@@ -138,7 +138,7 @@
         android:layout_marginBottom="16dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/jugar"
+        android:contentDescription="Jugar"
         android:padding="0dp"
         android:scaleType="centerInside"
         android:src="@drawable/jugar"

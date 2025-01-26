@@ -13,7 +13,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_anarru_eguna"
+        android:text="ANARRU EGUNA"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"
@@ -25,7 +25,7 @@
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/description_anarru_eguna"
+        android:text="El Carnaval de Bakio destaca por sus personajes únicos, como Anarrua, símbolo del festejo, y los gnomos que infunden misterio. Entre bailes tradicionales como el 'Anarruen octocoa' y rituales como el juicio y quema de Joseostu, se combinan tradición, magia y diversión para ahuyentar los males y celebrar la comunidad."
         android:textSize="16sp"
         android:layout_marginBottom="16dp"
         android:padding="16dp"
@@ -67,7 +67,7 @@
                 android:id="@+id/currentTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/audio_current_time"
+                android:text="00:00"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_weight="1" />
@@ -76,7 +76,7 @@
                 android:id="@+id/totalTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/audio_total_time"
+                android:text="00:00"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="8dp" />
@@ -96,7 +96,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/btn_play"
+            android:contentDescription="Play"
             android:src="@drawable/play"
             android:scaleType="centerInside" />
 
@@ -105,7 +105,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/pause"
-            android:contentDescription="@string/btn_pause"
+            android:contentDescription="Pause"
             android:background="?android:attr/selectableItemBackground"
             android:layout_marginEnd="8dp"
             android:scaleType="centerInside" />
@@ -115,7 +115,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/reiniciar"
-            android:contentDescription="@string/btn_restart"
+            android:contentDescription="Reiniciar"
             android:background="?android:attr/selectableItemBackground"
             android:scaleType="centerInside" />
     </LinearLayout>
@@ -128,7 +128,7 @@
         android:layout_marginTop="12dp"
         android:src="@drawable/jugar"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/btn_play_game"
+        android:contentDescription="Jugar"
         android:padding="0dp"
         android:scaleType="centerInside"
         android:adjustViewBounds="true" />
