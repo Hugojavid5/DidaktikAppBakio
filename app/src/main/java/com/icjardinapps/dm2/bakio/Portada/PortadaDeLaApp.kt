@@ -68,7 +68,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         builder.show()
     }
 
-    // Metodo para cambiar el idioma de la aplicación
+    // Método para cambiar el idioma de la aplicación
     private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
@@ -82,6 +82,9 @@ class PortadaDeLaApp : AppCompatActivity() {
 
         // Recargar la actividad para aplicar el cambio de idioma
         recreate()
+
+        // Mostrar un Toast indicando que el idioma se cambió correctamente
+        Toast.makeText(this, "Idioma cambiado correctamente", Toast.LENGTH_SHORT).show()
     }
 
     // Metodo para mostrar un diálogo con nombres de prueba
