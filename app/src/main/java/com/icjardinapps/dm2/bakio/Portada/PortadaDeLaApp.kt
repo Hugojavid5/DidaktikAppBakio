@@ -53,7 +53,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         }
     }
 
-    // Método para mostrar el diálogo de selección de idioma
+    // Metodo para mostrar el diálogo de selección de idioma
     private fun showLanguageDialog() {
         val languages = arrayOf("Español", "English", "Euskara")
         val builder = AlertDialog.Builder(this)

@@ -12,7 +12,7 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¡Hola amigos! ¡Bienvenidos a Bakio!"
+        android:text="@string/title_welcome"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -25,7 +25,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/sonrisa"
-        android:contentDescription="Imagen de bienvenida con una sonrisa"
+        android:contentDescription="@string/image_welcome_description"
         android:layout_marginBottom="16dp"/>
 
     <!-- Explicación -->
@@ -33,7 +33,7 @@
         android:id="@+id/explanationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Soy Lanper, el personaje de las fiestas de Bakio, y hoy os guiaré por sus lugares y costumbres más importantes. Durante el recorrido, jugaremos en cada parada para hacer la visita más divertida y educativa. ¡Será una experiencia increíble!"
+        android:text="@string/explanation_text"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:padding="8dp"
@@ -66,7 +66,7 @@
                 android:id="@+id/currentTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:00"
+                android:text="@string/audio_current_time"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
@@ -74,7 +74,7 @@
                 android:id="@+id/totalTimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:00"
+                android:text="@string/audio_total_time"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_weight="1"
@@ -96,32 +96,29 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="Play"
+            android:contentDescription="@string/btn_play"
             android:src="@drawable/play"
             android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/btn_pause"
             android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/pause"
-        android:contentDescription="Pause"
-        android:background="?android:attr/selectableItemBackground"
-        android:layout_marginEnd="8dp"
-        android:scaleType="centerInside" />
+            android:layout_height="60dp"
+            android:src="@drawable/pause"
+            android:contentDescription="@string/btn_pause"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/btn_reiniciar"
             android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/reiniciar"
-        android:contentDescription="Reiniciar"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="centerInside" />
+            android:layout_height="60dp"
+            android:src="@drawable/reiniciar"
+            android:contentDescription="@string/btn_restart"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside" />
     </LinearLayout>
-
-
-
 
     <!-- Botón para ir al mapa de Bakio -->
     <ImageButton
@@ -129,7 +126,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/mapa"
-        android:contentDescription="Mapa"
+        android:contentDescription="@string/btn_map"
         android:layout_marginTop="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="centerInside" />

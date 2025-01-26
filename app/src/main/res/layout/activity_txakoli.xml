@@ -7,82 +7,81 @@
     <!-- Imagen de la vid -->
     <ImageView
         android:id="@+id/iv_vid"
-        android:layout_width="306dp"
-        android:layout_height="387dp"
+        android:layout_width="@dimen/vid_width"
+        android:layout_height="@dimen/vid_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/vid_margin_top"
         android:src="@drawable/vid" />
 
     <!-- Imagen de la uva encima de la vid -->
     <ImageView
         android:id="@+id/iv_uva"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="@dimen/uva_width"
+        android:layout_height="@dimen/uva_height"
+        android:layout_marginLeft="@dimen/uva_margin_left"
+        android:layout_marginTop="@dimen/uva_margin_top"
         android:src="@drawable/uva" />
 
     <!-- Imagen de los pies donde se puede arrastrar la uva -->
     <ImageView
         android:id="@+id/iv_pies"
-        android:layout_width="321dp"
-        android:layout_height="407dp"
+        android:layout_width="@dimen/pies_width"
+        android:layout_height="@dimen/pies_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="@dimen/pies_margin_top"
         android:src="@drawable/prensa_pies" />
 
     <!-- Caja donde se guarda la uva después de arrastrarla -->
     <ImageView
         android:id="@+id/iv_caja"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/caja_width"
+        android:layout_height="@dimen/caja_height"
         android:src="@drawable/caja"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="@dimen/caja_margin_top"
         android:visibility="gone" />
 
     <!-- Barril con el reloj encima -->
     <ImageView
         android:id="@+id/iv_barril"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/barril_width"
+        android:layout_height="@dimen/barril_height"
         android:src="@drawable/barril"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/barril_margin_top"
         android:visibility="gone" />
 
     <!-- Imagen del reloj -->
     <ImageView
         android:id="@+id/iv_reloj"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/reloj_width"
+        android:layout_height="@dimen/reloj_height"
         android:src="@drawable/reloj"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/reloj_margin_top"
         android:visibility="gone" />
 
     <!-- Botella de vino -->
     <ImageView
         android:id="@+id/iv_botella"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/botella_width"
+        android:layout_height="@dimen/botella_height"
         android:src="@drawable/botella"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="@dimen/botella_margin_top"
         android:visibility="gone" />
 
     <!-- ImageButton para ir a la siguiente actividad -->
     <ImageButton
         android:id="@+id/imageButtonNextActivity"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:contentDescription="Siguiente Actividad"
+        android:layout_height="@dimen/button_height"
+        android:contentDescription="@string/button_next_activity_description"
         android:scaleType="centerInside"
         android:src="@drawable/siguiente"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/button_margin_top"
         android:layout_below="@id/iv_botella" />
-
 
 </RelativeLayout>

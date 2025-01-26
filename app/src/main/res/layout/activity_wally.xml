@@ -18,20 +18,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Imagen principal -->
+        <!-- Texto principal -->
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENCUENTRA LAS TRES TORRES"
+            android:text="@string/encuentra_tres_torres"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="50dp"
             android:layout_marginTop="40dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- Imagen principal -->
         <ImageView
             android:id="@+id/imageView4"
             android:layout_marginTop="85dp"
@@ -40,7 +41,7 @@
             app:srcCompat="@drawable/foto_wally_sintorre"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Botones con padding para aumentar área de toque -->
         <ImageButton
@@ -55,7 +56,7 @@
             android:scaleType="fitXY"
             app:srcCompat="@drawable/torre1"
             app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -69,7 +70,7 @@
             android:padding="10dp"
             app:srcCompat="@drawable/torre2"
             app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -83,7 +84,7 @@
             android:padding="10dp"
             app:srcCompat="@drawable/torre3"
             app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +99,7 @@
                 android:layout_height="88dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/torre1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -106,7 +107,7 @@
                 android:layout_height="88dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/torre1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -114,7 +115,7 @@
                 android:layout_height="88dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/torre1"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -124,11 +125,11 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#03A9F4"
             android:onClick="siguiente"
-            android:text="Segi"
+            android:text="@string/segi"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="630dp"/>
+            android:layout_marginTop="630dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@
         android:id="@+id/tituloJuego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adivina la respuesta correcta"
+        android:text="@string/adivina_respuesta_correcta"
         android:textSize="24sp"
         android:textAlignment="center"
         android:layout_marginBottom="16dp"
@@ -28,7 +28,7 @@
         android:id="@+id/pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Cuántas escaleras tiene Doniene de Gaztelugatxe?"
+        android:text="@string/pregunta_text"
         android:textSize="20sp"
         android:layout_marginBottom="16dp"
         android:textColor="@color/black"
@@ -45,21 +45,21 @@
             android:id="@+id/respuesta1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123"
+            android:text="@string/respuesta1"
             android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/respuesta2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="241"
+            android:text="@string/respuesta2"
             android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/respuesta3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="368"
+            android:text="@string/respuesta3"
             android:textColor="@color/black" />
     </RadioGroup>
 
@@ -79,8 +79,9 @@
             android:src="@drawable/corregir"
             android:scaleType="fitCenter"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/corregir_button_desc"
+            android:contentDescription="@string/corregir_button"
             android:visibility="visible" />
+
         <ImageButton
             android:id="@+id/btn_volver"
             android:layout_width="0dp"
@@ -89,8 +90,9 @@
             android:src="@drawable/volver"
             android:scaleType="fitCenter"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/volver_button_desc"
+            android:contentDescription="@string/volver_button"
             android:visibility="visible" />
+
         <ImageButton
             android:id="@+id/siguienteButton"
             android:layout_width="0dp"
@@ -99,14 +101,9 @@
             android:src="@drawable/siguiente"
             android:scaleType="fitCenter"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/siguiente_button_desc"
+            android:contentDescription="@string/siguiente_button"
             android:visibility="visible" />
-
-
     </LinearLayout>
-
-
-
 
     <TextView
         android:id="@+id/resultados"

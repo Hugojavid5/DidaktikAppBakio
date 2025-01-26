@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:contentDescription="Volver a la Bienvenida"
+            android:contentDescription="@string/volver_a_bienvenida"
             android:src="@drawable/volver"
             android:scaleType="centerInside" />
 
@@ -67,11 +67,9 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:contentDescription="Siguiente Actividad"
+            android:contentDescription="@string/siguiente_actividad"
             android:src="@drawable/siguiente"
             android:scaleType="centerInside" />
-
-
     </LinearLayout>
 
 </RelativeLayout>

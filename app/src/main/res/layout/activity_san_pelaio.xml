@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="111dp"
             android:layout_marginBottom="10dp"
-            android:text="\nSan pelaio"
+            android:text="@string/titulo_san_pelaio"
             android:textAlignment="center"
             android:textColor="#161718"
             android:textSize="48sp"
@@ -55,7 +55,7 @@
                     android:onClick="imagen1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_7"
-                    android:contentDescription="pieza 7" />
+                    android:contentDescription="@string/pieza_7" />
 
                 <ImageView
                     android:id="@+id/img2"
@@ -65,7 +65,7 @@
                     android:onClick="imagen2"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_4"
-                    android:contentDescription="pieza 4" />
+                    android:contentDescription="@string/pieza_4" />
 
                 <ImageView
                     android:id="@+id/img3"
@@ -74,7 +74,7 @@
                     android:onClick="imagen3"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_1"
-                    android:contentDescription="pieza 1" />
+                    android:contentDescription="@string/pieza_1" />
             </LinearLayout>
 
             <!-- Segunda fila -->
@@ -92,7 +92,7 @@
                     android:onClick="imagen4"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_3"
-                    android:contentDescription="pieza 3" />
+                    android:contentDescription="@string/pieza_3" />
 
                 <ImageView
                     android:id="@+id/img5"
@@ -102,7 +102,7 @@
                     android:onClick="imagen5"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_5"
-                    android:contentDescription="pieza 5" />
+                    android:contentDescription="@string/pieza_5" />
 
                 <ImageView
                     android:id="@+id/img6"
@@ -111,7 +111,7 @@
                     android:onClick="imagen6"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_9"
-                    android:contentDescription="pieza 9" />
+                    android:contentDescription="@string/pieza_9" />
             </LinearLayout>
 
             <!-- Tercera fila -->
@@ -128,7 +128,7 @@
                     android:onClick="imagen7"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_8"
-                    android:contentDescription="pieza 8" />
+                    android:contentDescription="@string/pieza_8" />
 
                 <ImageView
                     android:id="@+id/img8"
@@ -138,7 +138,7 @@
                     android:onClick="imagen8"
                     android:scaleType="centerCrop"
                     android:src="@drawable/puzzle_img_2"
-                    android:contentDescription="pieza 2" />
+                    android:contentDescription="@string/pieza_2" />
 
                 <ImageView
                     android:id="@+id/img9"
@@ -147,7 +147,7 @@
                     android:scaleType="centerCrop"
                     android:onClick="imagen9"
                     android:src="@drawable/puzzle_img_6"
-                    android:contentDescription="pieza 6" />
+                    android:contentDescription="@string/pieza_6" />
             </LinearLayout>
         </LinearLayout>
 
@@ -156,7 +156,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/siguiente"
-            android:contentDescription="Siguiente"
+            android:contentDescription="@string/siguiente"
             android:onClick="siguiente"
             android:visibility="gone"
             android:scaleType="centerInside" />
@@ -167,6 +167,6 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             app:srcCompat="@drawable/sonrisa"
-            android:contentDescription="sonrisa" />
+            android:contentDescription="@string/sonrisa" />
     </LinearLayout>
 </RelativeLayout>
