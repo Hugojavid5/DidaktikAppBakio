@@ -14,10 +14,11 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
     private lateinit var videoView: VideoView
     private lateinit var pregunta: TextView
     private lateinit var respuestas: RadioGroup
-    private lateinit var corregirBtn: Button
+    private lateinit var corregirBtn: ImageButton  // Cambiado a ImageButton
     private lateinit var resultado: TextView
     private lateinit var imageView: ImageView
-    private lateinit var volverButton: Button // Añadido el botón Volver
+    private lateinit var volverButton: ImageButton // Cambiado a ImageButton
+    private lateinit var siguienteButton: ImageButton // Añadido el ImageButton para siguiente
     private val respuestaCorrecta = R.id.respuesta2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         corregirBtn = findViewById(R.id.corregirBtn)
         resultado = findViewById(R.id.resultados)
         imageView = findViewById(R.id.image)
-        volverButton = findViewById(R.id.btn_volver) // Vinculamos el botón Volver
+        volverButton = findViewById(R.id.btn_volver)
 
         // Configurar el video
         val videoPath = "android.resource://" + packageName + "/" + R.raw.video
@@ -74,6 +75,11 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
             val intent = Intent(this, ActividadBienvenidaGaztelugatxeko::class.java)
             startActivity(intent)
             finish()  // Opcional: finalizar esta actividad para que no vuelva al presionar atrás
+        }
+
+        // Acción del botón Siguiente
+        siguienteButton.setOnClickListener {
+            // Lógica para pasar a la siguiente pregunta
         }
 
         // Iniciar el video automáticamente

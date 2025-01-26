@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="123"
             android:textColor="@color/black"
-        android:buttonTint="@color/black"/>
+            android:buttonTint="@color/black"/>
 
         <RadioButton
             android:id="@+id/respuesta2"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="241"
             android:textColor="@color/black"
-        android:buttonTint="@color/black"/>
+            android:buttonTint="@color/black"/>
 
         <RadioButton
             android:id="@+id/respuesta3"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="368"
             android:textColor="@color/black"
-        android:buttonTint="@color/black"/>
+            android:buttonTint="@color/black"/>
     </RadioGroup>
 
     <!-- Contenedor LinearLayout para los botones "Corregir" y "Volver" -->
