@@ -10,4 +10,8 @@
     <string name="reproducir">Reproducir</string>
     <string name="pausar">Pausar</string>
     <string name="exit_button_description">Botón para salir</string>
+    <string name="corregir_button_desc">Corregir respuesta</string>
+    <string name="siguiente_button_desc">Ir a la siguiente pregunta</string>
+    <string name="volver_button_desc">Volver al inicio</string>
+
 </resources>

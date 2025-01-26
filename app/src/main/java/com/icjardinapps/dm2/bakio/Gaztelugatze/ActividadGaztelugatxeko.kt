@@ -5,8 +5,8 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
 class ActividadGaztelugatxeko : AppCompatActivity() {
@@ -14,11 +14,11 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
     private lateinit var videoView: VideoView
     private lateinit var pregunta: TextView
     private lateinit var respuestas: RadioGroup
-    private lateinit var corregirBtn: ImageButton  // Cambiado a ImageButton
+    private lateinit var corregirBtn: ImageButton
     private lateinit var resultado: TextView
     private lateinit var imageView: ImageView
-    private lateinit var volverButton: ImageButton // Cambiado a ImageButton
-    private lateinit var siguienteButton: ImageButton // Añadido el ImageButton para siguiente
+    private lateinit var volverButton: ImageButton
+    private lateinit var siguienteButton: ImageButton
     private val respuestaCorrecta = R.id.respuesta2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +33,7 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         resultado = findViewById(R.id.resultados)
         imageView = findViewById(R.id.image)
         volverButton = findViewById(R.id.btn_volver)
+        siguienteButton = findViewById(R.id.siguienteButton)
 
         // Configurar el video
         val videoPath = "android.resource://" + packageName + "/" + R.raw.video
@@ -43,6 +44,12 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         // Hacer el VideoView pantalla completa
         hacerPantallaCompleta()
 
+        // Inicialmente deshabilitar los botones de corrección y siguiente
+        corregirBtn.isEnabled = false
+        corregirBtn.visibility = View.INVISIBLE
+        siguienteButton.isEnabled = false
+        siguienteButton.alpha = 0.5f // Cambiar la opacidad para indicar que está desactivado
+
         // Mostrar pregunta y respuestas cuando el video comience
         videoView.setOnPreparedListener {
             pregunta.visibility = View.VISIBLE
@@ -51,8 +58,8 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
 
         // Habilitar el botón de corrección después de que el video termine
         videoView.setOnCompletionListener {
-            corregirBtn.visibility = View.VISIBLE
             corregirBtn.isEnabled = true
+            corregirBtn.visibility = View.VISIBLE
         }
 
         // Manejar clic en el botón de corrección
@@ -61,6 +68,10 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
             if (selectedId == respuestaCorrecta) {
                 resultado.text = "¡Respuesta Correcta!"
                 mostrarCaraAlegre()
+
+                // Habilitar el botón de siguiente si la respuesta es correcta
+                siguienteButton.isEnabled = true
+                siguienteButton.alpha = 1.0f // Restaurar la opacidad para indicar que está activado
             } else {
                 resultado.text = "Respuesta Incorrecta."
                 mostrarCaraTriste()
@@ -74,12 +85,15 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
             // Regresar a la pantalla de bienvenida (MainActivity)
             val intent = Intent(this, ActividadBienvenidaGaztelugatxeko::class.java)
             startActivity(intent)
-            finish()  // Opcional: finalizar esta actividad para que no vuelva al presionar atrás
+            finish()
         }
 
         // Acción del botón Siguiente
         siguienteButton.setOnClickListener {
-            // Lógica para pasar a la siguiente pregunta
+            // Redirigir a la clase MapaActivity
+            val intent = Intent(this, Mapa::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Iniciar el video automáticamente
