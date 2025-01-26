@@ -1,95 +1,86 @@
 package com.icjardinapps.dm2.bakio.Kahoot
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
+import android.media.MediaPlayer
 
 class ActividadBienvenidaKahoot : AppCompatActivity() {
 
-    private lateinit var textViewTiempoIzquierda: TextView
-    private lateinit var textViewTiempoDerecha: TextView
-    private lateinit var seekBarAudio: SeekBar
-    private lateinit var botonPlay: Button
-    private lateinit var botonPause: Button
-    private lateinit var botonReiniciar: Button
-
-    private var tiempoTotal: Int = 6 // tiempo total en segundos (por ejemplo, 3 minutos)
-    private var tiempoTranscurrido: Int = 0
-    private val handler = Handler()
-
-    private val actualizarTiempoRunnable = object : Runnable {
-        override fun run() {
-            if (tiempoTranscurrido < tiempoTotal) {
-                tiempoTranscurrido++
-                val minutos = tiempoTranscurrido / 60
-                val segundos = tiempoTranscurrido % 60
-                textViewTiempoIzquierda.text = String.format("%02d:%02d", minutos, segundos)
-
-                seekBarAudio.progress = tiempoTranscurrido
-
-                handler.postDelayed(this, 1000)
-            }
-        }
-    }
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var botonJugar: ImageButton // Botón para jugar
+    private lateinit var botonPlay: ImageButton // Botón de play
+    private lateinit var botonPause: ImageButton // Botón de pause
+    private lateinit var botonReiniciar: ImageButton // Botón de reiniciar
+    private lateinit var seekBar: SeekBar // Seekbar para el progreso
+    private lateinit var txtCurrentTime: TextView // Texto con el tiempo actual
+    private lateinit var txtTotalTime: TextView // Texto con el tiempo total
+    private val handler = Handler() // Handler para actualizar el SeekBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_kahoot)
 
-        // Inicializar vistas
-        textViewTiempoIzquierda = findViewById(R.id.textViewTiempoIzquierda) // Inicialización de textViewTiempoIzquierda
-        textViewTiempoDerecha = findViewById(R.id.textViewTiempoDerecha) // Inicialización de textViewTiempoDerecha
-        seekBarAudio = findViewById(R.id.seekBarAudio)
-        botonPlay = findViewById(R.id.botonPlay)
-        botonPause = findViewById(R.id.botonPause)
-        botonReiniciar = findViewById(R.id.botonReiniciar)
+        // Inicializa el MediaPlayer con el archivo de audio
+        mediaPlayer = MediaPlayer.create(this, R.raw.amaierakoaudioa)
 
-        // Configurar SeekBar
-        seekBarAudio.max = tiempoTotal
-        seekBarAudio.progress = tiempoTranscurrido
+        // Configura los botones
+        botonJugar = findViewById(R.id.btnJugar)
+        botonPlay = findViewById(R.id.btn_play)
+        botonPause = findViewById(R.id.btn_pause)
+        botonReiniciar = findViewById(R.id.btn_reiniciar)
 
-        // Configuración inicial de tiempo total en el TextView de la derecha
-        val minutosTotal = tiempoTotal / 60
-        val segundosTotal = tiempoTotal % 60
-        textViewTiempoDerecha.text = String.format("%02d:%02d", minutosTotal, segundosTotal)
+        // Configura el SeekBar
+        seekBar = findViewById(R.id.seekBar)
+        seekBar.max = mediaPlayer.duration
 
-        // Acción del botón Play
+        // Configura los TextViews
+        txtCurrentTime = findViewById(R.id.txtCurrentTime)
+        txtTotalTime = findViewById(R.id.txtTotalTime)
+        txtTotalTime.text = formatTime(mediaPlayer.duration)
+
+        // Configura el botón Jugar para redirigir a otra actividad y detener el audio
+        botonJugar.setOnClickListener {
+            mediaPlayer.pause() // Detenemos el audio cuando se pulsa el botón de jugar
+            val intent = Intent(this, ActividadKahoot::class.java)
+            startActivity(intent)
+            finish() // Finaliza la actividad actual para evitar que se quede en el stack de actividades
+        }
+
+        // Configura el botón Play
         botonPlay.setOnClickListener {
+            mediaPlayer.start() // Comienza la reproducción del audio
             botonPlay.isEnabled = false
             botonPause.isEnabled = true
-            handler.post(actualizarTiempoRunnable)
+            updateSeekBar()
         }
 
-        // Acción del botón Pause
+        // Configura el botón Pause
         botonPause.setOnClickListener {
+            mediaPlayer.pause() // Pausa la reproducción del audio
             botonPlay.isEnabled = true
             botonPause.isEnabled = false
-            handler.removeCallbacks(actualizarTiempoRunnable)
         }
 
-        // Acción del botón Reiniciar
+        // Configura el botón Reiniciar
         botonReiniciar.setOnClickListener {
-            botonPlay.isEnabled = true
-            botonPause.isEnabled = false
-            handler.removeCallbacks(actualizarTiempoRunnable)
-            tiempoTranscurrido = 0
-            seekBarAudio.progress = tiempoTranscurrido
-            textViewTiempoIzquierda.text = "00:00"
+            mediaPlayer.seekTo(0) // Reinicia el audio
+            mediaPlayer.start() // Reproduce el audio desde el principio
+            botonPlay.isEnabled = false
+            botonPause.isEnabled = true
+            updateSeekBar()
         }
 
-        // Sincronización de la SeekBar con el tiempo
-        seekBarAudio.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        // Actualiza el SeekBar mientras se reproduce el audio
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    tiempoTranscurrido = progress
-                    val minutos = tiempoTranscurrido / 60
-                    val segundos = tiempoTranscurrido % 60
-                    textViewTiempoIzquierda.text = String.format("%02d:%02d", minutos, segundos)
+                    mediaPlayer.seekTo(progress)
                 }
             }
 
@@ -98,8 +89,26 @@ class ActividadBienvenidaKahoot : AppCompatActivity() {
         })
     }
 
+    private fun updateSeekBar() {
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                seekBar.progress = mediaPlayer.currentPosition
+                txtCurrentTime.text = formatTime(mediaPlayer.currentPosition)
+                if (mediaPlayer.isPlaying) {
+                    handler.postDelayed(this, 1000)
+                }
+            }
+        }, 1000)
+    }
+
+    private fun formatTime(milliseconds: Int): String {
+        val seconds = (milliseconds / 1000) % 60
+        val minutes = (milliseconds / 1000) / 60
+        return String.format("%02d:%02d", minutes, seconds)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacks(actualizarTiempoRunnable)
+        mediaPlayer.release() // Libera recursos al destruir la actividad
     }
 }
