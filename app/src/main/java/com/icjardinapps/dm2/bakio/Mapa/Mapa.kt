@@ -39,6 +39,8 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         Punto(6, "Matxitxako itsasargia", "Descripción corta de Matxitxako itsasargia", 43.45472, -2.75250, "Descripción completa de Matxitxako itsasargia")
     )
 
+
+
     private var puntoActual = 0 // Controla el punto que debe estar en verde
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +51,18 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // Configuramos el botón de actividad final
+        binding.btnPuzzleFinal.setOnClickListener {
+            // Redirige a la actividad final
+            startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
+        }
+
+        // Configuramos el botón de Puzzle Final
+        binding.btnPuzzleFinal.setOnClickListener {
+            // Redirige a la actividad del Puzzle Final
+            startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -61,6 +75,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             true
         }
     }
+
     private fun completarPunto() {
         // Marca el punto actual como completado y pasa al siguiente
         if (puntoActual < ciudades.size - 1) {
@@ -84,48 +99,31 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
 
         // Mostrar los puntos en el mapa
+        val boundsBuilder = LatLngBounds.Builder() // Construye los límites para ajustar la cámara
+
         for ((index, punto) in ciudades.withIndex()) {
             val color = when {
                 index == puntoActual -> BitmapDescriptorFactory.HUE_GREEN // El siguiente punto en verde
                 else -> BitmapDescriptorFactory.HUE_RED // Los demás puntos en rojo
             }
 
+            val latLng = LatLng(punto.latitud, punto.longitud)
+
             mMap.addMarker(
                 MarkerOptions()
-                    .position(LatLng(punto.latitud, punto.longitud))
+                    .position(latLng)
                     .title(punto.nombre)
                     .icon(BitmapDescriptorFactory.defaultMarker(color))
             )
+
+            boundsBuilder.include(latLng) // Agrega el punto al LatLngBounds
         }
 
         // Ajusta la cámara para que todos los puntos sean visibles
-        val boundsBuilder = LatLngBounds.Builder()
-        for (punto in ciudades) {
-            val latLng = LatLng(punto.latitud, punto.longitud)
-            boundsBuilder.include(latLng)
-        }
         val bounds = boundsBuilder.build()
         val padding = 100 // Espaciado de los bordes (opcional)
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == RESULT_OK) {
-            // Regresar al mapa y actualizar el punto
-            completarPunto()
-        } else {
-            // Si la actividad no se completó correctamente, no hacemos nada
-        }
-    }
-
-
-
-
-
-
-
 
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
@@ -146,5 +144,16 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     private fun finalizarRuta() {
         startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            // Regresar al mapa y actualizar el punto
+            completarPunto()
+        } else {
+            // Si la actividad no se completó correctamente, no hacemos nada
+        }
     }
 }
