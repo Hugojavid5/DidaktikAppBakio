@@ -6,130 +6,162 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_verde">
 
-    <!-- Vista superpuesta -->
-    <View
-        android:id="@+id/view"
+    <!-- Texto principal -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="ENCUENTRA LAS TRES TORRES"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Contenedor para la imagen y los botones superpuestos -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1.5"
+        android:layout_margin="5dp">
+
+    <!-- Imagen principal -->
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#66000000" />
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/wally_sintorre" />
 
-    <!-- Contenedor para superposición -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!-- Botón 1 (Torre 1) -->
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:contentDescription="Torre 1"
+        app:srcCompat="@drawable/torre1"
+        android:layout_margin="40dp"
+        android:layout_gravity="start|top"/>
 
-        <!-- Texto principal -->
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ENCUENTRA LAS TRES TORRES"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="50dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Botón 2 (Torre 2) -->
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:contentDescription="Torre 2"
+        app:srcCompat="@drawable/torre2"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"/>
 
-        <!-- Imagen principal -->
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_marginTop="85dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/foto_wally_sintorre"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Botón 3 (Torre 3) -->
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:contentDescription="Torre 3"
+        app:srcCompat="@drawable/torre3"
+        android:layout_margin="40dp"
+        android:layout_gravity="end|bottom"/>
 
-        <!-- Botones con padding para aumentar área de toque -->
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="255dp"
-            android:background="@null"
-            android:contentDescription="@string/image_button_description"
-            android:padding="10dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/torre1"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:contentDescription="@string/image_button_description"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="367dp"
-            android:layout_marginTop="262dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:padding="10dp"
-            app:srcCompat="@drawable/torre2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:contentDescription="@string/image_button_description"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="237dp"
-            android:layout_marginTop="411dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:padding="10dp"
-            app:srcCompat="@drawable/torre3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="146dp"
-            android:layout_marginTop="500dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton3">
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="28dp"
-                android:layout_height="88dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/torre1"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="28dp"
-                android:layout_height="88dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/torre1"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="28dp"
-                android:layout_height="88dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/torre1"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/segibutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#03A9F4"
-            android:onClick="siguiente"
-            android:text="Segi"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="630dp" />
     </FrameLayout>
+
+    <!-- Contenedor de imágenes -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="35dp"
+            android:layout_height="95dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            app:srcCompat="@drawable/torre1" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="35dp"
+            android:layout_height="95dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/torre2"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="35dp"
+            android:layout_height="95dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/torre3"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Imagen de Sonrisa entre los bloques -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="229dp"
+        android:layout_height="164dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/sonrisa"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp" />
+
+    <!-- LinearLayout para los ImageButtons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:layout_marginTop="25dp">
+
+        <!-- ImageButton para volver a la bienvenida -->
+        <ImageButton
+            android:id="@+id/volver"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:contentDescription="Volver a la Bienvenida"
+            android:src="@drawable/volver"
+            android:scaleType="centerInside" />
+
+        <!-- Botón "Segi" -->
+        <ImageButton
+            android:id="@+id/siguiente"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:onClick="siguiente"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            android:contentDescription="Siguiente actividad"
+            android:src="@drawable/siguiente" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
