@@ -118,11 +118,13 @@ class ActividadTxakoli : AppCompatActivity() {
             }
         }
 
-        // Manejar clic en el botón para volver al mapa
         imageButtonNextActivity.setOnClickListener {
             val intent = Intent(this, Mapa::class.java)
+            intent.putExtra("ACTUALIZAR_PUNTOS", true)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
             finish()
         }
+
     }
 }

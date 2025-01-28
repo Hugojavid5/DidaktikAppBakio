@@ -54,16 +54,14 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             finish() // Opcional, si quieres cerrar la actividad actual
         }
         buttonNext.setOnClickListener {
-            // Aquí pasas las coordenadas del nuevo punto a la actividad de mapa
-            val latitude = 43.4116  // Ejemplo de latitud
-            val longitude = -2.7737  // Ejemplo de longitud
-
-            val intent = Intent(this, Mapa::class.java).apply {
-                putExtra("latitude", latitude)
-                putExtra("longitude", longitude)
-            }
+            val intent = Intent(this, Mapa::class.java)
+            intent.putExtra("ACTUALIZAR_PUNTOS", true)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
+            finish()
+
         }
+
         buttonNext.isEnabled = false
 
         setupTouchListener()

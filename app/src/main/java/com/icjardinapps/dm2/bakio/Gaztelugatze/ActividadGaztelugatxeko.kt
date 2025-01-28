@@ -90,10 +90,12 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
 
         // Acción del botón Siguiente
         siguienteButton.setOnClickListener {
-            // Redirigir a la clase MapaActivity
             val intent = Intent(this, Mapa::class.java)
+            intent.putExtra("ACTUALIZAR_PUNTOS", true)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
             finish()
+
         }
 
         // Iniciar el video automáticamente

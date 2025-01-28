@@ -62,8 +62,12 @@ class ActividadWally : AppCompatActivity() {
         }
 
         segButton.setOnClickListener {
-            val intent = Intent(this, Mapa::class.java)  // Cambia JuegoActivity por tu actividad de juego
+            val intent = Intent(this, Mapa::class.java)
+            intent.putExtra("ACTUALIZAR_PUNTOS", true)  // O false, según lo que necesites
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
+
         }
     }
 

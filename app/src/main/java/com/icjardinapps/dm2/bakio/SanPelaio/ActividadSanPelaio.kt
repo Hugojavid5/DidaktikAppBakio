@@ -79,11 +79,13 @@ class ActividadSanPelaio : AppCompatActivity() {
     }
 
     // Metodo para volver al mapa
-    fun siguiente(view: View) {
+    fun siguiente(){
         val intent = Intent(this, Mapa::class.java)
-        intent.putExtra("CONTADOR", 2) // Actualizar el contador para la próxima actividad
+        intent.putExtra("ACTUALIZAR_PUNTOS", true)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
         finish()
+
     }
 
     /**

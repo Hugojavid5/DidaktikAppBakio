@@ -63,10 +63,12 @@ class ActividadBela : AppCompatActivity() {
 
             // Configurar el botón salir
             btnSalir.setOnClickListener {
-                // Regresar al mapa o cerrar la actividad
                 val intent = Intent(this, Mapa::class.java)
+                intent.putExtra("ACTUALIZAR_PUNTOS", true)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 startActivity(intent)
                 finish()
+
             }
         }
 

@@ -2,7 +2,7 @@ package com.icjardinapps.dm2.bakio.Mapa
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,9 +39,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         Punto(6, "Matxitxako itsasargia", "Descripción corta de Matxitxako itsasargia", 43.45472, -2.75250, "Descripción completa de Matxitxako itsasargia")
     )
 
-
-
-    private var puntoActual = 0 // Controla el punto que debe estar en verde
+    private var puntoActual = -1 // Controla el punto que debe estar en verde
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,80 +47,82 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Obtenemos si debemos actualizar los puntos
+        val actualizarPuntos = intent.getBooleanExtra("ACTUALIZAR_PUNTOS", false)
+
+        // Si se debe actualizar los puntos, incrementamos el punto actual
+        if (actualizarPuntos) {
+            puntoActual++
+        }
+
+        // Configuramos el mapa
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         // Configuramos el botón de actividad final
         binding.btnPuzzleFinal.setOnClickListener {
-            // Redirige a la actividad final
-            startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
-        }
-
-        // Configuramos el botón de Puzzle Final
-        binding.btnPuzzleFinal.setOnClickListener {
-            // Redirige a la actividad del Puzzle Final
             startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         }
     }
 
+
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mostrarPuntos()
+        mostrarPuntos()  // Llamamos a mostrarPuntos() solo después de que el mapa esté listo
 
         mMap.setOnMarkerClickListener { marker ->
+            // Buscar el punto correspondiente al marcador
             val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
-            puntoSeleccionado?.let { abrirActividadPorId(it.id) }
+
+            // Verificar si el punto seleccionado es el punto verde (el actual)
+            if (puntoSeleccionado != null && puntoSeleccionado.id == puntoActual) {
+                // Si es el punto verde, abrir la actividad
+                abrirActividadPorId(puntoSeleccionado.id)
+            } else {
+                // Si no es el punto verde, no hacer nada o mostrar un mensaje
+                // Opcional: Mostrar un mensaje al usuario
+                Toast.makeText(this, "Debes llegar al punto actual para continuar", Toast.LENGTH_SHORT).show()
+            }
+
+            // Devolver true para indicar que el marcador ha sido procesado
             true
         }
     }
 
-    private fun completarPunto() {
-        // Marca el punto actual como completado y pasa al siguiente
-        if (puntoActual < ciudades.size - 1) {
-            // Avanza al siguiente punto
-            puntoActual++
-
-            // Regresar al mapa y actualizar los puntos
-            mostrarPuntos()
-
-            // Asegura que el mapa se actualice después de un pequeño retraso
-            Handler().postDelayed({
-                // Después de 2 segundos, el mapa se actualizará y el siguiente punto se marcará en verde
-            }, 2000) // 2 segundos de retraso
-        } else {
-            // Cuando se completan todos los puntos, finaliza la ruta
-            finalizarRuta()
-        }
-    }
-
     private fun mostrarPuntos() {
-        mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
+        if (puntoActual < ciudades.size) {
+            puntoActual++
+            mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
 
-        // Mostrar los puntos en el mapa
-        val boundsBuilder = LatLngBounds.Builder() // Construye los límites para ajustar la cámara
+            // Mostrar los puntos en el mapa
+            val boundsBuilder = LatLngBounds.Builder() // Construye los límites para ajustar la cámara
 
-        for ((index, punto) in ciudades.withIndex()) {
-            val color = when {
-                index == puntoActual -> BitmapDescriptorFactory.HUE_GREEN // El siguiente punto en verde
-                else -> BitmapDescriptorFactory.HUE_RED // Los demás puntos en rojo
+            for ((index, punto) in ciudades.withIndex()) {
+                val color = when {
+                    index == puntoActual -> BitmapDescriptorFactory.HUE_GREEN // Punto actual
+                    else -> BitmapDescriptorFactory.HUE_RED // Puntos restantes
+                }
+
+                val latLng = LatLng(punto.latitud, punto.longitud)
+
+                mMap.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(punto.nombre)
+                        .icon(BitmapDescriptorFactory.defaultMarker(color))
+                )
+
+                boundsBuilder.include(latLng) // Agrega el punto al LatLngBounds
             }
 
-            val latLng = LatLng(punto.latitud, punto.longitud)
-
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(latLng)
-                    .title(punto.nombre)
-                    .icon(BitmapDescriptorFactory.defaultMarker(color))
-            )
-
-            boundsBuilder.include(latLng) // Agrega el punto al LatLngBounds
+            // Ajusta la cámara para que todos los puntos sean visibles
+            val bounds = boundsBuilder.build()
+            val padding = 100 // Espaciado de los bordes (opcional)
+            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+        } else {
+            finalizarRuta()
         }
-
-        // Ajusta la cámara para que todos los puntos sean visibles
-        val bounds = boundsBuilder.build()
-        val padding = 100 // Espaciado de los bordes (opcional)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
     }
 
     private fun abrirActividadPorId(id: Int) {
@@ -137,23 +137,12 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             else -> null
         }
         intent?.let {
-            startActivityForResult(it, id)
+            startActivityForResult(it, id) // Abrimos la actividad y esperamos un resultado
         }
     }
 
     private fun finalizarRuta() {
         startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         finish()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == RESULT_OK) {
-            // Regresar al mapa y actualizar el punto
-            completarPunto()
-        } else {
-            // Si la actividad no se completó correctamente, no hacemos nada
-        }
     }
 }
