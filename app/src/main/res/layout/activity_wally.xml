@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="ENCUENTRA LAS TRES TORRES"
+        android:text="@string/titu_act_wally"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"

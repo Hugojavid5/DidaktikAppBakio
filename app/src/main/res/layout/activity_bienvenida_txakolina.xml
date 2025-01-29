@@ -12,7 +12,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TXAKOLINA"
+        android:text="@string/titu_txakolina"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -23,7 +23,7 @@
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="El txakolín es un vino típico del País Vasco, elaborado con uvas de viñedos montañosos y almacenado en barricas de madera llamadas &quot;kupelas&quot;. En Bakio, destacan varias bodegas y el Museo del Txakolí, que narra su historia y curiosidades. Solo puede disfrutarse a partir de los 18 años."
+        android:text="@string/expli_txakolina"
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginBottom="16dp"/>

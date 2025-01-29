@@ -58,7 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pregunta anterior" />
+            android:text="@string/pregunta_anterior" />
 
         <!-- Botón de siguiente pregunta -->
         <Button
@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Siguiente pregunta" />
+            android:text="@string/siguiente_pregunta" />
     </LinearLayout>
 
     <!-- Botón para comprobar respuestas -->
@@ -74,7 +74,7 @@
         android:id="@+id/buttonCheckAnswers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Comprobar respuestas"
+        android:text="@string/comprobar_respuestas"
         android:layout_marginBottom="16dp" />
 
     <!-- Botón de volver -->
@@ -82,5 +82,5 @@
         android:id="@+id/buttonBackToWelcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Volver" />
+        android:text="@string/volver" />
 </LinearLayout>

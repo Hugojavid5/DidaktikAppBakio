@@ -69,7 +69,7 @@
             android:id="@+id/imageButtonNextActivity"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:contentDescription="Siguiente Actividad"
+            android:contentDescription="@string/siguiente_actividad"
             android:src="@drawable/siguiente"
             android:scaleType="centerInside" />
     </LinearLayout>

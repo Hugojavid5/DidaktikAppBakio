@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="MATXITXAKO ITSASARGIA"
+        android:text="@string/titu_martxitako"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="162dp"
         android:layout_marginBottom="20dp"
-        android:text="El faro de Matxitxak, de 20 metros de altura y situado a 122 metros sobre el nivel del mar, emite señales luminosas para guiar a los barcos, siendo visible a 30 millas náuticas. Originalmente, los faros eran operados por fareros, pero ahora la mayoría son automáticos gracias a la tecnología moderna. Actualmente, existen menos de 1500 faros en funcionamiento en el mundo."
+        android:text="@string/expli_martxitako"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 

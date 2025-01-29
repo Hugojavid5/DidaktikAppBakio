@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:text="Bueno, bueno… eso es todo, y ahora para terminar con todo, ¡vamos a hacer una serie de preguntas con todo lo que hemos aprendido!"
+        android:text="@string/expli_kahoot"
         android:textColor="@android:color/black"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/imagen"

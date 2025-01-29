@@ -11,7 +11,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SAN PELAIO ERMITA"
+        android:text="@string/titu_pelaio"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -21,7 +21,7 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="La ermita de San Pelaio, en Bakio, es una de las iglesias románicas más antiguas de Bizkaia. Construida con gruesos muros de piedra, ha resistido el paso del tiempo y conserva su planta original, aunque ha sido restaurada. Su elemento más destacado es el ábside con una ventana decorada con motivos vegetales y geométricos, reflejo del arte medieval."
+        android:text="@string/expli_pelaio"
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginBottom="16dp" />
