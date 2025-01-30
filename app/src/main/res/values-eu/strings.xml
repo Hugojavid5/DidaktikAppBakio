@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name" translatable="false">Bakio</string>
+    <string name="title_activity_mapa">Mapa</string>
+    <string name="image_button_description">Torre baten irudiarekin botoia</string>
+    <string name="reproducir">Jolastu</string>
+    <string name="pausar">Pausatu</string>
+    <string name="exit_button_description">Irten botoia</string>
+    <string name="corregir_button_desc">Erantzun zuzena</string>
+    <string name="siguiente_button_desc">Hurrengo galderara joan</string>
+    <string name="volver_button_desc">Hasierara itzuli</string>
+    <string name="siguiente_actividad">Hurrengo jarduera</string>
+    <string name="hola" translatable="false">Kaixo lagunak! Ongi etorri Bakiora!</string>
+    <string name="imagen_sonrisa">Ongi etorri irudia irribarre batekin</string>
+    <string name="intro_expli">Ni naiz Lanper, Bakio festetako pertsonaia, eta gaurkoan zurekin izango naiz herriko toki eta tradizio garrantzitsuenetan. Ibilbidean zehar, jolas eginez geldituko gara bakoitzean, bisita dibertigarri eta hezigarria izateko. Esperientzia ikaragarria izango da!</string>
+    <string name="play">Jolastu</string>
+    <string name="pause">Pausatu</string>
+    <string name="reiniciar">Berrezarri</string>
+    <string name="mapa">Mapa</string>
+    <string name="titu_arrastrar">ANARRU EGUNA</string>
+    <string name="expli_arrastrar">Bakio Aste Nagusia bere pertsonaia bereziekin nabarmentzen da, hala nola Anarrua, festaren ikurra, eta gnomoak, misterio ukitu bat ematen dutenak. Anarruen octocoa edo Joseosturen epaiketa eta erraustearen erritualak tradizioa, magia eta dibertimendua uztartzen dituzte, gaizkia uxatzeko eta komunitatea ospatzeko.</string>
+    <string name="jugar">Jolastu</string>
+    <string name="titu_bela">HAIZEAREN KONTRA BELA GURUTZATUAK</string>
+    <string name="expli_bela">Duela urte batzuk, piratak itsasoan borrokan aritu ziren, hondatutako eta itsasoratutako itsasontziak utziz. Bakion, piraten yate bat hondoratu zen portuan, eta urte batzuk geroago José Ramón Andak itsasoa eta yate hori irudikatzen dituen eskultura urdin bat sortu zuen. Bakio harriak ere yate baten forma du, istorio horri omenaldia eginez.</string>
+    <string name="titu_gaztelu">San Juan de Gaztelugatxe</string>
+    <string name="expli_gaztelu">Gaztelugatxeko ermita, 12. mendekoan eraikia, setioak, lapurretak eta erasoak izan ditu lekuko. Lapurrak eta korsarioek ondasunak suntsitu eta objektuak harresitik bota zituzten.</string>
+    <string name="expli_kahoot">Ba bueno… hori da guztia, eta orain, amaitzeko, ikasitako guztia oinarritzat hartuta galdera batzuk egingo ditugu!</string>
+    <string name="titu_pelaio">SAN PELAIO ERMITA</string>
+    <string name="expli_pelaio">Bakio San Pelaio ermita Bizkaiko eliza erromanikoz zaharrenetakoa da. Harrizko horma lodiak dituen eraikina da, eta denboraren igarotzea ongi jasan du, nahiz eta zaharberritu egin den. Bere ezaugarri nagusia apsean dago, landare eta geometria motiboekin apaindutako leiho bat duena, arte erromanikoko eragina erakutsiz.</string>
+    <string name="titu_lanper">LANPER</string>
+    <string name="expli_lanper">Bakion, San Joan Doloza jaietan, abuztuaren 28tik 31ra, Lanper izeneko olatu sinbolikoa protagonista da, desfileetan eta ekitaldietan parte hartzen duena. Urte osoko gainerako egonaldian, udaletxean atseden hartzen du.</string>
+    <string name="titu_txakolina">TXAKOLINA</string>
+    <string name="expli_txakolina">Txakolina Euskal Herriko ardo tipikoa da, mendiko mahastietan hazitako mahastietatik egina, eta \"kupela\" deitutako egurrezko barrikan gorde egiten da. Bakion, zenbait upeltegi eta Txakolí Museoa daude, horren historia eta kuriositateak azaltzen dituena. 18 urte baino gehiagokoek bakarrik dastatu dezakete.</string>
+    <string name="titu_martxitako">MATXITXAKO ITSASARGIA</string>
+    <string name="expli_martxitako">Matxitxako itsasargia 20 metroko altuera eta 122 metroko altuera du itsas mailatik. Itsasontziei gida egiteko argi-seinaleak igortzen ditu, eta 30 itsas miliatatik ikusten da. Hasieran, itsasargiak farolariak kudeatzen zituzten, baina gaur egun gehienak automatizatuta daude teknologiaren eskutik. Gaur egun, munduan 1.500 itsasargi baino gutxiago daude martxan.</string>
+    <string name="fin">JOKOAREN AMAIERA</string>
+    <string name="titu_act_gaztelu">Erantzun zuzena asmatzea</string>
+    <string name="pregunta_gaztelu">Zenbat eskailera ditu Doniene de Gaztelugatxek?</string>
+    <string name="pregunta_anterior">Aurprevious galdera</string>
+    <string name="siguiente_pregunta">Hurrengo galdera</string>
+    <string name="comprobar_respuestas">Erantzunak egiaztatu</string>
+    <string name="volver">Itzuli</string>
+    <string name="titu_final_resultados">Emaitzak</string>
+    <string name="fin_del_juego_boton">Jokoaren amaiera</string>
+    <string name="actividad_final_boton">Jarduera finala</string>
+    <string name="titu_bienvenido_al_juego">Ongi etorri Jokuara!</string>
+    <string name="titu_registro">Sarbide izena eta pasahitza sartu</string>
+    <string name="nombre_regis">Izena</string>
+    <string name="contra_regis">Pasahitza</string>
+    <string name="registrarse_boton">Erregistroa</string>
+    <string name="boton_corregi_resp">Zuzena</string>
+    <string name="titu_act_pelaio">San pelaio</string>
+    <string name="titu_act_wally">HIRU TORREK AURKITU</string>
+</resources>

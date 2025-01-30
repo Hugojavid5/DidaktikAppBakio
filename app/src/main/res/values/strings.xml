@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">bakio</string>
-    <string name="title_activity_mapa">mapa</string>
+    <string name="app_name">Bakio</string>
+    <string name="title_activity_mapa">Mapa</string>
     <string name="image_button_description">Boton de una torre como imagen </string>
     <string name="reproducir">Reproducir</string>
     <string name="pausar">Pausar</string>
@@ -19,7 +19,7 @@
     <string name="titu_arrastrar">ANARRU EGUNA</string>
     <string name="expli_arrastrar">El Carnaval de Bakio destaca por sus personajes únicos, como Anarrua, símbolo del festejo, y los gnomos que infunden misterio. Entre bailes tradicionales como el \'Anarruen octocoa\' y rituales como el juicio y quema de Joseostu, se combinan tradición, magia y diversión para ahuyentar los males y celebrar la comunidad.</string>
     <string name="jugar">Jugar</string>
-    <string name="titu_bela">BELA GURUTZATUAK HAIZEAREN KONTRA</string>
+    <string name="titu_bela">VELAS CRUZADAS CONTRA EL VIENTO</string>
     <string name="expli_bela">Hace años, los piratas libraron batallas en el mar, dejando barcos destruidos y hundidos. En Bakio, un yate pirata se hundió en el puerto, inspirando años después a José Ramón Anda a crear una escultura azul que representa el mar y ese yate. Incluso el peñón de Bakio evoca la forma de un yate en honor a esa historia.</string>
     <string name="titu_gaztelu">San Juan de Gaztelugatxe</string>
     <string name="expli_gaztelu">La capilla de Gaztelugatxe, construida probablemente en el siglo XII, ha sido escenario de asedios, saqueos y ataques. Saqueadores y corsarios destruyeron bienes y lanzaron objetos al acantilado.</string>
