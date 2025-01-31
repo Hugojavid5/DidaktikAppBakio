@@ -1,8 +1,15 @@
 package com.icjardinapps.dm2.bakio.Portada
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,89 +20,100 @@ import java.util.Locale
 class PortadaDeLaApp : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Aplicar el idioma guardado antes de cargar la UI
+        setAppLocale(getSavedLanguage(this))
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_portada)
 
-        // Configurar el evento táctil para el LinearLayout
-        val mainLayout = findViewById<View>(R.id.linearLayout)
-        mainLayout.setOnClickListener {
-            // Cambiar a otra actividad
-            val intent = Intent(this, BienvenidaApp::class.java)
-            startActivity(intent)
+        // Configurar eventos de clic en la interfaz
+        findViewById<View>(R.id.linearLayout).setOnClickListener {
+            startActivity(Intent(this, BienvenidaApp::class.java))
         }
 
-        // Configurar el evento de clic para la imagen de "play"
-        val imageViewPlay = findViewById<View>(R.id.imageView3)
-        imageViewPlay.setOnClickListener {
-            // Redirigir a la actividad BienvenidaApp cuando se pulse la imagen de play
-            val intent = Intent(this, BienvenidaApp::class.java)
-            startActivity(intent)
+        findViewById<View>(R.id.imageView3).setOnClickListener {
+            startActivity(Intent(this, BienvenidaApp::class.java))
         }
 
-        // Configurar el evento de clic para la imagen de ajustes (cambiar idioma)
-        val imageViewAjustes = findViewById<View>(R.id.imageView1)
-        imageViewAjustes.setOnClickListener {
-            // Mostrar un diálogo para elegir el idioma
+        findViewById<View>(R.id.imageView1).setOnClickListener {
             showLanguageDialog()
         }
 
-        // Configurar el evento de clic para la imagen de "información" (mostrar nombres)
-        val imageViewInfo = findViewById<View>(R.id.imageView4)
-        imageViewInfo.setOnClickListener {
-            // Mostrar un diálogo con los nombres cuando se pulse la imagen de info
+        findViewById<View>(R.id.imageView4).setOnClickListener {
             showInfoDialog()
         }
 
-        // Otros eventos de clic para las imágenes
-        val imageViewRanking = findViewById<View>(R.id.imageView2)
-        imageViewRanking.setOnClickListener {
-            // Acción para la imagen de ranking
+        findViewById<View>(R.id.imageView2).setOnClickListener {
+            // Acción para ranking (puedes completar esto)
         }
     }
 
-    // Metodo para mostrar el diálogo de selección de idioma
+    // Método para mostrar el diálogo de selección de idioma
     private fun showLanguageDialog() {
         val languages = arrayOf("Español", "English", "Euskara")
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Selecciona el idioma")
-        builder.setItems(languages) { _, which ->
-            when (which) {
-                0 -> setLocale("es")  // Español
-                1 -> setLocale("en")  // Inglés
-                2 -> setLocale("eu")  // Euskera
+        val languageCodes = arrayOf("es", "en", "eu")
+        val flagImages = arrayOf(R.drawable.flag_spain, R.drawable.flag_uk, R.drawable.flag_basque)
+
+        val adapter = object : ArrayAdapter<String>(this, R.layout.list_item_language, languages) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = convertView ?: layoutInflater.inflate(R.layout.list_item_language, parent, false)
+
+                val imageView = view.findViewById<ImageView>(R.id.languageIcon)
+                val textView = view.findViewById<TextView>(R.id.languageName)
+
+                imageView.setImageResource(flagImages[position]) // Asignar imagen de bandera
+                textView.text = languages[position] // Asignar nombre del idioma
+
+                return view
             }
         }
-        builder.show()
+
+        AlertDialog.Builder(this)
+            .setTitle("Selecciona el idioma")
+            .setAdapter(adapter) { _, which ->
+                setAppLocale(languageCodes[which])
+                recreate() // Recargar la actividad para aplicar los cambios de idioma
+            }
+            .show()
     }
 
-    // Método para cambiar el idioma de la aplicación
-    private fun setLocale(languageCode: String) {
+
+    // Método para cambiar el idioma en toda la aplicación y guardarlo en SharedPreferences
+    private fun setAppLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
-        val config = resources.configuration
+
+        val config = Configuration(resources.configuration)
         config.setLocale(locale)
-        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
 
-        // Guardar la preferencia de idioma en SharedPreferences (opcional)
-        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
-        sharedPreferences.edit().putString("language", languageCode).apply()
+        // Guardar el idioma seleccionado en SharedPreferences
+        saveLanguage(languageCode)
 
-        // Recargar la actividad para aplicar el cambio de idioma
-        recreate()
-
-        // Mostrar un Toast indicando que el idioma se cambió correctamente
+        // Mostrar mensaje de confirmación
         Toast.makeText(this, "Idioma cambiado correctamente", Toast.LENGTH_SHORT).show()
     }
 
-    // Metodo para mostrar un diálogo con nombres de prueba
+    // Guardar el idioma en SharedPreferences
+    private fun saveLanguage(languageCode: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("language", languageCode).apply()
+    }
+
+    // Obtener el idioma guardado en SharedPreferences
+    private fun getSavedLanguage(context: Context): String {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("language", Locale.getDefault().language) ?: "es"
+    }
+
+    // Método para mostrar información de los desarrolladores
     private fun showInfoDialog() {
         val names = arrayOf("Beñat Cano", "Hugo Javid", "Guillermo Arana")
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Información de los desarrolladores")
-        builder.setMessage(names.joinToString("\n"))  // Muestra los nombres en el mensaje
-        builder.setPositiveButton("OK") { dialog, _ ->
-            dialog.dismiss()  // Solo cerrar el diálogo al pulsar OK
-        }
-        builder.show()
+
+        AlertDialog.Builder(this)
+            .setTitle("Información de los desarrolladores")
+            .setMessage(names.joinToString("\n"))
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 }
