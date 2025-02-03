@@ -143,7 +143,7 @@ class ActividadWally : AppCompatActivity() {
 
     // Este metodo se ejecuta al hacer clic en el botón "Segi"
     fun siguiente(view: View) {
-        val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
+        val intent = Intent(this, Mapa::class.java)
         startActivity(intent)
         finish() // Opcional, para cerrar la actividad actual si no quieres que el usuario vuelva atrás
     }

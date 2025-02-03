@@ -2,10 +2,10 @@ package com.icjardinapps.dm2.bakio.Kahoot
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
 
 class ActividadKahoot : AppCompatActivity() {
 
@@ -34,41 +34,46 @@ class ActividadKahoot : AppCompatActivity() {
         val previousQuestionButton = findViewById<Button>(R.id.buttonPreviousQuestion)
         val backToWelcomeButton = findViewById<Button>(R.id.buttonBackToWelcome)
 
+        // Log para depurar la inicialización de las vistas
+        Log.d("ActividadKahoot", "questionTextView: $questionTextView")
+        Log.d("ActividadKahoot", "radioGroupAnswers: $radioGroupAnswers")
+        Log.d("ActividadKahoot", "nextQuestionButton: $nextQuestionButton")
+        Log.d("ActividadKahoot", "previousQuestionButton: $previousQuestionButton")
+        Log.d("ActividadKahoot", "backToWelcomeButton: $backToWelcomeButton")
+
         showQuestion(questionTextView, radioGroupAnswers)
         updateButtonVisibility()
 
         nextQuestionButton.setOnClickListener {
             val selectedOptionId = radioGroupAnswers.checkedRadioButtonId
             if (selectedOptionId == -1) {
-                Toast.makeText(this,
-                    getString(R.string.por_favor_selecciona_una_respuesta), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.por_favor_selecciona_una_respuesta), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val selectedAnswer = findViewById<RadioButton>(selectedOptionId).text.toString()
-
-            // Guardar la respuesta de la pregunta actual
             userAnswers[currentQuestionIndex] = selectedAnswer
 
-            // Verificar si hay más preguntas, si no, mostrar los resultados
             if (currentQuestionIndex < questions.size - 1) {
                 currentQuestionIndex++
                 radioGroupAnswers.clearCheck()
                 showQuestion(questionTextView, radioGroupAnswers)
             } else {
-                showResults() // Mostrar los resultados después de la última pregunta
+                showResults()
             }
 
             updateButtonVisibility()
         }
+
         previousQuestionButton.setOnClickListener {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--
                 showQuestion(questionTextView, radioGroupAnswers)
                 updateButtonVisibility()
+
                 val savedAnswer = userAnswers.getOrNull(currentQuestionIndex)
                 radioGroupAnswers.clearCheck()
-                if (savedAnswer != null) {
+                savedAnswer?.let {
                     for (i in 0 until radioGroupAnswers.childCount) {
                         val radioButton = radioGroupAnswers.getChildAt(i) as RadioButton
                         if (radioButton.text == savedAnswer) {
@@ -92,88 +97,78 @@ class ActividadKahoot : AppCompatActivity() {
 
         radioGroupAnswers.removeAllViews()
         question.answers.forEach { answer ->
-            val radioButton = RadioButton(this)
-            radioButton.text = answer
+            val radioButton = RadioButton(this).apply {
+                text = answer
+            }
             radioGroupAnswers.addView(radioButton)
         }
     }
+
     private fun updateButtonVisibility() {
         val previousQuestionButton = findViewById<Button>(R.id.buttonPreviousQuestion)
         val nextQuestionButton = findViewById<Button>(R.id.buttonNextQuestion)
         val checkAnswersButton = findViewById<Button>(R.id.buttonCheckAnswers)
         val backToWelcomeButton = findViewById<Button>(R.id.buttonBackToWelcome)
 
-        // Inicialmente deshabilitar todos los botones
         previousQuestionButton.isEnabled = false
         checkAnswersButton.isEnabled = false
         nextQuestionButton.isEnabled = true
         backToWelcomeButton.isEnabled = true
 
-        // Lógica de visibilidad de botones según la pregunta actual
         when (currentQuestionIndex) {
             0 -> {
-                previousQuestionButton.isEnabled = false // No hay pregunta anterior
-                backToWelcomeButton.isEnabled = true // Habilitar botón "Volver" solo en la primera pregunta
+                previousQuestionButton.isEnabled = false
+                backToWelcomeButton.isEnabled = true
             }
             questions.size - 1 -> {
-                nextQuestionButton.isEnabled = false // No hay siguiente pregunta
-                checkAnswersButton.isEnabled = true // Mostrar el botón de comprobar respuestas en la última pregunta
-                previousQuestionButton.isEnabled = true // Habilitar el botón de pregunta anterior en la última pregunta
-                backToWelcomeButton.isEnabled = false // Deshabilitar el botón "Volver" en la última pregunta
+                nextQuestionButton.isEnabled = false
+                checkAnswersButton.isEnabled = true
+                previousQuestionButton.isEnabled = true
+                backToWelcomeButton.isEnabled = false
             }
             else -> {
-                previousQuestionButton.isEnabled = true // Habilitar el botón de pregunta anterior
-                nextQuestionButton.isEnabled = true // Habilitar el botón de siguiente pregunta
-                checkAnswersButton.isEnabled = false // Deshabilitar el botón de comprobar respuestas
-                backToWelcomeButton.isEnabled = false // Deshabilitar el botón "Volver" en las preguntas intermedias
+                previousQuestionButton.isEnabled = true
+                nextQuestionButton.isEnabled = true
+                checkAnswersButton.isEnabled = false
+                backToWelcomeButton.isEnabled = false
             }
         }
 
-        // Establecer el OnClickListener para el botón de comprobar respuestas
         checkAnswersButton.setOnClickListener {
-            // Llamar a la función para mostrar los resultados
             showResults()
         }
     }
 
     private fun showResults() {
-        // Cambiar el layout a activity_respuestas.xml
         setContentView(R.layout.activity_respuestas)
-
-        // Obtener el LinearLayout donde mostrar las respuestas
         val linearLayoutAnswers = findViewById<LinearLayout>(R.id.linearLayoutAnswers)
         val correctAnswersButton = findViewById<Button>(R.id.buttonCorrectAnswers)
 
-        // Limpiar cualquier vista previa de respuestas
         linearLayoutAnswers.removeAllViews()
 
-        // Mostrar las respuestas seleccionadas por el usuario
         userAnswers.forEachIndexed { index, answer ->
             val question = questions[index]
             val displayedAnswer = answer ?: "${question.correctAnswer}"
             val answerTextView = TextView(this).apply {
                 text = "Pregunta ${index + 1}: $displayedAnswer"
                 textSize = 18f
-                setPadding(0, 8, 0, 8)  // Agregar algo de espacio entre las respuestas
+                setPadding(0, 8, 0, 8)
             }
             linearLayoutAnswers.addView(answerTextView)
         }
 
-        // Lógica al hacer clic en el botón de "Corregir"
         correctAnswersButton.setOnClickListener {
-            // Contar las respuestas correctas e incorrectas
             val correctCount = userAnswers.filterIndexed { index, answer ->
                 answer == questions[index].correctAnswer
             }.count()
             val incorrectCount = userAnswers.size - correctCount
 
-            // Redirigir a la pantalla de resultados finales
             val intent = Intent(this, FinKahoot::class.java).apply {
                 putExtra("correctCount", correctCount)
                 putExtra("incorrectCount", incorrectCount)
             }
             startActivity(intent)
-            finish()  // Finalizar la actividad actual para no volver atrás
+            finish()
         }
     }
 

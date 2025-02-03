@@ -28,20 +28,17 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapaBinding
 
-    // Lista de puntos a mostrar en el mapa
     private val ciudades: MutableList<Punto> = mutableListOf(
-        Punto(0, "Jaiak-Lanper Pertsonaia (Bakioko udaletxea)", "Descripción corta de Jaiak-Lanper Pertsonaia", 43.42306, -2.81417, "Descripción completa de Jaiak-Lanper Pertsonaia (Bakioko udaletxea)"),
-        Punto(1, "Txakolina (Txakolingunea)", "Descripción corta de Txakolina", 43.41667, -2.81250, "Descripción completa de Txakolina (Txakolingunea)"),
-        Punto(2, "Anarru eguna", "Descripción corta de Anarru eguna", 43.42944, -2.81194, "Descripción completa de Anarru eguna"),
-        Punto(3, "Bela gurutzatuak haizearen kontra", "Descripción corta de Bela gurutzatuak haizearen kontra", 43.42972, -2.81056, "Descripción completa de Bela gurutzatuak haizearen kontra"),
-        Punto(4, "San Pelaio ermita", "Descripción corta de San Pelaio ermita", 43.43389, -2.78556, "Descripción completa de San Pelaio ermita"),
-        Punto(5, "Gaztelugatxeko doniene (San Juan)", "Descripción corta de Gaztelugatxeko doniene", 43.44700, -2.78500, "Descripción completa de Gaztelugatxeko doniene (San Juan)"),
-        Punto(6, "Matxitxako itsasargia", "Descripción corta de Matxitxako itsasargia", 43.45472, -2.75250, "Descripción completa de Matxitxako itsasargia")
+        Punto(0, "Jaiak-Lanper Pertsonaia (Bakioko udaletxea)", "Descripción corta", 43.42306, -2.81417, "Descripción completa"),
+        Punto(1, "Txakolina (Txakolingunea)", "Descripción corta", 43.41667, -2.81250, "Descripción completa"),
+        Punto(2, "Anarru eguna", "Descripción corta", 43.42944, -2.81194, "Descripción completa"),
+        Punto(3, "Bela gurutzatuak haizearen kontra", "Descripción corta", 43.42972, -2.81056, "Descripción completa"),
+        Punto(4, "San Pelaio ermita", "Descripción corta", 43.43389, -2.78556, "Descripción completa"),
+        Punto(5, "Gaztelugatxeko doniene (San Juan)", "Descripción corta", 43.44700, -2.78500, "Descripción completa"),
+        Punto(6, "Matxitxako itsasargia", "Descripción corta", 43.45472, -2.75250, "Descripción completa")
     )
 
-    private var puntoActual = -1 // Controla el punto que debe estar en verde
-    private val marcadores = mutableListOf<MarkerOptions>() // Lista para almacenar los marcadores
-
+    private var puntoActual = 0 // El primer punto será el actual desde el inicio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,120 +46,72 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Aquí eliminamos la asignación de completado a true para que los puntos no se muestren como completados desde el principio
-        // ciudades.forEach { it.completado = true }  <-- Eliminar esta línea
+        // Deshabilitar el botón al principio
+        binding.btnPuzzleFinal.isEnabled = false
 
-        // Configuramos el mapa
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Configuramos el botón de actividad final
         binding.btnPuzzleFinal.setOnClickListener {
             startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         }
     }
 
     private fun mostrarPuntos() {
-        if (puntoActual < ciudades.size) {
-            mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
+        mMap.clear()
+        val boundsBuilder = LatLngBounds.Builder()
 
-            // Mostrar los puntos en el mapa
-            val boundsBuilder = LatLngBounds.Builder() // Construye los límites para ajustar la cámara
-
-            for ((index, punto) in ciudades.withIndex()) {
-                val color = if (punto.completado) {
-                    BitmapDescriptorFactory.HUE_RED // Los puntos completados se muestran en rojo
-                } else {
-                    BitmapDescriptorFactory.HUE_GREEN // Los puntos no completados se muestran en verde
+        for ((index, punto) in ciudades.withIndex()) {
+            // Si todos los puntos están completos, todos se deben marcar en rojo
+            val color = if (todosPuntosCompletados()) {
+                BitmapDescriptorFactory.HUE_RED
+            } else {
+                when {
+                    index == puntoActual && !punto.completado -> BitmapDescriptorFactory.HUE_GREEN
+                    punto.completado -> BitmapDescriptorFactory.HUE_RED
+                    else -> BitmapDescriptorFactory.HUE_ORANGE
                 }
-
-                val latLng = LatLng(punto.latitud, punto.longitud)
-
-                mMap.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(punto.nombre)
-                        .icon(BitmapDescriptorFactory.defaultMarker(color))
-                )
-
-                boundsBuilder.include(latLng) // Agrega el punto al LatLngBounds
             }
 
-            // Ajusta la cámara para que todos los puntos sean visibles
-            val bounds = boundsBuilder.build()
-            val padding = 100 // Espaciado de los bordes (opcional)
-            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
-        } else {
-            finalizarRuta()
+            val latLng = LatLng(punto.latitud, punto.longitud)
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title(punto.nombre)
+                    .icon(BitmapDescriptorFactory.defaultMarker(color))
+            )
+
+            boundsBuilder.include(latLng)
+        }
+
+        val bounds = boundsBuilder.build()
+        val padding = 100
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding))
+
+        // Habilitar el botón si todos los puntos están completados
+        if (todosPuntosCompletados()) {
+            binding.btnPuzzleFinal.isEnabled = true
         }
     }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mostrarPuntos()  // Llamamos a mostrarPuntos() solo después de que el mapa esté listo
+        mostrarPuntos()
 
         mMap.setOnMarkerClickListener { marker ->
-            // Buscar el punto correspondiente al marcador
             val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
 
-            // Verificar si el punto seleccionado existe y si no está completado
-            if (puntoSeleccionado != null && !puntoSeleccionado.completado) {
+            if (puntoSeleccionado != null && puntoSeleccionado.id == puntoActual && !puntoSeleccionado.completado) {
                 puntoSeleccionado.completar()
-
-                // Actualizamos la visualización del mapa con el cambio de color
+                puntoActual++
                 mostrarPuntos()
-
-                // Abrir la actividad correspondiente
                 abrirActividadPorId(puntoSeleccionado.id)
             } else {
-                // Si el punto está completado o no se encuentra, mostrar un mensaje
-                Toast.makeText(this,
-                    getString(R.string.debes_llegar_al_punto_actual_para_continuar), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.debes_llegar_al_punto_actual_para_continuar), Toast.LENGTH_SHORT).show()
             }
-
-            // Devolver true para indicar que el marcador ha sido procesado
             true
         }
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == RESULT_OK) {
-            val puntoCompletado = ciudades.find { it.id == requestCode }
-            puntoCompletado?.completar()  // Solo marca el punto completado
-
-            mostrarPuntos() // Actualiza el mapa para reflejar el cambio
-        }
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-        // Verificar si la lista ya está cargada antes de modificar los marcadores
-        if (ciudades.isNotEmpty()) {
-            // Cambiar el color del marcador activo a verde
-            if (puntoActual >= 0 && puntoActual < ciudades.size) {
-                val puntoActivo = ciudades[puntoActual]
-                mMap.clear() // Limpiamos los marcadores actuales
-
-                // Volver a mostrar los puntos con el marcador activo en verde
-                mostrarPuntos()
-
-                // Modificar el marcador activo a verde
-                val latLng = LatLng(puntoActivo.latitud, puntoActivo.longitud)
-                mMap.addMarker(
-                    MarkerOptions()
-                        .position(latLng)
-                        .title(puntoActivo.nombre)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                )
-            }
-        }
-    }
-
 
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
@@ -175,14 +124,36 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             6 -> Intent(this, ActividadBienvenidaWally::class.java)
             else -> null
         }
-        intent?.let {
-            startActivityForResult(it, id) // Abrimos la actividad y esperamos un resultado
+        intent?.let { startActivityForResult(it, id) }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            ciudades.find { it.id == requestCode }?.completar()
+            mostrarPuntos()
+
+            // Verificar si todos los puntos han sido completados
+            if (todosPuntosCompletados()) {
+                Toast.makeText(this, "¡Ruta completada!", Toast.LENGTH_SHORT).show()
+                // Marcar todos los puntos en rojo
+                mostrarPuntos()  // Esto actualizará el mapa con los puntos en rojo
+                // Regresar al mapa
+                finalizarRuta()
+            }
         }
     }
 
+    // Función para verificar si todos los puntos están completados
+    private fun todosPuntosCompletados(): Boolean {
+        return ciudades.all { it.completado }
+    }
+
     private fun finalizarRuta() {
-        startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
+        // Esto te lleva nuevamente al mapa, donde podrás visualizar los puntos.
+        val intent = Intent(this, Mapa::class.java)
+        startActivity(intent)
         finish()
     }
 }
-
