@@ -1,3 +1,4 @@
+// Registro.kt
 package com.icjardinapps.dm2.bakio.Login
 
 import android.content.Intent
@@ -5,10 +6,12 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Portada.PortadaDeLaApp
 import com.icjardinapps.dm2.bakio.R
+import com.icjardinapps.dm2.bakio.ConexionBBDD.ConexionDb
 
 class Registro : AppCompatActivity() {
 
@@ -20,6 +23,7 @@ class Registro : AppCompatActivity() {
     private lateinit var tituloRegistro: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("INFO", "INICIO APLICACIÓN")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
 
@@ -31,7 +35,7 @@ class Registro : AppCompatActivity() {
         tituloRegistro = findViewById(R.id.tituloRegistro)
 
         // Cargar la animación desde el archivo XML (solo una vez)
-        loadingAnimation.setBackgroundResource(R.drawable.sonrisa) // Establece la animación
+        loadingAnimation.setBackgroundResource(R.drawable.sonrisa)
         animationDrawable = loadingAnimation.background as AnimationDrawable
 
         // Iniciar la animación
@@ -40,23 +44,42 @@ class Registro : AppCompatActivity() {
         // Validar campos
         registrarButton.isEnabled = false
         nombreEditText.addTextChangedListener(textWatcher)
-        contrasenaEditText.addTextChangedListener(textWatcher)
 
         // Acción del botón de registrar
         registrarButton.setOnClickListener {
-            // Aquí puedes agregar la lógica de registro
+            // Validamos los campos antes de continuar
+            val nombre = nombreEditText.text.toString()
+            val contrasena = contrasenaEditText.text.toString()
 
-            // Simular un retraso antes de redirigir
-            val intent = Intent(this, PortadaDeLaApp::class.java)
-            startActivity(intent)
-            finish()  // Finaliza la actividad actual
+            if (nombre.isNotEmpty()) {
+                // Hacemos la inserción en base de datos en un hilo
+                Thread {
+                    val bd = ConexionDb(this)
+                    val insertSuccess = bd.guardarAlumnoBBDD(nombre, nombre, 3)
+
+                    // Si la inserción es exitosa, redirigimos a la portada
+                    runOnUiThread {
+                        if (insertSuccess) {
+                            // Redirigir a la portada de la app
+                            val intent = Intent(this, PortadaDeLaApp::class.java)
+                            startActivity(intent)
+                            finish()  // Finaliza la actividad actual
+                        } else {
+                            // Si no se pudo insertar, mostramos un mensaje de error
+                            Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }.start()
+            } else {
+                // Si los campos no están completos, mostramos un mensaje
+                Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun validarCampos() {
         val nombre = nombreEditText.text.toString()
-        val contrasena = contrasenaEditText.text.toString()
-        registrarButton.isEnabled = nombre.isNotEmpty() && contrasena.isNotEmpty()
+        registrarButton.isEnabled = nombre.isNotEmpty()
     }
 
     private val textWatcher = object : TextWatcher {
