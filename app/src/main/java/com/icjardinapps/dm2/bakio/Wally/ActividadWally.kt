@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.Kahoot.ActividadBienvenidaKahoot
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.Sopa.ActividadBienvenidaSopa
@@ -142,7 +143,9 @@ class ActividadWally : AppCompatActivity() {
 
     // Este metodo se ejecuta al hacer clic en el botón "Segi"
     fun siguiente(view: View) {
-        // Aquí puedes poner la lógica que debe ocurrir cuando el botón Segi sea pulsado
-        Toast.makeText(this, getString(R.string.actividad_completada), Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
+        startActivity(intent)
+        finish() // Opcional, para cerrar la actividad actual si no quieres que el usuario vuelva atrás
     }
+
 }

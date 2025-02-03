@@ -78,15 +78,16 @@ class ActividadSanPelaio : AppCompatActivity() {
         animationDrawable.start()  // Iniciar la animación
     }
 
-    // Metodo para volver al mapa
-    fun siguiente(){
+    // Metodo para redirigir a NuevaActividad
+    fun siguiente(view: View) {
         val intent = Intent(this, Mapa::class.java)
         intent.putExtra("ACTUALIZAR_PUNTOS", true)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
         finish()
-
     }
+
+
 
     /**
      * Guarda la imagen e indica al programa que ya hay un ImageView seleccionada. Desactiva el

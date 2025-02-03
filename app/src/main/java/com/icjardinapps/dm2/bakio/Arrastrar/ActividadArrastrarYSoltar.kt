@@ -68,15 +68,20 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         setDroppable(siluetaSaco, "saco", R.drawable.saco)
         setDroppable(siluetaPoncho, "poncho", R.drawable.poncho)
 
-        // Configurar el botón salir
         btnSalir.setOnClickListener {
-            val intent = Intent(this, Mapa::class.java)
-            intent.putExtra("ACTUALIZAR_PUNTOS", true)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            startActivity(intent)
-            finish()
-
+            try {
+                val intent = Intent(this, Mapa::class.java)
+                intent.putExtra("ACTUALIZAR_PUNTOS", true)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                finish()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this, "Error al cambiar de pantalla", Toast.LENGTH_LONG).show()
+            }
         }
+
+
     }
 
     // Metodo para cambiar la imagen a la cara triste

@@ -6,5 +6,13 @@ data class Punto(
     val descripcionCorta: String,
     val latitud: Double,
     val longitud: Double,
-    val descripcion: String
-)
+    val descripcion: String,
+    var completado: Boolean = false // Agregamos un estado para saber si el punto está completado o no
+) {
+    // Metodo para completar un punto y cambiar su estado a completado
+    fun completar() {
+        completado = true
+    }
+}
+
+

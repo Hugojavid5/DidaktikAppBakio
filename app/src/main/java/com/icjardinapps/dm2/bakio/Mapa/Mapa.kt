@@ -40,6 +40,8 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     )
 
     private var puntoActual = -1 // Controla el punto que debe estar en verde
+    private val marcadores = mutableListOf<MarkerOptions>() // Lista para almacenar los marcadores
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +49,8 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtenemos si debemos actualizar los puntos
-        val actualizarPuntos = intent.getBooleanExtra("ACTUALIZAR_PUNTOS", false)
-
-        // Si se debe actualizar los puntos, incrementamos el punto actual
-        if (actualizarPuntos) {
-            puntoActual++
-        }
+        // Aquí eliminamos la asignación de completado a true para que los puntos no se muestren como completados desde el principio
+        // ciudades.forEach { it.completado = true }  <-- Eliminar esta línea
 
         // Configuramos el mapa
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -65,44 +62,18 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        mostrarPuntos()  // Llamamos a mostrarPuntos() solo después de que el mapa esté listo
-
-        mMap.setOnMarkerClickListener { marker ->
-            // Buscar el punto correspondiente al marcador
-            val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
-
-            // Verificar si el punto seleccionado es el punto verde (el actual)
-            if (puntoSeleccionado != null && puntoSeleccionado.id == puntoActual) {
-                // Si es el punto verde, abrir la actividad
-                abrirActividadPorId(puntoSeleccionado.id)
-            } else {
-                // Si no es el punto verde, no hacer nada o mostrar un mensaje
-                // Opcional: Mostrar un mensaje al usuario
-                Toast.makeText(this,
-                    getString(R.string.debes_llegar_al_punto_actual_para_continuar), Toast.LENGTH_SHORT).show()
-            }
-
-            // Devolver true para indicar que el marcador ha sido procesado
-            true
-        }
-    }
-
     private fun mostrarPuntos() {
         if (puntoActual < ciudades.size) {
-            puntoActual++
             mMap.clear() // Limpiamos el mapa antes de mostrar los nuevos puntos
 
             // Mostrar los puntos en el mapa
             val boundsBuilder = LatLngBounds.Builder() // Construye los límites para ajustar la cámara
 
             for ((index, punto) in ciudades.withIndex()) {
-                val color = when {
-                    index == puntoActual -> BitmapDescriptorFactory.HUE_GREEN // Punto actual
-                    else -> BitmapDescriptorFactory.HUE_RED // Puntos restantes
+                val color = if (punto.completado) {
+                    BitmapDescriptorFactory.HUE_RED // Los puntos completados se muestran en rojo
+                } else {
+                    BitmapDescriptorFactory.HUE_GREEN // Los puntos no completados se muestran en verde
                 }
 
                 val latLng = LatLng(punto.latitud, punto.longitud)
@@ -126,6 +97,73 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        mostrarPuntos()  // Llamamos a mostrarPuntos() solo después de que el mapa esté listo
+
+        mMap.setOnMarkerClickListener { marker ->
+            // Buscar el punto correspondiente al marcador
+            val puntoSeleccionado = ciudades.find { it.nombre == marker.title }
+
+            // Verificar si el punto seleccionado existe y si no está completado
+            if (puntoSeleccionado != null && !puntoSeleccionado.completado) {
+                puntoSeleccionado.completar()
+
+                // Actualizamos la visualización del mapa con el cambio de color
+                mostrarPuntos()
+
+                // Abrir la actividad correspondiente
+                abrirActividadPorId(puntoSeleccionado.id)
+            } else {
+                // Si el punto está completado o no se encuentra, mostrar un mensaje
+                Toast.makeText(this,
+                    getString(R.string.debes_llegar_al_punto_actual_para_continuar), Toast.LENGTH_SHORT).show()
+            }
+
+            // Devolver true para indicar que el marcador ha sido procesado
+            true
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            val puntoCompletado = ciudades.find { it.id == requestCode }
+            puntoCompletado?.completar()  // Solo marca el punto completado
+
+            mostrarPuntos() // Actualiza el mapa para reflejar el cambio
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        // Verificar si la lista ya está cargada antes de modificar los marcadores
+        if (ciudades.isNotEmpty()) {
+            // Cambiar el color del marcador activo a verde
+            if (puntoActual >= 0 && puntoActual < ciudades.size) {
+                val puntoActivo = ciudades[puntoActual]
+                mMap.clear() // Limpiamos los marcadores actuales
+
+                // Volver a mostrar los puntos con el marcador activo en verde
+                mostrarPuntos()
+
+                // Modificar el marcador activo a verde
+                val latLng = LatLng(puntoActivo.latitud, puntoActivo.longitud)
+                mMap.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title(puntoActivo.nombre)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                )
+            }
+        }
+    }
+
+
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
             0 -> Intent(this, ActividadBienvenidaSopa::class.java)
@@ -147,3 +185,4 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         finish()
     }
 }
+
