@@ -12,16 +12,16 @@ class ActividadKahoot : AppCompatActivity() {
     private var currentQuestionIndex = 0
     private val userAnswers = MutableList<String?>(10) { null }
     private val questions = listOf(
-        Question("Non bizi da Lanper?", "Udaletxean", listOf("Etxean", "Udaletxean", "Itsasoan", "Kalean")),
-        Question("Non ikusi dezakegu Lanper?", "Jaietan", listOf("Jaietan", "Igerilekuan", "Herriko plazan", "Lagunekin kafea hartzen")),
-        Question("Zer dago Gaztelugatxen?", "Ermita", listOf("Ermita", "Altxorra", "Taberna bat", "Lapurrak")),
-        Question("Nondik dator txakolina?", "Mahatsetatik", listOf("Sagarretik", "Mahatsetatik", "Platanotik", "Ahabietatik")),
-        Question("Txakolinaren museoan txakolina egin eta eraten da?", "Gezurra", listOf("Egia", "Gezurra")),
-        Question("Zer da Anarrua?", "Inauterietako pretsonaia bat", listOf("Mamu bat", "Inauterietako pretsonaia bat", "Bakioko alkatea")),
-        Question("Zein dantza egiten da Bakion?", "Anarruaren zortzikoa", listOf("Anarruren banakoa", "Anarruaren binakakoa", "Anarruaren launakakoa", "Anarruaren zortzikoa")),
-        Question("San Pelaio ermita harriz eraikita dago?", "Egia", listOf("Egia", "Gezurra")),
-        Question("Zenbat neurtzen du Matxitxakoko itsasargiak?", "20m", listOf("15m", "20m", "25m", "30m")),
-        Question("Bakioko bela gurutzatuak zer isladatzen du?", "Piraten itsasontzia ondoratu zela", listOf("Piratak Bakiora iritsi ziren eguna", "Piratek Bakion lapurtu zuten garaia", "Piraten itsasontzia ondoratu zela", "Ez dauka esanahirik"))
+        Question(getString(R.string.non_bizi_da_lanper), getString(R.string.udaletxean), listOf(getString(R.string.etxean), getString(R.string.udaletxean), getString(R.string.itsasoan), getString(R.string.kalean))),
+        Question(getString(R.string.non_ikusi), getString(R.string.jaietan), listOf(getString(R.string.jaietan), getString(R.string.igerilekuan), getString(R.string.herriko_plazan), getString(R.string.lagunekin_kafea_hartzen))),
+        Question(getString(R.string.zer_dago_gaztelugatxen), getString(R.string.ermita), listOf(getString(R.string.ermita), getString(R.string.altxorra), getString(R.string.taberna_bat), getString(R.string.lapurrak))),
+        Question(getString(R.string.nondik_dator_txakolina), getString(R.string.mahatsetatik), listOf(getString(R.string.sagarretik), getString(R.string.mahatsetatik), getString(R.string.platanotik), getString(R.string.ahabietatik))),
+        Question(getString(R.string.Txakolinaren_museoan), getString(R.string.gezurra), listOf(getString(R.string.egia), getString(R.string.gezurra))),
+        Question(getString(R.string.zer_da_anarrua), getString(R.string.inauterietako_pretsonaia_bat), listOf(getString(R.string.mamu_bat), getString(R.string.inauterietako_pretsonaia_bat), getString(R.string.bakioko_alkatea))),
+        Question(getString(R.string.zein_dantza_egiten_da_bakion), getString(R.string.anarruaren_zortzikoa), listOf(getString(R.string.anarruren_banakoa), getString(R.string.anarruaren_binakakoa), getString(R.string.anarruaren_launakakoa), getString(R.string.anarruaren_zortzikoa))),
+        Question(getString(R.string.san_pelaio_ermita_harriz_eraikita_dago), getString(R.string.egia), listOf(getString(R.string.egia), getString(R.string.gezurra))),
+        Question(getString(R.string.zenbat_neurtzen_du_matxitxakoko_itsasargiak), "20m", listOf("15m", "20m", "25m", "30m")),
+        Question(getString(R.string.bakioko_bela_gurutzatuak_zer_isladatzen_du), getString(R.string.piraten_itsasontzia_ondoratu_zela), listOf(getString(R.string.piratak_bakiora_iritsi_ziren_eguna), getString(R.string.piratek_bakion_lapurtu_zuten_garaia), getString(R.string.piraten_itsasontzia_ondoratu_zela), getString(R.string.ez_dauka_esanahirik)))
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,8 @@ class ActividadKahoot : AppCompatActivity() {
         nextQuestionButton.setOnClickListener {
             val selectedOptionId = radioGroupAnswers.checkedRadioButtonId
             if (selectedOptionId == -1) {
-                Toast.makeText(this, "Por favor, selecciona una respuesta.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    getString(R.string.por_favor_selecciona_una_respuesta), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

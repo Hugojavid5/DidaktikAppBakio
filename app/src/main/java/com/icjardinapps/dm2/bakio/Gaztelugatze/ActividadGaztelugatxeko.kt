@@ -66,14 +66,14 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         corregirBtn.setOnClickListener {
             val selectedId = respuestas.checkedRadioButtonId
             if (selectedId == respuestaCorrecta) {
-                resultado.text = "¡Respuesta Correcta!"
+                resultado.text = getString(R.string.respuesta_correcta)
                 mostrarCaraAlegre()
 
                 // Habilitar el botón de siguiente si la respuesta es correcta
                 siguienteButton.isEnabled = true
                 siguienteButton.alpha = 1.0f // Restaurar la opacidad para indicar que está activado
             } else {
-                resultado.text = "Respuesta Incorrecta."
+                resultado.text = getString(R.string.respuesta_incorrecta)
                 mostrarCaraTriste()
             }
             resultado.visibility = View.VISIBLE

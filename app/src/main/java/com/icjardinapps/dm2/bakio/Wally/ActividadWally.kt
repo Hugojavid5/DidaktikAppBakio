@@ -143,6 +143,6 @@ class ActividadWally : AppCompatActivity() {
     // Este metodo se ejecuta al hacer clic en el botón "Segi"
     fun siguiente(view: View) {
         // Aquí puedes poner la lógica que debe ocurrir cuando el botón Segi sea pulsado
-        Toast.makeText(this, "Actividad completada", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.actividad_completada), Toast.LENGTH_SHORT).show()
     }
 }

@@ -67,11 +67,13 @@ class ActividadTxakoli : AppCompatActivity() {
                     ivCaja.visibility = View.VISIBLE // Mostrar la caja
                     ivUva.visibility = View.GONE // La uva desaparece de la vid
                     ivPies.visibility = View.GONE
-                    Toast.makeText(this, "¡Uvas recogidas y llevadas a la caja!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.uvas_recogidas_y_llevadas_a_la_caja), Toast.LENGTH_SHORT).show()
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
                     if (!event.result) {
-                        Toast.makeText(this, "Arrastra las uvas hacia los pies para continuar.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,
+                            getString(R.string.arrastra_las_uvas_hacia_los_pies_para_continuar), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -83,16 +85,19 @@ class ActividadTxakoli : AppCompatActivity() {
             if (ivCaja.visibility == View.VISIBLE) {
                 toques++
                 if (toques < maxToques) {
-                    Toast.makeText(this, "¡Pisando uvas! Sigue tocando...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.pisando_uvas_sigue_tocando), Toast.LENGTH_SHORT).show()
                 } else {
                     // Cuando se den X toques, se muestra el barril
                     ivCaja.visibility = View.GONE
                     ivBarril.visibility = View.VISIBLE
                     ivReloj.visibility = View.VISIBLE
-                    Toast.makeText(this, "Las uvas han sido prensadas y llevadas al barril.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.las_uvas_han_sido_prensadas_y_llevadas_al_barril), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Primero debes recoger las uvas y llevarlas a la caja!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    getString(R.string.primero_debes_recoger_las_uvas_y_llevarlas_a_la_caja), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -105,7 +110,8 @@ class ActividadTxakoli : AppCompatActivity() {
                 // Log para verificar que el flujo llegó aquí
                 Log.d("ActividadTxakoli", "El barril es visible, mostrando la botella y el botón siguiente.")
 
-                Toast.makeText(this, "Ha pasado 1 año. El txakoli está listo para embotellar.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,
+                    getString(R.string.ha_pasado_1_a_o_el_txakoli_est_listo_para_embotellar), Toast.LENGTH_LONG).show()
 
                 // Asegurarse de que el botón se hace visible
                 imageButtonNextActivity.visibility = View.VISIBLE
@@ -114,7 +120,8 @@ class ActividadTxakoli : AppCompatActivity() {
                 Log.d("ActividadTxakoli", "Botón siguiente visibilidad: ${imageButtonNextActivity.visibility}")
             } else {
                 // Si no se cumplen las condiciones, mostrar un mensaje de advertencia
-                Toast.makeText(this, "¡Primero pisa las uvas y guárdalas en el barril!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    getString(R.string.primero_pisa_las_uvas_y_gu_rdalas_en_el_barril), Toast.LENGTH_SHORT).show()
             }
         }
 

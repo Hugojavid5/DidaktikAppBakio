@@ -29,11 +29,11 @@ class FinKahoot : AppCompatActivity() {
 
         // Mostrar los resultados
         val textViewResults = findViewById<TextView>(R.id.textViewResults)
-        textViewResults.text = """
-            Total aciertos: $correctCount
-            Total de fallos: $incorrectCount
-            El porcentaje de aciertos es: $percentage%
-        """
+        textViewResults.text =
+            (getString(R.string.total_aciertos) + correctCount +
+                    getString(R.string.total_de_fallos) + incorrectCount +
+                    getString(R.string.el_porcentaje_de_aciertos_es) + percentage + "%")
+
 
         // Mostrar la animación de sonrisa o tristeza
         val imageView = findViewById<ImageView>(R.id.imageViewAnimation)

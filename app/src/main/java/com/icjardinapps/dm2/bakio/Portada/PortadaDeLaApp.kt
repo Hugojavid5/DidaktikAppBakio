@@ -50,7 +50,7 @@ class PortadaDeLaApp : AppCompatActivity() {
 
     // Método para mostrar el diálogo de selección de idioma
     private fun showLanguageDialog() {
-        val languages = arrayOf("Español", "English", "Euskara")
+        val languages = arrayOf("Español", "English", "Euskera")
         val languageCodes = arrayOf("es", "en", "eu")
         val flagImages = arrayOf(R.drawable.flag_spain, R.drawable.flag_uk, R.drawable.flag_basque)
 
@@ -69,7 +69,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         }
 
         AlertDialog.Builder(this)
-            .setTitle("Selecciona el idioma")
+            .setTitle(getString(R.string.selecciona_el_idioma))
             .setAdapter(adapter) { _, which ->
                 setAppLocale(languageCodes[which])
                 recreate() // Recargar la actividad para aplicar los cambios de idioma
@@ -91,7 +91,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         saveLanguage(languageCode)
 
         // Mostrar mensaje de confirmación
-        Toast.makeText(this, "Idioma cambiado correctamente", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.idioma_cambiado), Toast.LENGTH_SHORT).show()
     }
 
     // Guardar el idioma en SharedPreferences
@@ -111,7 +111,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         val names = arrayOf("Beñat Cano", "Hugo Javid", "Guillermo Arana")
 
         AlertDialog.Builder(this)
-            .setTitle("Información de los desarrolladores")
+            .setTitle(getString(R.string.info_desarro))
             .setMessage(names.joinToString("\n"))
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()

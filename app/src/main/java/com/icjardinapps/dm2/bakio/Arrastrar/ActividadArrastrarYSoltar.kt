@@ -147,11 +147,12 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
 
                         if (correctMatches == 4) {
                             btnSalir.visibility = View.VISIBLE // Mostrar botón salir
-                            Toast.makeText(this, "¡Juego completado!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,
+                                getString(R.string.juego_completado), Toast.LENGTH_SHORT).show()
                             mostrarCaraAlegre() // Mostrar cara alegre al completar el juego
                         }
                     } else {
-                        Toast.makeText(this, "¡Intenta de nuevo!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.intenta_nuevo), Toast.LENGTH_SHORT).show()
                         mostrarCaraTriste() // Mostrar cara triste si hay un fallo
                     }
                     true

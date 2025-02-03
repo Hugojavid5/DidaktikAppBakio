@@ -203,8 +203,8 @@ class ActividadSopaDeLetras : AppCompatActivity() {
 
     private fun showCompletionMessage() {
         val dialog = android.app.AlertDialog.Builder(this)
-            .setTitle("¡Felicidades!")
-            .setMessage("Has encontrado todas las palabras.")
+            .setTitle(getString(R.string.felicidades))
+            .setMessage(getString(R.string.has_encontrado_todas_las_palabras))
             .setPositiveButton("OK", null)
             .create()
         dialog.show()

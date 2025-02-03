@@ -82,7 +82,8 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             } else {
                 // Si no es el punto verde, no hacer nada o mostrar un mensaje
                 // Opcional: Mostrar un mensaje al usuario
-                Toast.makeText(this, "Debes llegar al punto actual para continuar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    getString(R.string.debes_llegar_al_punto_actual_para_continuar), Toast.LENGTH_SHORT).show()
             }
 
             // Devolver true para indicar que el marcador ha sido procesado
