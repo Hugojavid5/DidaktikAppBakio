@@ -110,7 +110,7 @@ class PortadaDeLaApp : AppCompatActivity() {
 
     // Método para mostrar información de los desarrolladores
     private fun showInfoDialog() {
-        val names = arrayOf("Beñat Cano", "Hugo Javid", "Guillermo Arana")
+        val names = arrayOf("DESARROLLADORES:","","-Beñat Cano", "-Hugo Javid", "-Guillermo Arana","","IDEA:","","-Saioa Uribe","-Libe Diaz de Argandoña","-Irati Arcelus"+"-Lorea Mariscal","-Izaro Etxebarria")
 
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.info_desarro))
