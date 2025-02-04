@@ -16,6 +16,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp"/>
 
     <!-- Descripción de la actividad -->
@@ -26,6 +27,7 @@
         android:text="@string/expli_txakolina"
         android:textSize="16sp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp"/>
 
     <!-- Imagen de bienvenida -->

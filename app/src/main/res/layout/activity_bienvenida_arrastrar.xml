@@ -30,6 +30,7 @@
         android:layout_marginBottom="16dp"
         android:padding="16dp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:lineSpacingExtra="4dp" />
 
     <!-- Imagen -->

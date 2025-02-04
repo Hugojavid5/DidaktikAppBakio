@@ -15,6 +15,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
 
     <TextView
@@ -24,6 +25,7 @@
         android:text="@string/expli_pelaio"
         android:textSize="16sp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
 
     <ImageView
