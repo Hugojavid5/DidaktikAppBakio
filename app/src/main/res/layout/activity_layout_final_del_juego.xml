@@ -11,11 +11,11 @@
     <TextView
         android:id="@+id/textViewResults"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="126dp"
+        android:paddingBottom="16dp"
         android:text="@string/titu_final_resultados"
-        android:textSize="20sp"
         android:textAlignment="center"
-        android:paddingBottom="16dp"/>
+        android:textSize="20sp" />
 
     <!-- Animación de sonrisa o tristeza -->
     <ImageView

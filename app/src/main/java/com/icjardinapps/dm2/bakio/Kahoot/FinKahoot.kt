@@ -29,10 +29,10 @@ class FinKahoot : AppCompatActivity() {
 
         // Mostrar los resultados
         val textViewResults = findViewById<TextView>(R.id.textViewResults)
-        textViewResults.text =
-            (getString(R.string.total_aciertos) + correctCount +
-                    getString(R.string.total_de_fallos) + incorrectCount +
-                    getString(R.string.el_porcentaje_de_aciertos_es) + percentage + "%")
+        textViewResults.text = getString(R.string.total_aciertos) + correctCount + "\n" +
+                getString(R.string.total_de_fallos) + incorrectCount + "\n" +
+                getString(R.string.el_porcentaje_de_aciertos_es) + percentage + "%"
+
 
 
         // Mostrar la animación de sonrisa o tristeza
