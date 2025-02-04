@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -49,6 +50,7 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
         // Deshabilitar el botón al principio
         binding.btnPuzzleFinal.isEnabled = false
+        binding.btnPuzzleFinal.isVisible = false
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)

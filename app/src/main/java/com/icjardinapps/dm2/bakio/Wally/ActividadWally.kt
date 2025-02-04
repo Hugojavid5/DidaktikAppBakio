@@ -57,13 +57,13 @@ class ActividadWally : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             // Crear un Intent para iniciar la actividad de bienvenida
-            val intent = Intent(this, ActividadBienvenidaSopa::class.java)
+            val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
             startActivity(intent)
             finish() // Opcional, si quieres cerrar la actividad actual
         }
 
         segButton.setOnClickListener {
-            val intent = Intent(this, Mapa::class.java)
+            val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
             intent.putExtra("ACTUALIZAR_PUNTOS", true)  // O false, según lo que necesites
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
@@ -143,7 +143,7 @@ class ActividadWally : AppCompatActivity() {
 
     // Este metodo se ejecuta al hacer clic en el botón "Segi"
     fun siguiente(view: View) {
-        val intent = Intent(this, Mapa::class.java)
+        val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
         startActivity(intent)
         finish() // Opcional, para cerrar la actividad actual si no quieres que el usuario vuelva atrás
     }
