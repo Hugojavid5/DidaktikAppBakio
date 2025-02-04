@@ -60,6 +60,11 @@ class Registro : AppCompatActivity() {
                     // Si la inserción es exitosa, redirigimos a la portada
                     runOnUiThread {
                         if (insertSuccess) {
+                            val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+                            editor.putString("username", nombre)
+                            editor.apply()
+
                             // Redirigir a la portada de la app
                             val intent = Intent(this, PortadaDeLaApp::class.java)
                             startActivity(intent)

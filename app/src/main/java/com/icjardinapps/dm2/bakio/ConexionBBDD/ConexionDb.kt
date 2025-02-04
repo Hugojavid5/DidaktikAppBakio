@@ -5,6 +5,7 @@ import android.util.Log
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
+import java.sql.ResultSet
 import java.sql.SQLException
 import java.util.Properties
 
@@ -34,55 +35,61 @@ class ConexionDb(context: Context) {
 
 
     fun obtenerConexion(): Connection? {
-        Log.i("INFO", "ENTRADO EN BASE DE DATOS")
         return try {
-            DriverManager.getConnection(dbUrl, dbUser, dbPassword)
+            val conexion = DriverManager.getConnection(dbUrl, dbUser, dbPassword)
+            Log.i("DB_INFO", "Conexión a la base de datos establecida correctamente.")
+            conexion
         } catch (e: SQLException) {
-            Log.e("DB_ERROR", "Fallo de base de datos: ${e.message}")
-            e.printStackTrace()
+            Log.e("DB_ERROR", "Error al conectar a la base de datos: ${e.message}")
             null
         }
     }
 
-    fun guardarAlumnoBBDD(usuario: String, nombre: String, idAplicacion: Int): Boolean {
-        val conexion = obtenerConexion()
-        if (conexion != null) {
-            try {
-                val query = "INSERT INTO alumno (usuario, nombre, año_nacimiento, id_aplicacion) VALUES (?, ?, ?, ?)"
-                val statement: PreparedStatement = conexion.prepareStatement(query)
-                statement.setString(1, usuario)         // usuario
-                statement.setString(2, nombre)          // nombre
-                statement.setInt(3, 2000)               // año_nacimiento
-                statement.setInt(4, idAplicacion)       // id_aplicacion
-                statement.executeUpdate()
 
-                return true
-            } catch (e: SQLException) {
-                Log.e("SQL_ERROR", "Error al guardar alumno: ${e.message}")
-                e.printStackTrace()
-                return false
-            } finally {
+    fun guardarAlumnoBBDD(usuario: String, nombre: String, idAplicacion: Int): Boolean {
+        val conexion = obtenerConexion() ?: return false
+
+        var statement: PreparedStatement? = null
+        return try {
+            val query = "INSERT INTO alumno (usuario, nombre, año_nacimiento, id_aplicacion) VALUES (?, ?, ?, ?)"
+            statement = conexion.prepareStatement(query)
+            statement.setString(1, usuario)         // usuario
+            statement.setString(2, nombre)          // nombre
+            statement.setInt(3, 2000)               // año_nacimiento
+            statement.setInt(4, idAplicacion)       // id_aplicacion
+            statement.executeUpdate()
+
+            Log.i("DB_INFO", " Usuario $usuario registrado correctamente en la base de datos.")
+            true
+        } catch (e: SQLException) {
+            Log.e("SQL_ERROR", " Error al guardar alumno: ${e.message}")
+            false
+        } finally {
+            try {
+                statement?.close()
                 conexion.close()
+                Log.i("DB_INFO", " Conexión cerrada correctamente en guardarAlumnoBBDD().")
+            } catch (e: SQLException) {
+                Log.e("DB_ERROR", " Error al cerrar la conexión: ${e.message}")
             }
         }
-        return false
     }
 
 
-    fun guardarPuntuacionNivel(usuario: String, puntuacion: Int, lugar: String): Boolean {
+
+    fun guardarPuntuacionNivel(usuario:String,puntuacion:Int):Boolean{
         val conexion = obtenerConexion()
         if (conexion != null) {
             try {
-                val query = "INSERT INTO puntuacion (usuario, id_aplicacion, nivel, lugar) VALUES (?, ?, ?, ?)"
+                val query =
+                    "INSERT INTO puntuacion (alumno_usuario,aplicacion_id_aplicacion,nivel) VALUES (?,?,?)"
                 val statement: PreparedStatement = conexion.prepareStatement(query)
                 statement.setString(1, usuario)
-                statement.setInt(2, 4)
-                statement.setInt(3, puntuacion)
-                statement.setString(4, lugar)
+                statement.setInt(2,3)
+                statement.setInt(3,puntuacion)
                 statement.executeUpdate()
                 return true
             } catch (e: SQLException) {
-                Log.e("SQL_ERROR", "Error al guardar puntuación: ${e.message}")
                 e.printStackTrace()
                 return false
             } finally {
@@ -91,4 +98,31 @@ class ConexionDb(context: Context) {
         }
         return false
     }
+
+    fun ranking(): MutableList<String> {
+        val lista: MutableList<String> = mutableListOf()
+        val conexion = obtenerConexion()
+
+        if (conexion != null) {
+            try {
+                val query = "SELECT alumno_usuario, nivel FROM puntuacion where aplicacion_id_aplicacion=3 ORDER BY nivel desc"
+                val statement: PreparedStatement = conexion.prepareStatement(query)
+                val resultSet: ResultSet = statement.executeQuery()
+
+                while (resultSet.next()) {
+                    val alumno = resultSet.getString("alumno_usuario")
+                    val nivel = resultSet.getInt("nivel")
+                    lista.add("$alumno ----------------- $nivel")
+                }
+            } catch (e: SQLException) {
+                e.printStackTrace()
+            } finally {
+                conexion.close()
+            }
+        }
+        return lista
+    }
+
+
+
 }

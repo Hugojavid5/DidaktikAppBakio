@@ -2,10 +2,12 @@ package com.icjardinapps.dm2.bakio.Kahoot
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.icjardinapps.dm2.bakio.ConexionBBDD.ConexionDb
 import com.icjardinapps.dm2.bakio.Final.FinDelJuego
 import com.icjardinapps.dm2.bakio.R
 
@@ -34,7 +36,6 @@ class FinKahoot : AppCompatActivity() {
                 getString(R.string.el_porcentaje_de_aciertos_es) + percentage + "%"
 
 
-
         // Mostrar la animación de sonrisa o tristeza
         val imageView = findViewById<ImageView>(R.id.imageViewAnimation)
         if (percentage >= 75) {
@@ -43,13 +44,28 @@ class FinKahoot : AppCompatActivity() {
             imageView.setImageResource(R.drawable.triste)  // Asegúrate de tener esta animación en tu carpeta drawable
         }
 
-        // Configurar el botón 'Fin del juego'
         val buttonEndGame = findViewById<Button>(R.id.buttonEndGame)
         buttonEndGame.setOnClickListener {
-            // Redirigir a otra actividad (por ejemplo, MainActivity)
-            val intent = Intent(this, FinDelJuego::class.java)
-            startActivity(intent)
-            finish() // Finalizar la actividad actual
+            val bd = ConexionDb(this)
+            val sharedPref = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+            val usuario = sharedPref.getString("username", "Invitado") ?: "Invitado"
+
+            Log.i("DB_INFO", "Llamando a guardarPuntuacionNivel() con usuario: $usuario, puntuación: $percentage")
+
+            Thread {
+                val resultado = bd.guardarPuntuacionNivel(usuario, percentage)
+
+                runOnUiThread {
+                    if (resultado) {
+                        Log.i("DB_INFO", "La puntuación se guardó correctamente en la BD.")
+                    } else {
+                        Log.e("DB_ERROR", "Error al guardar la puntuación.")
+                    }
+                    val intent = Intent(this, FinDelJuego::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }.start()
         }
-    }
-}
+
+    }}
