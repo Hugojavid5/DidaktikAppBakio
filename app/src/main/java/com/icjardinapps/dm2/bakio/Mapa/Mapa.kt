@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Mapa
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -155,5 +156,9 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         val intent = Intent(this, Mapa::class.java)
         startActivity(intent)
         finish()
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

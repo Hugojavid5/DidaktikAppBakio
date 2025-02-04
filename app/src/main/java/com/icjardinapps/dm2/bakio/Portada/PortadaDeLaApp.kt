@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Portada
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -116,5 +117,9 @@ class PortadaDeLaApp : AppCompatActivity() {
             .setMessage(names.joinToString("\n"))
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

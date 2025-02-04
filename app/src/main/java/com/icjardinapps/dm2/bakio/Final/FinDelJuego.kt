@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Final
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
@@ -21,5 +22,9 @@ class FinDelJuego : AppCompatActivity() {
             ivAnimacion.setImageResource(R.drawable.sonrisa) // Cambiar a la imagen deseada
             ivAnimacion.visibility = ImageView.VISIBLE
         }, 2000)
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

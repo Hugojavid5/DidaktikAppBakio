@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Kahoot
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -110,5 +111,9 @@ class ActividadBienvenidaKahoot : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release() // Libera recursos al destruir la actividad
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

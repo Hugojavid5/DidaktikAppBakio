@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Bienvenida
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -90,5 +91,9 @@ class BienvenidaApp : AppCompatActivity() {
         // Liberar recursos del MediaPlayer para evitar fugas de memoria
         mediaPlayer?.release()
         mediaPlayer = null
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

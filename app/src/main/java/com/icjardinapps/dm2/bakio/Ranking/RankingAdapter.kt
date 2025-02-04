@@ -29,4 +29,6 @@ class RankingAdapter(private val rankingList: List<String>) : RecyclerView.Adapt
             rankingTextView.text = ranking
         }
     }
+
+
 }

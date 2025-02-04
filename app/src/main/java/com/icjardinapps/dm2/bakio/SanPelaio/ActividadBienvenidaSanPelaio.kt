@@ -1,4 +1,5 @@
 package com.icjardinapps.dm2.bakio.SanPelaio
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -101,5 +102,9 @@ class ActividadBienvenidaSanPelaio : AppCompatActivity(){
             mediaPlayer.stop()
         }
         mediaPlayer.release()
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }

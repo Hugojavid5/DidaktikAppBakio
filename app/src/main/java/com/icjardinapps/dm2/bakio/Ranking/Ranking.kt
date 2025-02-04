@@ -1,5 +1,6 @@
 package com.icjardinapps.dm2.bakio.Ranking
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -51,5 +52,9 @@ class Ranking : AppCompatActivity() {
             startActivity(intent)
             finish() // Finalizar la actividad actual para evitar que se quede en la pila de actividades
         }
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
     }
 }
