@@ -118,6 +118,10 @@
         <activity
             android:name=".Wally.ActividadBienvenidaWally"
             android:exported="true" />
+        <!-- Actividad Wally -->
+        <activity
+            android:name=".Ranking.Ranking"
+            android:exported="true" />
 
         <activity
             android:name=".Wally.ActividadWally"

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Bienvenida.BienvenidaApp
 import com.icjardinapps.dm2.bakio.R
+import com.icjardinapps.dm2.bakio.Ranking.Ranking
 import java.util.Locale
 
 class PortadaDeLaApp : AppCompatActivity() {
@@ -44,7 +45,7 @@ class PortadaDeLaApp : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.imageView2).setOnClickListener {
-            // Acción para ranking (puedes completar esto)
+            startActivity(Intent(this, Ranking::class.java))
         }
     }
 

@@ -109,10 +109,16 @@ class ConexionDb(context: Context) {
                 val statement: PreparedStatement = conexion.prepareStatement(query)
                 val resultSet: ResultSet = statement.executeQuery()
 
+                var posicion = 1 // Iniciar la posición en 1
+
                 while (resultSet.next()) {
-                    val alumno = resultSet.getString("alumno_usuario")
+                    val alumno = resultSet.getString("alumno_usuario").toUpperCase() // Convertir el nombre a mayúsculas
                     val nivel = resultSet.getInt("nivel")
-                    lista.add("$alumno ----------------- $nivel")
+
+                    // Crear el string con el formato requerido
+                    lista.add("$posicion. $alumno : $nivel puntos")
+
+                    posicion++ // Aumentar la posición para la siguiente iteración
                 }
             } catch (e: SQLException) {
                 e.printStackTrace()
@@ -122,6 +128,7 @@ class ConexionDb(context: Context) {
         }
         return lista
     }
+
 
 
 
