@@ -15,7 +15,11 @@ import androidx.core.view.isVisible
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 
-
+/**
+ * Actividad principal del juego de San Pelaio.
+ * Esta actividad gestiona la interacción con las imágenes que el usuario debe organizar correctamente.
+ * Muestra imágenes, gestiona las selecciones del usuario y permite pasar a la siguiente actividad si se completa correctamente.
+ */
 class ActividadSanPelaio : AppCompatActivity() {
 
     private lateinit var dra: Array<Drawable>
@@ -35,7 +39,10 @@ class ActividadSanPelaio : AppCompatActivity() {
     private var bCorrecto: Boolean = true
     private var acierto: Boolean = false
     private lateinit var imageView: ImageView // Para la imagen de la cara sonriente o triste
-
+/**
+     * Método que se llama cuando se crea la actividad.
+     * Inicializa los elementos de la interfaz de usuario y configura las imágenes y botones.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_san_pelaio)
@@ -64,13 +71,19 @@ class ActividadSanPelaio : AppCompatActivity() {
         // Ocultar botón siguiente
         btnMapa.visibility = View.INVISIBLE
     }
-    // Metodo para cambiar la imagen a la cara triste
+
+    /**
+     * Cambia la imagen a una cara triste (animación).
+     */
     private fun mostrarCaraTriste() {
         val animationDrawable = resources.getDrawable(R.drawable.triste) as AnimationDrawable
         imageView.setImageDrawable(animationDrawable)
         animationDrawable.start()  // Asegúrate de tener la imagen "triste" en res/drawable
     }
-    // Metodo para cambiar la imagen a la cara alegre
+
+    /**
+     * Cambia la imagen a una cara alegre (animación).
+     */
     private fun mostrarCaraAlegre() {
         // Cargar animación alegre (sonriente)
         val animationDrawable = resources.getDrawable(R.drawable.sonrisa) as AnimationDrawable
@@ -78,7 +91,11 @@ class ActividadSanPelaio : AppCompatActivity() {
         animationDrawable.start()  // Iniciar la animación
     }
 
-    // Metodo para redirigir a NuevaActividad
+   /**
+     * Método para redirigir al usuario a la actividad del mapa una vez completado el ejercicio correctamente.
+     *
+     * @param view La vista que disparó el evento.
+     */
     fun siguiente(view: View) {
         val intent = Intent(this, Mapa::class.java)
         intent.putExtra("ACTUALIZAR_PUNTOS", true)
@@ -86,8 +103,6 @@ class ActividadSanPelaio : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-
 
     /**
      * Guarda la imagen e indica al programa que ya hay un ImageView seleccionada. Desactiva el
@@ -171,7 +186,15 @@ class ActividadSanPelaio : AppCompatActivity() {
             mostrarCaraAlegre() // Mostrar cara alegre cuando el puzzle esté correcto
         }
     }
-    // Métodos onClick de los ImageViews
+/**
+ * Maneja el evento de selección de la imagen 1.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 1.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 1.
+ */
     fun imagen1(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img1)
@@ -186,7 +209,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+/**
+ * Maneja el evento de selección de la imagen 2.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 2.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 2.
+ */
     fun imagen2(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img2)
@@ -201,7 +232,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+/**
+ * Maneja el evento de selección de la imagen 3.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 3.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 3.
+ */
     fun imagen3(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img3)
@@ -216,7 +255,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+    /**
+ * Maneja el evento de selección de la imagen 4.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 4.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 4.
+ */
     fun imagen4(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img4)
@@ -231,6 +278,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
+    /**
+ * Maneja el evento de selección de la imagen 5.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 5.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 5.
+ */
 
     fun imagen5(view: View) {
         if (!bSeleccionado) {
@@ -246,7 +302,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+    /**
+ * Maneja el evento de selección de la imagen 6.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 6.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 6.
+ */
     fun imagen6(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img6)
@@ -261,7 +325,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+    /**
+ * Maneja el evento de selección de la imagen 7.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 7.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 7.
+ */
     fun imagen7(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img7)
@@ -276,7 +348,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         }
         comprobarImagenes()
     }
-
+    /**
+ * Maneja el evento de selección de la imagen 8.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 8.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 8.
+ */
     fun imagen8(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img8)
@@ -292,6 +372,15 @@ class ActividadSanPelaio : AppCompatActivity() {
         comprobarImagenes()
     }
 
+/**
+ * Maneja el evento de selección de la imagen 9.
+ * Si no hay una imagen seleccionada previamente, se selecciona la imagen 9.
+ * Si ya hay una imagen seleccionada, se compara la imagen seleccionada con la respuesta correcta.
+ * Si la respuesta es correcta, se muestra una cara alegre, de lo contrario, se muestra una cara triste.
+ * Después de verificar la respuesta, se llama al método comprobarImagenes().
+ *
+ * @param view La vista que dispara el evento, en este caso, la imagen 9.
+ */
     fun imagen9(view: View) {
         if (!bSeleccionado) {
             seleccionarImagen(img9)

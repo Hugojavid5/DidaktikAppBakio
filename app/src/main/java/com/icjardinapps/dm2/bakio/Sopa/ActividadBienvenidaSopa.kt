@@ -12,13 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
 import java.util.concurrent.TimeUnit
 
+/**
+ * Actividad que muestra una pantalla de bienvenida con controles de audio y permite navegar a otro ejercicio.
+ * El usuario puede reproducir, pausar, reiniciar la música y ver el progreso del tiempo.
+ */
 class ActividadBienvenidaSopa : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var seekBar: SeekBar
     private lateinit var txtCurrentTime: TextView
     private lateinit var txtTotalTime: TextView
     private val handler = Handler()
-
+    /**
+     * Metodo que se llama cuando se crea la actividad.
+     * Inicializa los controles, el reproductor de audio y configura las interacciones con los botones y el SeekBar.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_sopa)
@@ -84,7 +91,10 @@ class ActividadBienvenidaSopa : AppCompatActivity() {
         }
     }
 
-    // Actualizar SeekBar y tiempo actual
+     /**
+     * Actualiza el SeekBar y el tiempo actual mientras la música se reproduce.
+     * Este metodo se ejecuta periódicamente para reflejar la posición actual de la canción.
+     */
     private fun updateSeekBar() {
         val runnable = object : Runnable {
             override fun run() {
@@ -98,13 +108,21 @@ class ActividadBienvenidaSopa : AppCompatActivity() {
         handler.post(runnable)
     }
 
-    // Formatear tiempo en mm:ss
+    /**
+     * Formatea el tiempo en milisegundos a un formato mm:ss.
+     *
+     * @param ms El tiempo en milisegundos a formatear.
+     * @return El tiempo formateado en el formato mm:ss.
+     */
     private fun formatTime(ms: Int): String {
         val minutes = TimeUnit.MILLISECONDS.toMinutes(ms.toLong())
         val seconds = TimeUnit.MILLISECONDS.toSeconds(ms.toLong()) % 60
         return String.format("%02d:%02d", minutes, seconds)
     }
-
+    /**
+     * Libera los recursos del MediaPlayer cuando la actividad es destruida.
+     * Detiene la reproducción si está en curso y elimina el handler para evitar filtraciones de memoria.
+     */
     override fun onDestroy() {
         super.onDestroy()
         if (mediaPlayer.isPlaying) {
@@ -113,6 +131,11 @@ class ActividadBienvenidaSopa : AppCompatActivity() {
         mediaPlayer.release()
         handler.removeCallbacksAndMessages(null)
     }
+    /**
+     * Override del método onBackPressed para evitar la acción predeterminada de retroceder al presionar la flecha de retroceso.
+     *
+     * Este método impide que la actividad se cierre cuando se presiona el botón de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

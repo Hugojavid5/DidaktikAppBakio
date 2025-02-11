@@ -12,7 +12,11 @@ import android.view.MotionEvent
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 import kotlin.random.Random
-
+/**
+ * Actividad que maneja la lógica de una sopa de letras, donde los usuarios deben encontrar palabras dentro de una cuadrícula de letras.
+ * Esta actividad permite a los usuarios seleccionar letras de la cuadrícula para formar palabras, verificar si son correctas,
+ * y ver pistas sobre las palabras encontradas.
+ */
 class ActividadSopaDeLetras : AppCompatActivity() {
 
     private lateinit var buttonNext: ImageButton
@@ -30,6 +34,10 @@ class ActividadSopaDeLetras : AppCompatActivity() {
     private lateinit var wordSearchLetters: Array<Array<Char>>
     private val selectedCells = mutableListOf<Pair<Int, Int>>() // Para almacenar las celdas seleccionadas
 
+    /**
+     * Método que se llama cuando la actividad es creada.
+     * Inicializa los elementos de la vista, configura el juego y maneja las interacciones de navegación.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sopa)
@@ -66,7 +74,10 @@ class ActividadSopaDeLetras : AppCompatActivity() {
 
         setupTouchListener()
     }
-
+    /**
+     * Configura el listener para las interacciones táctiles en la cuadrícula.
+     * Detecta los movimientos del dedo y maneja el inicio, el movimiento y el fin de la selección de celdas.
+     */
     private fun setupTouchListener() {
         gridLayout.setOnTouchListener { _, event ->
             when (event.action) {
@@ -89,25 +100,39 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             }
         }
     }
-
+    /**
+     * Maneja el inicio de un toque sobre la cuadrícula.
+     * Selecciona la celda en la que el usuario comienza a tocar.
+     */
     private fun handleTouchStart(event: MotionEvent) {
         val (row, col) = getTouchedCell(event) ?: return
         resetSelection()
         selectCell(row, col)
     }
-
+    /**
+     * Maneja el movimiento del toque sobre la cuadrícula.
+     * Selecciona nuevas celdas a medida que el dedo se mueve por la pantalla.
+     */
     private fun handleTouchMove(event: MotionEvent) {
         val (row, col) = getTouchedCell(event) ?: return
         if (row != lastSelectedRow || col != lastSelectedCol) {
             selectCell(row, col)
         }
     }
-
+    /**
+     * Maneja el final del toque.
+     * Verifica si la palabra seleccionada es correcta y la resetea si no lo es.
+     */
     private fun handleTouchEnd() {
         checkWord()
         resetSelection() // Solo se resetea después de comprobar si la palabra es correcta o no
     }
-
+    /**
+     * Obtiene la celda que fue tocada en la cuadrícula basada en las coordenadas del evento táctil.
+     *
+     * @param event El evento táctil que contiene la posición.
+     * @return Un par de enteros que representa las coordenadas de la celda tocada.
+     */
     private fun getTouchedCell(event: MotionEvent): Pair<Int, Int>? {
         val x = event.x
         val y = event.y
@@ -123,7 +148,9 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             null
         }
     }
-
+    /**
+     * Marca la celda seleccionada y agrega la letra a la palabra temporal seleccionada.
+     */
     private fun selectCell(row: Int, col: Int) {
         val linearIndex = row * gridSize + col
         val textView = gridLayout.getChildAt(linearIndex) as TextView
@@ -139,7 +166,9 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             }
         }
     }
-
+     /**
+     * Resetea la selección de las celdas, restaurando su color y limpiando la palabra temporal.
+     */
     private fun resetSelection() {
         for ((row, col) in selectedCells) {
             val linearIndex = row * gridSize + col
@@ -158,11 +187,18 @@ class ActividadSopaDeLetras : AppCompatActivity() {
         lastSelectedRow = null
         lastSelectedCol = null
     }
-
+    /**
+     * Verifica si la palabra seleccionada es correcta comparándola con la lista de palabras.
+     *
+     * @return true si la palabra seleccionada es correcta, false en caso contrario.
+     */
     private fun isCorrectWord(): Boolean {
         return selectedWord.toString() in words
     }
-
+    /**
+     * Comprueba si la palabra seleccionada es correcta.
+     * Si es correcta, la agrega a las palabras encontradas y actualiza las celdas en verde.
+     */
     private fun checkWord() {
         val currentWord = selectedWord.toString()
 
@@ -193,14 +229,18 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             resetSelection()
         }
     }
-
+    /**
+     * Actualiza las pistas de palabras encontradas en la interfaz de usuario.
+     */
     private fun updateCluesDisplay() {
         val cluesText = words.joinToString("\n") { word ->
             if (word in foundWords) "$word ✓" else word
         }
         textViewClues.text = cluesText
     }
-
+    /**
+     * Muestra un mensaje de finalización cuando el usuario ha encontrado todas las palabras.
+     */
     private fun showCompletionMessage() {
         val dialog = android.app.AlertDialog.Builder(this)
             .setTitle(getString(R.string.felicidades))
@@ -209,7 +249,16 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             .create()
         dialog.show()
     }
-
+    /**
+     * Coloca una palabra en la cuadrícula de manera aleatoria.
+     *
+     * @param grid La cuadrícula donde se colocará la palabra.
+     * @param word La palabra que se quiere colocar.
+     * @param startRow Fila de inicio para colocar la palabra.
+     * @param startCol Columna de inicio para colocar la palabra.
+     * @param horizontal Determina si la palabra se coloca horizontal o verticalmente.
+     * @return true si la palabra fue colocada correctamente, false en caso contrario.
+     */
     private fun placeWordInGrid(
         grid: Array<Array<Char>>, word: String,
         startRow: Int, startCol: Int, horizontal: Boolean
@@ -240,7 +289,11 @@ class ActividadSopaDeLetras : AppCompatActivity() {
 
         return true
     }
-
+      /**
+     * Genera una sopa de letras aleatoria llenando una cuadrícula con palabras y letras aleatorias.
+     *
+     * @return La cuadrícula de letras generada.
+     */
     private fun generateRandomWordSearch(): Array<Array<Char>> {
         val grid = Array(gridSize) { Array(gridSize) { ' ' } }
 
@@ -266,7 +319,11 @@ class ActividadSopaDeLetras : AppCompatActivity() {
 
         return grid
     }
-
+    /**
+ * Configura la cuadrícula de la sopa de letras, llenándola con las letras de `wordSearchLetters`.
+ * Crea un `TextView` para cada celda de la cuadrícula y lo agrega a la vista `gridLayout`.
+ * Establece los parámetros de diseño, tamaño, márgenes y colores para cada celda.
+ */
     private fun setupWordSearchGrid() {
         gridLayout.rowCount = gridSize
         gridLayout.columnCount = gridSize
@@ -293,7 +350,13 @@ class ActividadSopaDeLetras : AppCompatActivity() {
             }
         }
     }
-
+    /**
+ * Cambia el color de fondo de todas las celdas seleccionadas a un color uniforme.
+ * Este método puede usarse para destacar las celdas seleccionadas con un color específico,
+ * por ejemplo, para indicar que el usuario ha tocado o seleccionado esas celdas.
+ *
+ * @param color El color que se aplicará al fondo de las celdas seleccionadas.
+ */
     private fun changeSelectedCellsColor(color: Int) {
         // Cambiar el color de fondo de las celdas seleccionadas a un color uniforme
         for ((row, col) in selectedCells) {
