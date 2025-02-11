@@ -11,12 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.icjardinapps.dm2.bakio.ConexionBBDD.ConexionDb
 import com.icjardinapps.dm2.bakio.Portada.PortadaDeLaApp
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que muestra el ranking de usuarios, obteniendo los datos desde la base de datos.
+ * Esta actividad utiliza un RecyclerView para mostrar una lista de elementos, y un adaptador personalizado
+ * para gestionar los datos. También proporciona un botón para regresar a la pantalla principal.
+ */
 class Ranking : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var rankingAdapter: RankingAdapter
-
+    /**
+     * Método que se ejecuta cuando la actividad se crea. Inicializa la interfaz de usuario,
+     * configura el RecyclerView y carga los datos del ranking desde la base de datos.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
@@ -53,6 +60,10 @@ class Ranking : AppCompatActivity() {
             finish() // Finalizar la actividad actual para evitar que se quede en la pila de actividades
         }
     }
+     /**
+     * Sobrescribe el comportamiento del botón de retroceso para evitar que la actividad se cierre.
+     * No se realizará ninguna acción al presionar la tecla de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
