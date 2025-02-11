@@ -24,7 +24,10 @@ import com.icjardinapps.dm2.bakio.SanPelaio.ActividadBienvenidaSanPelaio
 import com.icjardinapps.dm2.bakio.Sopa.ActividadBienvenidaSopa
 import com.icjardinapps.dm2.bakio.Txakolina.ActividadBienvenidaTxakolina
 import com.icjardinapps.dm2.bakio.Wally.ActividadBienvenidaWally
-
+/**
+ * Actividad que maneja el mapa interactivo con los puntos de interés a completar.
+ * Permite a los usuarios navegar por diferentes puntos en un mapa y completar actividades asociadas a cada punto.
+ */
 class Mapa : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -41,7 +44,13 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
     )
 
     private var puntoActual = 0 // El primer punto será el actual desde el inicio
-
+    /**
+     * Método llamado al crear la actividad.
+     * Inicializa el mapa y configura los componentes de la interfaz de usuario.
+     * Deshabilita el botón de completar la ruta al principio y configura su comportamiento.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,7 +68,11 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             startActivity(Intent(this, ActividadBienvenidaKahoot::class.java))
         }
     }
-
+    /**
+     * Método para mostrar todos los puntos en el mapa y sus respectivos estados (completados o no).
+     * Los puntos completados se muestran en rojo, los puntos actuales en verde, y los demás en naranja.
+     * Además, se habilita el botón de completar la ruta si todos los puntos han sido completados.
+     */
     private fun mostrarPuntos() {
         mMap.clear()
         val boundsBuilder = LatLngBounds.Builder()
@@ -96,7 +109,12 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             binding.btnPuzzleFinal.isEnabled = true
         }
     }
-
+    /**
+     * Método que se llama cuando el mapa está listo para ser utilizado.
+     * Configura el comportamiento de los marcadores y gestiona la interacción del usuario con los puntos.
+     *
+     * @param googleMap Instancia de GoogleMap para interactuar con el mapa.
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mostrarPuntos()
@@ -115,7 +133,11 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
             true
         }
     }
-
+    /**
+     * Método que abre la actividad correspondiente según el ID del punto seleccionado.
+     *
+     * @param id ID del punto seleccionado.
+     */
     private fun abrirActividadPorId(id: Int) {
         val intent = when (id) {
             0 -> Intent(this, ActividadBienvenidaSopa::class.java)
@@ -129,7 +151,14 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         }
         intent?.let { startActivityForResult(it, id) }
     }
-
+     /**
+     * Método llamado después de que una actividad ha sido completada.
+     * Verifica si todos los puntos han sido completados y muestra un mensaje de éxito si es así.
+     *
+     * @param requestCode Código de la actividad que se ha completado.
+     * @param resultCode Código de resultado de la actividad.
+     * @param data Datos adicionales de la actividad.
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -148,17 +177,27 @@ class Mapa : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    // Función para verificar si todos los puntos están completados
+    /**
+     * Método que verifica si todos los puntos en la lista han sido completados.
+     *
+     * @return Verdadero si todos los puntos están completados, falso en caso contrario.
+     */
     private fun todosPuntosCompletados(): Boolean {
         return ciudades.all { it.completado }
     }
-
+    /**
+     * Método que finaliza la ruta y regresa al mapa principal.
+     */
     private fun finalizarRuta() {
         // Esto te lleva nuevamente al mapa, donde podrás visualizar los puntos.
         val intent = Intent(this, Mapa::class.java)
         startActivity(intent)
         finish()
     }
+    /**
+     * Sobrescribe el comportamiento de la tecla de retroceso.
+     * En este caso, no se hace nada al presionar la flecha de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

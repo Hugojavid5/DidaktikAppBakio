@@ -18,7 +18,11 @@ import com.icjardinapps.dm2.bakio.Bienvenida.BienvenidaApp
 import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.Ranking.Ranking
 import java.util.Locale
-
+/**
+ * Actividad principal de la aplicación, la cual actúa como la pantalla de portada.
+ * Esta actividad permite al usuario navegar a diferentes secciones, como la bienvenida, selección de idioma, y ver el ranking.
+ * También permite cambiar el idioma de la aplicación y muestra información sobre los desarrolladores.
+ */
 class PortadaDeLaApp : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +54,10 @@ class PortadaDeLaApp : AppCompatActivity() {
         }
     }
 
-    // Método para mostrar el diálogo de selección de idioma
+     /**
+     * Muestra un diálogo para seleccionar el idioma de la aplicación.
+     * Los usuarios pueden elegir entre Español, Inglés y Euskera.
+     */
     private fun showLanguageDialog() {
         val languages = arrayOf("Español", "English", "Euskera")
         val languageCodes = arrayOf("es", "en", "eu")
@@ -79,8 +86,11 @@ class PortadaDeLaApp : AppCompatActivity() {
             .show()
     }
 
-
-    // Método para cambiar el idioma en toda la aplicación y guardarlo en SharedPreferences
+    /**
+     * Cambia el idioma de la aplicación y lo guarda en SharedPreferences.
+     *
+     * @param languageCode El código del idioma (por ejemplo, "es" para español).
+     */
     private fun setAppLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
@@ -96,19 +106,30 @@ class PortadaDeLaApp : AppCompatActivity() {
         Toast.makeText(this, getString(R.string.idioma_cambiado), Toast.LENGTH_SHORT).show()
     }
 
-    // Guardar el idioma en SharedPreferences
+     /**
+     * Guarda el idioma seleccionado en SharedPreferences.
+     *
+     * @param languageCode El código del idioma que se guardará.
+     */
     private fun saveLanguage(languageCode: String) {
         val sharedPreferences: SharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("language", languageCode).apply()
     }
 
-    // Obtener el idioma guardado en SharedPreferences
+  /**
+     * Obtiene el idioma guardado en SharedPreferences. Si no se ha guardado ninguno, se usa el idioma por defecto del sistema.
+     *
+     * @param context El contexto de la aplicación.
+     * @return El código de idioma guardado o el predeterminado del sistema.
+     */
     private fun getSavedLanguage(context: Context): String {
         val sharedPreferences: SharedPreferences = context.getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
         return sharedPreferences.getString("language", Locale.getDefault().language) ?: "es"
     }
 
-    // Método para mostrar información de los desarrolladores
+   /**
+     * Muestra un diálogo con información sobre los desarrolladores de la aplicación.
+     */
     private fun showInfoDialog() {
         val names = arrayOf("DESARROLLADORES:","","-Beñat Cano", "-Hugo Javid", "-Guillermo Arana","","IDEA:","","-Saioa Uribe","-Libe Diaz de Argandoña","-Irati Arcelus"+"-Lorea Mariscal","-Izaro Etxebarria")
 
@@ -118,6 +139,9 @@ class PortadaDeLaApp : AppCompatActivity() {
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
     }
+    /**
+     * Evita que la acción predeterminada de retroceso se ejecute. La actividad no responderá al botón de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

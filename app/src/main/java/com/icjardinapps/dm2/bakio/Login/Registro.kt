@@ -12,7 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Portada.PortadaDeLaApp
 import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.ConexionBBDD.ConexionDb
-
+/**
+ * Actividad que maneja el proceso de registro de un usuario en la aplicación.
+ * Permite al usuario ingresar su nombre y contraseña, validando los campos antes de proceder
+ * y registrando al usuario en la base de datos.
+ */
 class Registro : AppCompatActivity() {
 
     private lateinit var nombreEditText: EditText
@@ -21,7 +25,14 @@ class Registro : AppCompatActivity() {
     private lateinit var loadingAnimation: ImageView
     private lateinit var animationDrawable: AnimationDrawable
     private lateinit var tituloRegistro: TextView
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa los componentes de la interfaz de usuario, configura la animación de carga,
+     * y valida los campos del formulario de registro.
+     * Además, maneja el proceso de registro del usuario en la base de datos.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("INFO", "INICIO APLICACIÓN")
         super.onCreate(savedInstanceState)
@@ -81,12 +92,18 @@ class Registro : AppCompatActivity() {
             }
         }
     }
-
+    /**
+     * Método para validar si los campos del formulario están completos.
+     * Habilita o deshabilita el botón de registrar dependiendo si el nombre es válido.
+     */
     private fun validarCampos() {
         val nombre = nombreEditText.text.toString()
         registrarButton.isEnabled = nombre.isNotEmpty()
     }
-
+     /**
+     * Un TextWatcher para validar los campos en tiempo real mientras el usuario escribe.
+     * Habilita o deshabilita el botón de registrar dependiendo de si el nombre está vacío o no.
+     */
     private val textWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             validarCampos()
