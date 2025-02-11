@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 android {
@@ -58,6 +59,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+tasks.dokkaHtml {
+    outputDirectory.set(buildDir.resolve("dokka"))
 }
 
 secrets {
