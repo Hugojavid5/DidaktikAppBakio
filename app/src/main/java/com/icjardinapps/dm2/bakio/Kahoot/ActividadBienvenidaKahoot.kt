@@ -10,7 +10,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
 import android.media.MediaPlayer
-
+/**
+ * Actividad que gestiona la interfaz de usuario para controlar la reproducción de un audio
+ * con opciones de reproducción, pausa, reinicio y un botón para empezar un juego tipo Kahoot.
+ * También permite al usuario controlar el progreso del audio mediante un SeekBar.
+ */
 class ActividadBienvenidaKahoot : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
@@ -22,7 +26,12 @@ class ActividadBienvenidaKahoot : AppCompatActivity() {
     private lateinit var txtCurrentTime: TextView // Texto con el tiempo actual
     private lateinit var txtTotalTime: TextView // Texto con el tiempo total
     private val handler = Handler() // Handler para actualizar el SeekBar
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa los componentes de la interfaz de usuario y configura la lógica del audio y los controles.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_kahoot)
@@ -89,7 +98,9 @@ class ActividadBienvenidaKahoot : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
     }
-
+    /**
+     * Actualiza el SeekBar y el tiempo actual de reproducción cada segundo.
+     */
     private fun updateSeekBar() {
         handler.postDelayed(object : Runnable {
             override fun run() {
@@ -101,17 +112,27 @@ class ActividadBienvenidaKahoot : AppCompatActivity() {
             }
         }, 1000)
     }
-
+/**
+     * Formatea el tiempo en milisegundos a un formato de minutos y segundos (MM:SS).
+     *
+     * @param milliseconds El tiempo en milisegundos.
+     * @return El tiempo formateado como "MM:SS".
+     */
     private fun formatTime(milliseconds: Int): String {
         val seconds = (milliseconds / 1000) % 60
         val minutes = (milliseconds / 1000) / 60
         return String.format("%02d:%02d", minutes, seconds)
     }
-
+     /**
+     * Libera los recursos del MediaPlayer cuando se destruye la actividad.
+     */
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release() // Libera recursos al destruir la actividad
     }
+    /**
+     * Sobrescribe la acción de la flecha de retroceso para evitar que se haga algo al presionar el botón de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

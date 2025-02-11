@@ -10,9 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.ConexionBBDD.ConexionDb
 import com.icjardinapps.dm2.bakio.Final.FinDelJuego
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que muestra los resultados finales del juego tipo Kahoot,
+ * mostrando la cantidad de respuestas correctas e incorrectas y el porcentaje de aciertos.
+ * Además, guarda la puntuación del usuario en la base de datos y permite finalizar el juego.
+ */
 class FinKahoot : AppCompatActivity() {
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa los elementos de la interfaz de usuario y muestra los resultados del juego.
+     * También guarda la puntuación del usuario en la base de datos.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout_final_del_juego)

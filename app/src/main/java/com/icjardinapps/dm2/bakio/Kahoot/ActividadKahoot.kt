@@ -6,13 +6,22 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que gestiona la lógica del juego tipo Kahoot, mostrando las preguntas,
+ * las opciones de respuesta y registrando las respuestas del usuario.
+ * También permite navegar entre preguntas y mostrar los resultados al final del juego.
+ */
 class ActividadKahoot : AppCompatActivity() {
 
     private var currentQuestionIndex = 0
     private val userAnswers = MutableList<String?>(10) { null }
     private lateinit var questions: List<Question>
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa las preguntas, los elementos de la interfaz de usuario y configura la lógica del juego.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kahoot)
@@ -85,7 +94,12 @@ class ActividadKahoot : AppCompatActivity() {
             finish()
         }
     }
-
+/**
+     * Muestra la pregunta actual en el TextView y las opciones de respuesta en el RadioGroup.
+     *
+     * @param questionTextView El TextView para mostrar la pregunta.
+     * @param radioGroupAnswers El RadioGroup para mostrar las opciones de respuesta.
+     */
     private fun showQuestion(questionTextView: TextView, radioGroupAnswers: RadioGroup) {
         val question = questions[currentQuestionIndex]
         questionTextView.text = question.text
@@ -98,7 +112,9 @@ class ActividadKahoot : AppCompatActivity() {
             radioGroupAnswers.addView(radioButton)
         }
     }
-
+/**
+     * Actualiza la visibilidad y habilita los botones según el índice de la pregunta actual.
+     */
     private fun updateButtonVisibility() {
         val previousQuestionButton = findViewById<Button>(R.id.buttonPreviousQuestion)
         val nextQuestionButton = findViewById<Button>(R.id.buttonNextQuestion)
@@ -114,7 +130,9 @@ class ActividadKahoot : AppCompatActivity() {
             showResults()
         }
     }
-
+/**
+     * Muestra los resultados del juego, mostrando las respuestas del usuario y la respuesta correcta.
+     */
     private fun showResults() {
         setContentView(R.layout.activity_respuestas)
         val linearLayoutAnswers = findViewById<LinearLayout>(R.id.linearLayoutAnswers)
@@ -147,6 +165,8 @@ class ActividadKahoot : AppCompatActivity() {
             finish()
         }
     }
-
+/**
+     * Clase que representa una pregunta con su texto, respuesta correcta y opciones de respuesta.
+     */
     data class Question(val text: String, val correctAnswer: String, val answers: List<String>)
 }
