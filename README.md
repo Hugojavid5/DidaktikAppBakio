@@ -51,6 +51,9 @@ Cada punto cuenta con información en formato de texto, audio, imágenes y video
 7. **Matxitxako Itsasargia**  
    - Información sobre el faro y su función en la historia marítima.  
    - Juego: encontrar los faros al estilo “Donde está Wally”.
+   
+8. **Acitivdad Final**  
+   - Actividad al estilo Kahoot, un cuestionario de tipo test que puntuará en el ranking.
 
 ## Materiales Utilizados
 - **Textos:** Descripciones detalladas de cada punto.
