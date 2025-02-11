@@ -17,9 +17,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Bela.ActividadBienvenidaBela
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Clase que gestiona una actividad de arrastrar y soltar, donde los usuarios deben
+ * emparejar elementos con sus respectivas siluetas. Proporciona retroalimentación
+ * visual y maneja respuestas correctas e incorrectas.
+ */
 class ActividadArrastrarYSoltar : AppCompatActivity() {
 
+     // Elementos de la interfaz gráfica (siluetas e imágenes arrastrables)
     private lateinit var siluetaHojas: ImageView
     private lateinit var siluetaPaja: ImageView
     private lateinit var siluetaSaco: ImageView
@@ -33,6 +38,10 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
 
     private var correctMatches = 0 // Contador de emparejamientos correctos
 
+    /**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Estado guardado de la instancia anterior (si existe).
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,14 +93,18 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
 
     }
 
-    // Metodo para cambiar la imagen a la cara triste
+    /**
+     * Muestra la imagen de una cara triste cuando se produce un error en el emparejamiento.
+     */
     private fun mostrarCaraTriste() {
         val animationDrawable = resources.getDrawable(R.drawable.triste) as AnimationDrawable
         imageView.setImageDrawable(animationDrawable)
         animationDrawable.start()  // Asegúrate de tener la imagen "triste" en res/drawable
     }
 
-    // Metodo para cambiar la imagen a la cara alegre
+    /**
+     * Muestra la imagen de una cara sonriente cuando se realiza un emparejamiento correcto.
+     */
     private fun mostrarCaraAlegre() {
         // Cargar animación alegre (sonriente)
         val animationDrawable = resources.getDrawable(R.drawable.sonrisa) as AnimationDrawable
@@ -99,7 +112,11 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         animationDrawable.start()  // Iniciar la animación
     }
 
-    // Metodo para configurar un elemento como "arrastrable"
+   /**
+     * Configura un elemento como "arrastrable" para que pueda ser movido a su silueta correspondiente.
+     * @param imageView Imagen que se hará arrastrable.
+     * @param tag Etiqueta que identifica el tipo de elemento.
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     private fun setDraggable(imageView: ImageView, tag: String) {
         imageView.tag = tag // Asignar un tag único
@@ -117,7 +134,12 @@ class ActividadArrastrarYSoltar : AppCompatActivity() {
         }
     }
 
-    // Metodo para configurar una silueta como "receptora"
+  /**
+     * Configura una silueta como "receptora" de un elemento arrastrado.
+     * @param imageView Imagen de la silueta.
+     * @param expectedTag Etiqueta esperada para considerar el emparejamiento como correcto.
+     * @param correctImageRes Imagen que se mostrará al realizar el emparejamiento correcto.
+     */
     private fun setDroppable(imageView: ImageView, expectedTag: String, correctImageRes: Int) {
         imageView.setOnDragListener { v, event ->
             when (event.action) {
