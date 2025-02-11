@@ -15,7 +15,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que simula la cosecha y prensado de uvas para la elaboración del txakoli.
+ * Se utiliza el drag-and-drop para mover objetos en pantalla (como las uvas y la caja),
+ * y se hace un seguimiento de las acciones del usuario con toques y eventos.
+ */
 class ActividadTxakoli : AppCompatActivity() {
 
     private lateinit var ivVid: ImageView
@@ -29,7 +33,10 @@ class ActividadTxakoli : AppCompatActivity() {
 
     private var toques = 0
     private val maxToques = 10 // Número de toques para cambiar a la siguiente fase
-
+    /**
+     * Método llamado cuando se crea la actividad. Se inicializan las vistas, se configuran
+     * los eventos de drag-and-drop y los clics de los elementos interactivos (como las uvas y la caja).
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

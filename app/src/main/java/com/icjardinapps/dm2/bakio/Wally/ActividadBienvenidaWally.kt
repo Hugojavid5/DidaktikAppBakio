@@ -10,7 +10,10 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que gestiona la reproducción de un archivo de audio y controla la interfaz
+ * de usuario para reproducir, pausar y reiniciar el audio, así como navegar a una nueva actividad.
+ */
 class ActividadBienvenidaWally : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
@@ -22,7 +25,10 @@ class ActividadBienvenidaWally : AppCompatActivity() {
     private lateinit var currentTimeText: TextView
     private lateinit var totalTimeText: TextView
     private val handler = Handler(Looper.getMainLooper())  // Handler para actualizar la UI
-
+    /**
+     * Método llamado al crear la actividad.
+     * Inicializa las vistas y configura los botones y el reproductor de audio.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_wally)
@@ -74,11 +80,17 @@ class ActividadBienvenidaWally : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * Libera los recursos del MediaPlayer cuando la actividad es detenida.
+     */
     override fun onStop() {
         super.onStop()
         mediaPlayer.release()
     }
-
+    /**
+     * Actualiza el SeekBar y el texto con el tiempo actual del audio.
+     */
     private fun updateSeekBar() {
         // Actualiza el SeekBar y el tiempo actual
         val runnable = object : Runnable {
@@ -92,12 +104,17 @@ class ActividadBienvenidaWally : AppCompatActivity() {
         }
         handler.post(runnable)
     }
-
+    /**
+     * Formatea el tiempo en milisegundos a formato de minutos:segundos (mm:ss).
+     */
     private fun formatTime(milliseconds: Int): String {
         val seconds = (milliseconds / 1000) % 60
         val minutes = (milliseconds / 1000) / 60
         return String.format("%02d:%02d", minutes, seconds)
     }
+    /**
+     * Sobrescribe el método onBackPressed para evitar que el usuario navegue hacia atrás.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

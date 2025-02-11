@@ -14,7 +14,10 @@ import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
 import com.icjardinapps.dm2.bakio.Sopa.ActividadBienvenidaSopa
 
-
+/**
+ * Actividad principal del juego Wally. El usuario interactúa con tres torres representadas por botones.
+ * Una vez que el usuario selecciona las tres torres, puede avanzar a la siguiente actividad.
+ */
 class ActividadWally : AppCompatActivity() {
 
     private lateinit var imageButton1: ImageButton
@@ -27,7 +30,9 @@ class ActividadWally : AppCompatActivity() {
     private lateinit var imageView: ImageView // Para la imagen de la cara sonriente o triste
 
     private var selectedCount = 0 // Contador para saber cuántos ImageButtons han sido pulsados
-
+     /**
+     * Se ejecuta cuando se crea la actividad. Inicializa las vistas y los listeners para los botones.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wally)
@@ -71,7 +76,12 @@ class ActividadWally : AppCompatActivity() {
 
         }
     }
-
+    /**
+     * Este método se ejecuta cuando el usuario hace clic en uno de los botones de la torre.
+     * Desactiva el botón, lo oculta y muestra la imagen correspondiente de la torre seleccionada.
+     *
+     * @param towerNumber El número de la torre seleccionada (1, 2 o 3).
+     */
     private fun onTowerImageClicked(towerNumber: Int) {
         // Deshabilitar y ocultar el ImageButton
         when (towerNumber) {
@@ -100,7 +110,12 @@ class ActividadWally : AppCompatActivity() {
             segButton.visibility = View.VISIBLE
         }
     }
-
+    /**
+     * Muestra la imagen correspondiente a la torre seleccionada en la interfaz de usuario.
+     * También muestra una animación de una cara alegre en la pantalla.
+     *
+     * @param towerNumber El número de la torre seleccionada (1, 2 o 3).
+     */
     private fun showTowerImage(towerNumber: Int) {
         mostrarCaraAlegre()
         // Lógica para mostrar las imágenes de la torre
@@ -125,7 +140,9 @@ class ActividadWally : AppCompatActivity() {
             3 -> imageView3.visibility = View.VISIBLE
         }
     }
-
+     /**
+     * Oculta todas las imágenes de las torres en la interfaz de usuario.
+     */
     private fun hideTowerImages() {
         // Inicialmente, ocultamos las imágenes de la torre en los ImageViews
         imageView1.visibility = View.GONE
@@ -133,7 +150,9 @@ class ActividadWally : AppCompatActivity() {
         imageView3.visibility = View.GONE
     }
 
-    // Metodo para cambiar la imagen a la cara alegre
+    /**
+     * Muestra una animación de una cara alegre (sonriente) en la pantalla.
+     */
     private fun mostrarCaraAlegre() {
         // Cargar animación alegre (sonriente)
         val animationDrawable = resources.getDrawable(R.drawable.sonrisa) as AnimationDrawable
@@ -141,7 +160,11 @@ class ActividadWally : AppCompatActivity() {
         animationDrawable.start()  // Iniciar la animación
     }
 
-    // Este metodo se ejecuta al hacer clic en el botón "Segi"
+    /**
+     * Este metodo se ejecuta cuando el usuario hace clic en el botón "Segi" para avanzar a la siguiente actividad.
+     *
+     * @param view La vista que fue clickeada.
+     */
     fun siguiente(view: View) {
         val intent = Intent(this, ActividadBienvenidaKahoot::class.java)
         startActivity(intent)

@@ -9,10 +9,21 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
+
+/**
+ * Actividad de bienvenida para la sección de "Txakolina", donde se controla la reproducción
+ * de un archivo de audio y la interacción con los botones para reproducir, pausar, reiniciar
+ * el audio, y comenzar el juego. Además, maneja la barra de progreso (SeekBar) para mostrar
+ * el progreso del audio y permite a los usuarios controlar la posición del audio.
+ */
 class ActividadBienvenidaTxakolina : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
-
+     /**
+     * Método llamado cuando se crea la actividad. Inicializa el MediaPlayer, los botones de control
+     * y la barra de progreso (SeekBar) para controlar la reproducción del audio.
+     * También configura las acciones de los botones de control (Play, Pause, Reiniciar, Jugar).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_txakolina)
@@ -103,17 +114,28 @@ class ActividadBienvenidaTxakolina : AppCompatActivity() {
         })
     }
 
-    // Metodo para formatear el tiempo a formato mm:ss
+    /**
+     * Método para formatear el tiempo en milisegundos a formato mm:ss.
+     *
+     * @param milliseconds El tiempo en milisegundos a formatear.
+     * @return El tiempo formateado como una cadena en el formato mm:ss.
+     */
     private fun formatTime(milliseconds: Int): String {
         val seconds = (milliseconds / 1000) % 60
         val minutes = (milliseconds / 1000) / 60
         return String.format("%02d:%02d", minutes, seconds)
     }
-
+    /**
+     * Método llamado cuando la actividad es destruida. Libera los recursos utilizados por el MediaPlayer.
+     */
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release()
     }
+    /**
+     * Sobrescribe el comportamiento de la flecha de retroceso del dispositivo para evitar que la actividad se cierre.
+     * No realiza ninguna acción cuando el usuario presiona la flecha de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
