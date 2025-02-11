@@ -16,7 +16,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Clase que representa la actividad del juego "ActividadBela", en la que los jugadores
+ * deben arrastrar y soltar piezas para formar una vela correctamente.
+ */
 class ActividadBela : AppCompatActivity() {
 
         private lateinit var pieza1: ImageView
@@ -28,8 +31,14 @@ class ActividadBela : AppCompatActivity() {
         private lateinit var velaOscura: ImageView
         private lateinit var btnSalir: ImageButton
 
+    /**
+     * Contador de emparejamientos correctos.
+     */
         private var correctMatches = 0 // Contador de emparejamientos correctos
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
         @SuppressLint("MissingInflatedId")
         @RequiresApi(Build.VERSION_CODES.N)
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +82,11 @@ class ActividadBela : AppCompatActivity() {
         }
 
 
-        // Metodo para configurar un elemento como "arrastrable"
+        /**
+     * Método para configurar un elemento como "arrastrable".
+     * @param imageView Elemento de la interfaz que será arrastrable.
+     * @param tag Identificador único del elemento.
+     */
         @RequiresApi(Build.VERSION_CODES.N)
         private fun setDraggable(imageView: ImageView, tag: String) {
             imageView.tag = tag // Asignar un tag único
@@ -91,8 +104,12 @@ class ActividadBela : AppCompatActivity() {
             }
         }
 
-        // Metodo para configurar una silueta como "receptora"
-        // Método para configurar una silueta como "receptora"
+        /**
+     * Método para configurar una silueta como "receptora" de las piezas arrastradas.
+     * @param imageView Elemento de la interfaz que recibe las piezas.
+     * @param expectedTag Identificador de la pieza esperada.
+     * @param correctImageRes Imagen que se mostrará cuando la pieza sea colocada correctamente.
+     */
         private fun setDroppable(imageView: ImageView, expectedTag: String, correctImageRes: Int) {
             imageView.setOnDragListener { v, event ->
                 when (event.action) {

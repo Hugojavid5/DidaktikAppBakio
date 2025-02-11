@@ -11,13 +11,20 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad de bienvenida para "Bela". En esta pantalla, se reproduce un audio con controles
+ * de reproducción antes de iniciar la actividad principal del juego.
+ */
 class ActividadBienvenidaBela : AppCompatActivity() {
+
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var seekBar: SeekBar
     private lateinit var currentTimeText: TextView
     private lateinit var totalTimeText: TextView
-
+    /**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_bela)
@@ -85,14 +92,21 @@ class ActividadBienvenidaBela : AppCompatActivity() {
         })
     }
 
-    // Metodo para formatear el tiempo en formato "mm:ss"
+    /**
+     * Método para formatear el tiempo en formato "mm:ss".
+     * @param millis Tiempo en milisegundos.
+     * @return Cadena de texto con el tiempo en formato "mm:ss".
+     */
+
     private fun formatTime(millis: Int): String {
         val minutes = millis / 1000 / 60
         val seconds = (millis / 1000 % 60)
         return String.format("%02d:%02d", minutes, seconds)
     }
 
-    // Actualizar SeekBar y el tiempo actual mientras se reproduce el audio
+    /**
+     * Método para actualizar el SeekBar y el tiempo actual del audio mientras se reproduce.
+     */
     private fun updateSeekBar() {
         val handler = Handler()
         val updateRunnable = object : Runnable {
@@ -105,7 +119,9 @@ class ActividadBienvenidaBela : AppCompatActivity() {
         }
         handler.post(updateRunnable)
     }
-
+/**
+     * Libera los recursos de MediaPlayer cuando la actividad se destruye.
+     */
     override fun onDestroy() {
         super.onDestroy()
         if (mediaPlayer.isPlaying) {
@@ -113,6 +129,9 @@ class ActividadBienvenidaBela : AppCompatActivity() {
         }
         mediaPlayer.release()
     }
+    /**
+     * Deshabilita el botón de retroceso para evitar que el usuario salga accidentalmente.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
