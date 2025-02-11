@@ -10,11 +10,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad de bienvenida de la aplicación. En esta pantalla, el usuario puede reproducir,
+ * pausar y reiniciar un audio introductorio antes de navegar al mapa principal.
+ */
 class BienvenidaApp : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_app)
@@ -85,13 +91,18 @@ class BienvenidaApp : AppCompatActivity() {
             progressRunnable.run()
         }
     }
-
+ /**
+     * Libera los recursos del MediaPlayer cuando la actividad se destruye para evitar fugas de memoria.
+     */
     override fun onDestroy() {
         super.onDestroy()
         // Liberar recursos del MediaPlayer para evitar fugas de memoria
         mediaPlayer?.release()
         mediaPlayer = null
     }
+    /**
+     * Deshabilita el botón de retroceso para evitar que el usuario salga accidentalmente.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

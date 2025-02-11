@@ -8,12 +8,19 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.util.Properties
-
+/**
+ * Clase que gestiona la conexión con la base de datos y las operaciones relacionadas.
+ */
 class ConexionDb(context: Context) {
+
     private val dbUrl: String
     private val dbUser: String
     private val dbPassword: String
-
+/**
+     * Constructor que carga las credenciales de la base de datos desde el archivo `config.properties`.
+     *
+     * @param context Contexto de la aplicación para acceder a los assets.
+     */
     init {
         val properties = Properties()
         try {
@@ -33,7 +40,11 @@ class ConexionDb(context: Context) {
         }
     }
 
-
+/**
+     * Establece una conexión con la base de datos.
+     *
+     * @return Un objeto `Connection` si la conexión es exitosa, o `null` en caso de error.
+     */
     fun obtenerConexion(): Connection? {
         return try {
             val conexion = DriverManager.getConnection(dbUrl, dbUser, dbPassword)
@@ -45,7 +56,14 @@ class ConexionDb(context: Context) {
         }
     }
 
-
+    /**
+     * Guarda un nuevo alumno en la base de datos.
+     *
+     * @param usuario Nombre de usuario del alumno.
+     * @param nombre  Nombre completo del alumno.
+     * @param idAplicacion Identificador de la aplicación.
+     * @return `true` si la operación fue exitosa, `false` en caso de error.
+     */
     fun guardarAlumnoBBDD(usuario: String, nombre: String, idAplicacion: Int): Boolean {
         val conexion = obtenerConexion() ?: return false
 
@@ -76,7 +94,13 @@ class ConexionDb(context: Context) {
     }
 
 
-
+    /**
+     * Guarda la puntuación de un alumno en un nivel de la aplicación.
+     *
+     * @param usuario Nombre de usuario del alumno.
+     * @param puntuacion Puntuación obtenida en el nivel.
+     * @return `true` si la operación fue exitosa, `false` en caso de error.
+     */
     fun guardarPuntuacionNivel(usuario:String,puntuacion:Int):Boolean{
         val conexion = obtenerConexion()
         if (conexion != null) {
@@ -99,6 +123,11 @@ class ConexionDb(context: Context) {
         return false
     }
 
+    /**
+     * Obtiene un ranking de los alumnos según su puntuación en la aplicación.
+     *
+     * @return Una lista con los nombres de usuario y sus puntuaciones ordenadas de mayor a menor.
+     */
     fun ranking(): MutableList<String> {
         val lista: MutableList<String> = mutableListOf()
         val conexion = obtenerConexion()
