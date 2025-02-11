@@ -11,7 +11,11 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Clase que representa la actividad de bienvenida antes de comenzar el juego de
+ * arrastrar y soltar. Incluye controles de reproducción de audio y navegación
+ * hacia la actividad principal del juego.
+ */
 class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity(), MediaPlayer.OnCompletionListener {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var audioSeekBar: SeekBar
@@ -23,6 +27,9 @@ class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity(), MediaPlayer.OnC
     private lateinit var totalTimeText: TextView
 
     private val handler = Handler(Looper.getMainLooper())
+    /**
+     * Runnable para actualizar la barra de progreso del audio cada segundo.
+     */
     private val progressRunnable = object : Runnable {
         override fun run() {
             try {
@@ -41,7 +48,10 @@ class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity(), MediaPlayer.OnC
             }
         }
     }
-
+ /**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_arrastrar)
@@ -92,12 +102,19 @@ class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity(), MediaPlayer.OnC
 
         mediaPlayer.setOnCompletionListener(this)
     }
-
+    /**
+     * Método que se ejecuta cuando el audio llega al final.
+     * Reinicia la reproducción automáticamente.
+     * @param mp MediaPlayer que ha completado la reproducción.
+     */
     override fun onCompletion(mp: MediaPlayer?) {
         mediaPlayer.seekTo(0)
         mediaPlayer.start()
     }
-
+/**
+     * Método que se ejecuta cuando la actividad se destruye.
+     * Libera los recursos del MediaPlayer y detiene la actualización de la barra de progreso.
+     */
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacks(progressRunnable) // Detiene el Runnable
@@ -108,6 +125,9 @@ class ActividadBienvenidaArrastrarYSoltar : AppCompatActivity(), MediaPlayer.OnC
             mediaPlayer.release()
         }
     }
+    /**
+     * Método que impide que el usuario vuelva atrás presionando el botón de retroceso.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso
