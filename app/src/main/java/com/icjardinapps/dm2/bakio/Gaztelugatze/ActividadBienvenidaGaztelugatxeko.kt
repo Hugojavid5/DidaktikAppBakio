@@ -12,7 +12,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.R
 
-
+/**
+ * Actividad de bienvenida para la sección de Gaztelugatxe.
+ * Incluye una imagen, una explicación y un reproductor de audio con controles.
+ */
 class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
@@ -20,7 +23,13 @@ class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
     private lateinit var currentTimeText: TextView
     private lateinit var totalTimeText: TextView
     private val handler = Handler()
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa la interfaz de usuario, configura el reproductor de audio
+     * y gestiona los botones de reproducción.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bienvenida_gaztelugatxeko)
@@ -119,18 +128,29 @@ class ActividadBienvenidaGaztelugatxeko : AppCompatActivity() {
         }
     }
 
-    // Función para formatear el tiempo en minutos:segundos
+    /**
+     * Formatea un tiempo en milisegundos a formato mm:ss.
+     *
+     * @param milliseconds Tiempo en milisegundos.
+     * @return Cadena en formato "mm:ss".
+     */
     private fun formatTime(milliseconds: Int): String {
         val minutes = (milliseconds / 1000) / 60
         val seconds = (milliseconds / 1000) % 60
         return String.format("%02d:%02d", minutes, seconds)
     }
-
+/**
+     * Se ejecuta cuando la actividad es destruida.
+     * Libera los recursos del MediaPlayer para evitar fugas de memoria.
+     */
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()
         mediaPlayer = null
     }
+    /**
+     * Sobrescribe el comportamiento del botón "Atrás" para evitar que el usuario retroceda.
+     */
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         // No hacemos nada, por lo que no se realizará ninguna acción al presionar la flecha de retroceso

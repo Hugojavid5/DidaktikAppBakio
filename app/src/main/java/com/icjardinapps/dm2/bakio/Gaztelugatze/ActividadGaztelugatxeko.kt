@@ -8,7 +8,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.icjardinapps.dm2.bakio.Mapa.Mapa
 import com.icjardinapps.dm2.bakio.R
-
+/**
+ * Actividad que maneja la interacción con el usuario en la sección de Gaztelugatxe.
+ * Reproduce un video, presenta una pregunta con opciones de respuesta,
+ * y permite al usuario corregir su respuesta y avanzar al siguiente paso.
+ */
 class ActividadGaztelugatxeko : AppCompatActivity() {
 
     private lateinit var videoView: VideoView
@@ -20,7 +24,12 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
     private lateinit var volverButton: ImageButton
     private lateinit var siguienteButton: ImageButton
     private val respuestaCorrecta = R.id.respuesta2
-
+/**
+     * Método que se ejecuta al crear la actividad.
+     * Inicializa los componentes de la interfaz de usuario y configura la lógica del video y las respuestas.
+     *
+     * @param savedInstanceState Estado guardado de la actividad (si existe).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gaztelugatxeko)
@@ -101,7 +110,9 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         // Iniciar el video automáticamente
         videoView.start()
     }
-
+ /**
+     * Configura el VideoView para que ocupe toda la pantalla.
+     */
     private fun hacerPantallaCompleta() {
         // Configurar VideoView para que ocupe toda la pantalla
         val layoutParams = videoView.layoutParams
@@ -109,13 +120,17 @@ class ActividadGaztelugatxeko : AppCompatActivity() {
         layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
         videoView.layoutParams = layoutParams
     }
-
+ /**
+     * Muestra una animación de una cara triste cuando la respuesta es incorrecta.
+     */
     private fun mostrarCaraTriste() {
         val animationDrawable = resources.getDrawable(R.drawable.triste) as AnimationDrawable
         imageView.setImageDrawable(animationDrawable)
         animationDrawable.start()
     }
-
+/**
+     * Muestra una animación de una cara alegre cuando la respuesta es correcta.
+     */
     private fun mostrarCaraAlegre() {
         val animationDrawable = resources.getDrawable(R.drawable.sonrisa) as AnimationDrawable
         imageView.setImageDrawable(animationDrawable)
